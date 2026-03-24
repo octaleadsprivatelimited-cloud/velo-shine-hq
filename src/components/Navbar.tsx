@@ -1,18 +1,20 @@
 import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, Phone, Droplets } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "Services", href: "#services" },
-  { label: "How It Works", href: "#how-it-works" },
-  { label: "Testimonials", href: "#testimonials" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "Services", href: "/services" },
+  { label: "About", href: "/about" },
+  { label: "Gallery", href: "/gallery" },
+  { label: "Book Now", href: "/booking" },
 ];
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
 
   return (
     <motion.nav
@@ -22,36 +24,38 @@ const Navbar = () => {
       className="fixed top-0 left-0 right-0 z-50 glass"
     >
       <div className="container mx-auto flex items-center justify-between py-4 px-6">
-        <a href="#home" className="flex items-center gap-2">
+        <Link to="/" className="flex items-center gap-2">
+          <Droplets className="w-6 h-6 text-primary" />
           <span className="font-display text-2xl font-bold tracking-tight">
             VELOCI<span className="text-gradient">WASH</span>
           </span>
-        </a>
+        </Link>
 
         {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.label}
-              href={link.href}
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200"
+              to={link.href}
+              className={`text-sm font-medium transition-colors duration-200 ${
+                location.pathname === link.href
+                  ? "text-primary"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
             >
               {link.label}
-            </a>
+            </Link>
           ))}
-          <a href="https://wa.me/919676031464" target="_blank" rel="noopener noreferrer">
+          <a href="tel:+919676031464">
             <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90 font-display font-semibold">
               <Phone className="w-4 h-4 mr-2" />
-              Book Now
+              Call Us
             </Button>
           </a>
         </div>
 
         {/* Mobile toggle */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden text-foreground"
-        >
+        <button onClick={() => setIsOpen(!isOpen)} className="md:hidden text-foreground">
           {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
       </div>
@@ -67,19 +71,21 @@ const Navbar = () => {
           >
             <div className="flex flex-col gap-4 p-6">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.label}
-                  href={link.href}
+                  to={link.href}
                   onClick={() => setIsOpen(false)}
-                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                  className={`text-sm font-medium transition-colors ${
+                    location.pathname === link.href ? "text-primary" : "text-muted-foreground hover:text-foreground"
+                  }`}
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
-              <a href="https://wa.me/919676031464" target="_blank" rel="noopener noreferrer">
+              <a href="tel:+919676031464">
                 <Button className="w-full bg-primary text-primary-foreground font-display font-semibold">
                   <Phone className="w-4 h-4 mr-2" />
-                  Book Now
+                  Call Us
                 </Button>
               </a>
             </div>
