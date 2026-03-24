@@ -38,11 +38,22 @@ const BookingPage = () => {
     setForm((prev) => ({ ...prev, [field]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.name || !form.phone || !form.carType || !form.service || !date || !form.timeSlot || !form.address) {
       toast({ title: "Please fill all required fields", variant: "destructive" });
       return;
+    }
+
+    // Save to Firestore
+    try {
+      const { addBooking } = await import("@/lib/bookingService");
+      await addBooking({
+        ...form,
+        date: format(date, "PPP"),
+      });
+    } catch (error) {
+      console.error("Failed to save booking:", error);
     }
 
     const message = `Hi Velociwash! I'd like to book a wash.\n\nName: ${form.name}\nPhone: ${form.phone}\nCar: ${form.carType} - ${form.carModel}\nService: ${form.service}\nDate: ${format(date, "PPP")}\nTime: ${form.timeSlot}\nAddress: ${form.address}${form.notes ? `\nNotes: ${form.notes}` : ""}`;
