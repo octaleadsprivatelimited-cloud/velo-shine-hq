@@ -1,20 +1,14 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Droplets } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero-car-wash.jpg";
 
 const HeroSection = () => {
   return (
-    <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background image */}
+    <section className="relative min-h-screen flex items-center overflow-hidden">
       <div className="absolute inset-0">
-        <img
-          src={heroImage}
-          alt="Premium doorstep car wash service"
-          width={1920}
-          height={1080}
-          className="w-full h-full object-cover"
-        />
+        <img src={heroImage} alt="Premium doorstep car wash service" width={1920} height={1080} className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-background/40" />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/30" />
       </div>
@@ -57,20 +51,19 @@ const HeroSection = () => {
             transition={{ duration: 0.7, delay: 0.5 }}
             className="flex flex-col sm:flex-row gap-4"
           >
-            <a href="https://wa.me/919676031464" target="_blank" rel="noopener noreferrer">
+            <Link to="/booking">
               <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-display font-semibold text-base px-8 glow-border">
                 Schedule a Wash
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
-            </a>
-            <a href="#services">
+            </Link>
+            <Link to="/services">
               <Button size="lg" variant="outline" className="border-border text-foreground hover:bg-secondary font-display font-semibold text-base px-8">
                 View Services
               </Button>
-            </a>
+            </Link>
           </motion.div>
 
-          {/* Stats */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
