@@ -31,6 +31,22 @@ const AdminPage = () => {
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<string>("all");
 
+  const fetchBookings = async () => {
+    setLoading(true);
+    try {
+      const data = await getBookings();
+      setBookings(data);
+    } catch (error) {
+      toast({ title: "Failed to fetch bookings. Check Firebase config.", variant: "destructive" });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (isAuthenticated) fetchBookings();
+  }, [isAuthenticated]);
+
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
@@ -89,22 +105,6 @@ const AdminPage = () => {
       </div>
     );
   }
-
-  const fetchBookings = async () => {
-    setLoading(true);
-    try {
-      const data = await getBookings();
-      setBookings(data);
-    } catch (error) {
-      toast({ title: "Failed to fetch bookings. Check Firebase config.", variant: "destructive" });
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    if (isAuthenticated) fetchBookings();
-  }, [isAuthenticated]);
 
   const handleStatusChange = async (id: string, status: Booking["status"]) => {
     try {
