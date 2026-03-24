@@ -103,8 +103,8 @@ const AdminPage = () => {
   };
 
   useEffect(() => {
-    fetchBookings();
-  }, []);
+    if (isAuthenticated) fetchBookings();
+  }, [isAuthenticated]);
 
   const handleStatusChange = async (id: string, status: Booking["status"]) => {
     try {
