@@ -47,7 +47,7 @@ const BookingPage = () => {
 
     // Save to Firestore
     try {
-      const { addBooking } = await import("@/lib/bookingService");
+      const { addBooking } = await import("@/lib/adminService");
       await addBooking({
         ...form,
         date: format(date, "PPP"),
