@@ -25,7 +25,6 @@ const Navbar = () => {
 
   useEffect(() => {
     setIsOpen(false);
-    setServicesOpen(false);
   }, [location.pathname]);
 
   return (
