@@ -174,7 +174,7 @@ const BookingPage = () => {
               </div>
 
               <Button type="submit" size="lg" className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-display font-bold text-base h-14 btn-glow glow-border rounded-xl">
-                Confirm & Send via WhatsApp
+                Confirm Booking
               </Button>
             </motion.form>
 
