@@ -55,7 +55,7 @@ const AdminGallery = () => {
   const ItemForm = ({ onSave, onCancel }: { onSave: () => void; onCancel: () => void }) => (
     <div className="bg-card border border-border rounded-xl p-6 space-y-5 col-span-full">
       <div className="space-y-2">
-      <ImageUploadField label="Image *" value={form.imageUrl} onChange={(url) => setForm({ ...form, imageUrl: url })} folder="gallery" />
+      <ImageUploadField label="Image *" value={form.imageUrl} onChange={(url) => setForm({ ...form, imageUrl: url })} />
       </div>
       <div className="grid md:grid-cols-2 gap-4">
         <div className="space-y-2">
