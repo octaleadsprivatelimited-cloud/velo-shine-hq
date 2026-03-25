@@ -4,14 +4,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Droplets, ChevronRight } from "lucide-react";
 
 const navLinks = [
+  { label: "Services", href: "/services" },
   { label: "About", href: "/about" },
   { label: "Gallery", href: "/gallery" },
   { label: "Support", href: "/support" },
-];
-
-const serviceLinks = [
-  { label: "Doorstep Car Foam Wash", href: "/foam-wash" },
-  { label: "Doorstep Car Regular Cleaning", href: "/regular-cleaning" },
 ];
 
 const Navbar = () => {
