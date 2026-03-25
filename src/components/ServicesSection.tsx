@@ -112,16 +112,16 @@ const ServicesSection = () => {
                   </div>
                 </Link>
               ) : (
-                <div className="relative rounded-2xl overflow-hidden border border-border/50 bg-card/30 h-[300px] md:h-[380px] opacity-50">
-                  <div className="absolute inset-0 noise" />
+                <div className="relative rounded-2xl overflow-hidden border border-border bg-card h-[300px] md:h-[380px]">
+                  <div className="absolute inset-0 noise opacity-30" />
                   <div className="h-full flex flex-col justify-end p-7 md:p-9 relative">
-                    <h3 className="font-display text-xl md:text-2xl font-bold mb-2">
+                    <h3 className="font-display text-xl md:text-2xl font-bold mb-2 text-foreground/60">
                       {service.title}
                     </h3>
                     <p className="text-sm text-muted-foreground mb-5">
                       {service.description}
                     </p>
-                    <span className="px-3 py-1.5 rounded-full text-xs font-bold bg-secondary text-muted-foreground border border-border w-fit">
+                    <span className="px-3 py-1.5 rounded-full text-xs font-bold bg-secondary text-foreground/50 border border-border w-fit">
                       {service.badge}
                     </span>
                   </div>
