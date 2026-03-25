@@ -13,7 +13,6 @@ const navLinks = [
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [servicesOpen, setServicesOpen] = useState(false);
   const location = useLocation();
   const isHome = location.pathname === "/";
   const showWhiteText = !scrolled;
