@@ -89,7 +89,7 @@ const BookingPage = () => {
               Schedule a <span className="text-gradient">Wash</span>
             </h1>
             <p className="text-lg text-muted-foreground max-w-lg leading-relaxed">
-              Fill in your details and we'll confirm via WhatsApp.
+              Fill in your details and we'll confirm your appointment.
             </p>
           </motion.div>
         </div>
