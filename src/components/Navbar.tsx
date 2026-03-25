@@ -53,7 +53,7 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden lg:flex items-center gap-1">
+        <div className="hidden md:flex items-center gap-1">
           <Link
             to="/"
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
@@ -137,7 +137,7 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Menu Button */}
-        <div className="flex items-center gap-4 lg:hidden">
+        <div className="flex items-center gap-4 md:hidden">
           <Link
             to="/booking"
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground font-display font-semibold text-sm hover:bg-primary/90 transition-all btn-glow"
@@ -161,7 +161,7 @@ const Navbar = () => {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="lg:hidden bg-white border-t border-border shadow-xl mt-2"
+            className="md:hidden bg-white border-t border-border shadow-xl mt-2"
           >
             <div className="flex flex-col p-5 max-w-lg mx-auto space-y-1">
               <Link
