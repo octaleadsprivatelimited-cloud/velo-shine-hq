@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import foamWashImg from "@/assets/service-foam-wash.jpg";
 import interiorImg from "@/assets/service-interior.jpg";
@@ -41,18 +41,36 @@ const services = [
 
 const ServicesSection = () => {
   return (
-    <section className="py-20 relative">
-      <div className="container mx-auto px-6">
-        <motion.h2
+    <section className="py-24 relative">
+      {/* Section background accent */}
+      <div className="absolute inset-0 section-gradient" />
+      <div className="absolute top-0 left-0 right-0 divider" />
+
+      <div className="container mx-auto px-6 relative z-10">
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="font-display text-3xl md:text-5xl font-bold mb-12"
+          className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-14"
         >
-          Services
-        </motion.h2>
+          <div>
+            <div className="flex items-center gap-2 mb-3">
+              <Sparkles className="w-4 h-4 text-primary" />
+              <span className="text-sm font-semibold text-primary uppercase tracking-widest">Our Services</span>
+            </div>
+            <h2 className="font-display text-3xl md:text-5xl font-extrabold">
+              What we <span className="text-gradient">offer</span>
+            </h2>
+          </div>
+          <Link
+            to="/foam-wash"
+            className="text-sm font-semibold text-primary hover:text-primary/80 flex items-center gap-1 transition-colors group"
+          >
+            View all services <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </Link>
+        </motion.div>
 
-        <div className="grid sm:grid-cols-2 gap-5">
+        <div className="grid sm:grid-cols-2 gap-6">
           {services.map((service, i) => (
             <motion.div
               key={service.title}
@@ -63,30 +81,31 @@ const ServicesSection = () => {
             >
               {service.available ? (
                 <Link to={service.href} className="block group">
-                  <div className="relative rounded-2xl overflow-hidden border border-border bg-card hover:border-primary/30 transition-all duration-300 h-[280px] md:h-[340px]">
+                  <div className="relative rounded-2xl overflow-hidden border border-border bg-card hover:border-primary/40 transition-all duration-500 h-[300px] md:h-[380px] card-shine">
                     {service.image && (
                       <>
                         <img
                           src={service.image}
                           alt={service.title}
-                          className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                          loading="lazy"
+                          className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-card via-card/60 to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-card via-card/70 to-transparent" />
                       </>
                     )}
-                    <div className="relative h-full flex flex-col justify-end p-6 md:p-8">
-                      <h3 className="font-display text-xl md:text-2xl font-bold mb-2">
+                    <div className="relative h-full flex flex-col justify-end p-7 md:p-9">
+                      <h3 className="font-display text-xl md:text-2xl font-bold mb-2 group-hover:text-primary transition-colors">
                         {service.title}
                       </h3>
-                      <p className="text-sm text-muted-foreground mb-4">
+                      <p className="text-sm text-muted-foreground mb-5">
                         {service.description}
                       </p>
                       <div className="flex items-center justify-between">
-                        <span className="text-sm font-semibold text-primary flex items-center gap-2 group-hover:gap-3 transition-all">
+                        <span className="text-sm font-bold text-primary flex items-center gap-2 group-hover:gap-3 transition-all">
                           Book now <ArrowRight className="w-4 h-4" />
                         </span>
                         {service.badge && (
-                          <span className="px-3 py-1 rounded-full text-xs font-semibold bg-primary/20 text-primary border border-primary/30">
+                          <span className="px-3 py-1.5 rounded-full text-xs font-bold bg-primary/15 text-primary border border-primary/25">
                             {service.badge}
                           </span>
                         )}
@@ -95,15 +114,16 @@ const ServicesSection = () => {
                   </div>
                 </Link>
               ) : (
-                <div className="relative rounded-2xl overflow-hidden border border-border bg-card/50 h-[280px] md:h-[340px] opacity-60">
-                  <div className="h-full flex flex-col justify-end p-6 md:p-8">
+                <div className="relative rounded-2xl overflow-hidden border border-border/50 bg-card/30 h-[300px] md:h-[380px] opacity-50">
+                  <div className="absolute inset-0 noise" />
+                  <div className="h-full flex flex-col justify-end p-7 md:p-9 relative">
                     <h3 className="font-display text-xl md:text-2xl font-bold mb-2">
                       {service.title}
                     </h3>
-                    <p className="text-sm text-muted-foreground mb-4">
+                    <p className="text-sm text-muted-foreground mb-5">
                       {service.description}
                     </p>
-                    <span className="px-3 py-1 rounded-full text-xs font-semibold bg-secondary text-muted-foreground border border-border w-fit">
+                    <span className="px-3 py-1.5 rounded-full text-xs font-bold bg-secondary text-muted-foreground border border-border w-fit">
                       {service.badge}
                     </span>
                   </div>

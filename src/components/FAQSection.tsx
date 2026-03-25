@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Phone } from "lucide-react";
+import { Phone, HelpCircle } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -37,16 +37,25 @@ const faqs = [
 
 const FAQSection = () => {
   return (
-    <section className="py-20 relative">
-      <div className="container mx-auto px-6">
-        <motion.h2
+    <section className="py-24 relative">
+      <div className="absolute top-0 left-0 right-0 divider" />
+      <div className="absolute inset-0 section-gradient" />
+
+      <div className="container mx-auto px-6 relative z-10">
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="font-display text-3xl md:text-5xl font-bold text-center mb-12"
+          className="text-center mb-14"
         >
-          Frequently asked <span className="text-gradient">Questions</span>
-        </motion.h2>
+          <div className="flex items-center justify-center gap-2 mb-3">
+            <HelpCircle className="w-4 h-4 text-primary" />
+            <span className="text-sm font-semibold text-primary uppercase tracking-widest">FAQ</span>
+          </div>
+          <h2 className="font-display text-3xl md:text-5xl font-extrabold">
+            Frequently asked <span className="text-gradient">Questions</span>
+          </h2>
+        </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -59,9 +68,9 @@ const FAQSection = () => {
               <AccordionItem
                 key={i}
                 value={`faq-${i}`}
-                className="bg-card border border-border rounded-xl px-6 data-[state=open]:border-primary/30 transition-colors"
+                className="bg-card border border-border rounded-xl px-6 data-[state=open]:border-primary/30 data-[state=open]:glow-border transition-all duration-300"
               >
-                <AccordionTrigger className="font-display font-semibold text-left hover:no-underline py-5">
+                <AccordionTrigger className="font-display font-semibold text-left hover:no-underline py-5 hover:text-primary transition-colors">
                   {faq.question}
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground leading-relaxed pb-5">
@@ -71,19 +80,26 @@ const FAQSection = () => {
             ))}
           </Accordion>
 
-          <div className="text-center mt-10 bg-card border border-border rounded-xl p-6">
-            <p className="text-muted-foreground mb-2">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="text-center mt-12 bg-card border border-border rounded-2xl p-8"
+          >
+            <p className="text-muted-foreground mb-2 font-medium">
               Can't find what you're looking for?
             </p>
-            <p className="text-sm text-muted-foreground mb-3">Contact us here:</p>
+            <p className="text-sm text-muted-foreground mb-4">Contact us here:</p>
             <a
               href="tel:+919676031464"
-              className="inline-flex items-center gap-2 text-primary font-display font-semibold hover:text-primary/80 transition-colors"
+              className="inline-flex items-center gap-2 text-primary font-display font-bold hover:text-primary/80 transition-colors text-lg"
             >
-              <Phone className="w-4 h-4" />
+              <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/25 flex items-center justify-center">
+                <Phone className="w-4 h-4" />
+              </div>
               +91-96760 31464
             </a>
-          </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

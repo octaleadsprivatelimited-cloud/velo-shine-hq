@@ -1,57 +1,110 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Droplets } from "lucide-react";
+import { ArrowRight, Play } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero-car-wash.jpg";
 
 const HeroSection = () => {
   return (
-    <section className="relative h-screen flex items-end overflow-hidden">
-      {/* Full-screen background */}
+    <section className="relative min-h-screen flex items-end overflow-hidden">
+      {/* Background image with overlay */}
       <div className="absolute inset-0">
         <img
           src={heroImage}
           alt="Premium doorstep car wash service"
           width={1920}
           height={1080}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover scale-105"
+          loading="eager"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-background/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-transparent to-transparent" />
+        {/* Noise texture overlay */}
+        <div className="absolute inset-0 noise opacity-30" />
       </div>
 
-      <div className="container mx-auto px-6 relative z-10 pb-16 md:pb-24">
+      {/* Floating accent orbs */}
+      <div className="absolute top-1/4 right-1/4 w-72 h-72 rounded-full bg-primary/5 blur-[100px] animate-float" />
+      <div className="absolute bottom-1/3 left-1/3 w-96 h-96 rounded-full bg-accent/5 blur-[120px]" />
+
+      <div className="container mx-auto px-6 relative z-10 pb-20 md:pb-28">
+        {/* Badge */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/5 backdrop-blur-sm mb-8"
+        >
+          <span className="w-2 h-2 rounded-full bg-primary animate-pulse-glow" />
+          <span className="text-sm font-medium text-primary">Premium Doorstep Service</span>
+        </motion.div>
+
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold leading-[1] mb-6 max-w-4xl"
+          className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold leading-[0.95] mb-6 max-w-5xl"
         >
-          Doorstep car care services
+          Your car deserves{" "}
+          <span className="text-gradient">premium</span> care
         </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="text-lg md:text-xl text-muted-foreground max-w-xl mb-10 leading-relaxed"
+        >
+          Professional foam wash & cleaning delivered to your doorstep.
+          We bring our own water, electricity & premium products.
+        </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="flex items-center gap-3"
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="flex flex-wrap items-center gap-4"
         >
           <Link to="/booking">
             <Button
               size="lg"
-              className="bg-primary text-primary-foreground hover:bg-primary/90 font-display font-semibold text-base px-8 h-14 glow-border"
+              className="bg-primary text-primary-foreground hover:bg-primary/90 font-display font-bold text-base px-8 h-14 btn-glow glow-border rounded-xl"
             >
-              SCHEDULE WASH
+              SCHEDULE WASH <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
           </Link>
-          <Link to="/booking">
+          <Link to="/foam-wash">
             <Button
               size="lg"
               variant="outline"
-              className="border-border text-foreground hover:bg-secondary font-display font-bold text-xl w-14 h-14"
+              className="border-border/60 text-foreground hover:bg-secondary/50 hover:border-primary/30 font-display font-semibold text-base h-14 rounded-xl backdrop-blur-sm"
             >
-              +
+              <Play className="w-4 h-4 mr-2 text-primary" /> Explore Services
             </Button>
           </Link>
+        </motion.div>
+
+        {/* Trust indicators */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 0.8 }}
+          className="mt-14 flex flex-wrap items-center gap-6 text-sm text-muted-foreground"
+        >
+          <div className="flex items-center gap-2">
+            <div className="flex -space-x-2">
+              {[1, 2, 3, 4].map((i) => (
+                <div key={i} className="w-8 h-8 rounded-full bg-secondary border-2 border-background flex items-center justify-center text-xs font-bold text-primary">
+                  {String.fromCharCode(64 + i)}
+                </div>
+              ))}
+            </div>
+            <span>500+ happy customers</span>
+          </div>
+          <div className="hidden sm:flex items-center gap-2">
+            <span className="text-primary font-bold">4.9★</span>
+            <span>rated on Google</span>
+          </div>
         </motion.div>
       </div>
     </section>
