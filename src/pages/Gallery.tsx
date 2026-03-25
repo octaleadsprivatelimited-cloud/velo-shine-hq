@@ -39,8 +39,8 @@ const GalleryPage = () => {
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
 
-      <section className="pt-32 pb-10 relative">
-        <div className="absolute inset-0 noise opacity-15" />
+      <section className="pt-32 pb-10 relative bg-background">
+        <div className="absolute inset-0 noise opacity-10" />
         <div className="container mx-auto px-6 relative z-10">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             <div className="flex items-center gap-2 mb-4">
@@ -57,8 +57,9 @@ const GalleryPage = () => {
         </div>
       </section>
 
-      <section className="py-8 pb-24">
-        <div className="container mx-auto px-6">
+      <section className="py-8 pb-24 bg-secondary/50 relative">
+        <div className="absolute inset-0 noise opacity-10" />
+        <div className="container mx-auto px-6 relative z-10">
           <div className="flex gap-2 mb-10 flex-wrap">
             {categories.map((cat) => (
               <button
@@ -93,9 +94,9 @@ const GalleryPage = () => {
                     loading="lazy"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[hsl(225,25%,5%/0.8)] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <p className="text-sm font-medium text-foreground">{item.alt}</p>
+                    <p className="text-sm font-medium text-white text-shadow-sm">{item.alt}</p>
                     <p className="text-xs text-primary">{item.category}</p>
                   </div>
                 </motion.div>
