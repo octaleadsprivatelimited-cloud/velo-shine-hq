@@ -76,8 +76,7 @@ const HeroSection = () => {
           <Link to="/foam-wash">
             <Button
               size="lg"
-              variant="outline"
-              className="border-white/30 text-white hover:bg-white/10 hover:border-white/50 font-display font-semibold text-base h-14 rounded-xl backdrop-blur-sm"
+              className="border border-white/30 bg-transparent text-white hover:bg-white/10 hover:border-white/50 font-display font-semibold text-base h-14 rounded-xl backdrop-blur-sm"
             >
               <Play className="w-4 h-4 mr-2 text-primary" /> Explore Services
             </Button>
