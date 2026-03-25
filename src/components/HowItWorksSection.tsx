@@ -1,77 +1,68 @@
 import { motion } from "framer-motion";
-import { UserPlus, CalendarCheck, Sparkles, ArrowRight } from "lucide-react";
+import { UserPlus, CalendarCheck } from "lucide-react";
+import foamImg from "@/assets/service-foam-wash.jpg";
+import heroImg from "@/assets/hero-car-wash.jpg";
 
 const steps = [
   {
+    num: 1,
     icon: UserPlus,
-    step: "01",
-    title: "Get in Touch",
-    description: "Contact us via WhatsApp or fill the booking form with your details.",
-    color: "from-primary/20 to-primary/5",
+    title: "Signup / Login",
+    description: "Create an account or log in to get started with our services.",
+    image: heroImg,
   },
   {
+    num: 2,
     icon: CalendarCheck,
-    step: "02",
     title: "Schedule a Wash",
-    description: "Pick a date, time, and location. We'll confirm your slot instantly.",
-    color: "from-primary/15 to-primary/5",
-  },
-  {
-    icon: Sparkles,
-    step: "03",
-    title: "Sit Back & Shine",
-    description: "We arrive fully equipped. Your car gets a showroom finish at your doorstep.",
-    color: "from-primary/10 to-primary/5",
+    description: "Hit on schedule wash and relax while we restore your car's shine!",
+    image: foamImg,
   },
 ];
 
 const HowItWorksSection = () => {
   return (
-    <section id="how-it-works" className="py-28 relative overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-secondary/30 via-secondary/10 to-background pointer-events-none" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-primary/3 blur-[150px]" />
-
-      <div className="container mx-auto px-6 relative z-10">
+    <section className="py-20 relative">
+      <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="text-center mb-16"
         >
-          <span className="text-sm font-medium text-primary uppercase tracking-widest">How It Works</span>
-          <h2 className="font-display text-4xl md:text-6xl font-bold mt-4">
-            Book in{" "}
-            <span className="text-gradient">2 Minutes</span>
+          <h2 className="font-display text-3xl md:text-5xl font-bold">
+            Book our services in{" "}
+            <span className="text-gradient">2 Easy</span> Steps
           </h2>
-          <p className="text-muted-foreground mt-4 max-w-md mx-auto">
-            We get our own electricity and water to ensure the highest quality car wash experience.
-          </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-          {steps.map((item, index) => (
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          {steps.map((step, i) => (
             <motion.div
-              key={item.step}
+              key={step.num}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.15 }}
-              className="relative group"
+              transition={{ delay: i * 0.15 }}
+              className="bg-card border border-border rounded-2xl overflow-hidden hover:border-primary/20 transition-colors"
             >
-              {/* Connector line */}
-              {index < steps.length - 1 && (
-                <div className="hidden md:block absolute top-16 left-[60%] w-[80%] h-px bg-gradient-to-r from-primary/30 to-transparent" />
-              )}
-
-              <div className="bg-card border border-border rounded-2xl p-8 hover:border-primary/30 transition-all duration-300 h-full">
-                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${item.color} border border-primary/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                  <item.icon className="w-7 h-7 text-primary" />
+              <div className="p-6 md:p-8">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center font-display text-xl font-bold text-primary">
+                    {step.num}
+                  </div>
+                  <h3 className="font-display text-xl font-bold">{step.title}</h3>
                 </div>
-                <div className="font-display text-xs font-bold text-primary/50 tracking-widest mb-2">STEP {item.step}</div>
-                <h3 className="font-display text-xl font-bold mb-3">{item.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{item.description}</p>
+                <p className="text-muted-foreground leading-relaxed mb-6">
+                  {step.description}
+                </p>
+              </div>
+              <div className="h-48 overflow-hidden">
+                <img
+                  src={step.image}
+                  alt={step.title}
+                  className="w-full h-full object-cover"
+                />
               </div>
             </motion.div>
           ))}
