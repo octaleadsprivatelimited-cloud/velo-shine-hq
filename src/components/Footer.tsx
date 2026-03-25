@@ -12,7 +12,7 @@ const footerLinks = [
 
 const Footer = () => {
   return (
-    <footer className="border-t border-border bg-card/30 relative">
+    <footer className="dark-section border-t border-white/10 relative">
       <div className="absolute inset-0 noise opacity-10" />
 
       <div className="container mx-auto px-6 relative z-10">
@@ -27,20 +27,20 @@ const Footer = () => {
                 VELOCI<span className="text-gradient">WASH</span>
               </span>
             </Link>
-            <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
+            <p className="text-sm text-white/60 leading-relaxed max-w-xs">
               Premium doorstep car care services. We bring our own water, electricity, and professional-grade products.
             </p>
           </div>
 
           {/* Links */}
           <div>
-            <h4 className="font-display font-bold text-sm uppercase tracking-wider text-foreground mb-5">Quick Links</h4>
+            <h4 className="font-display font-bold text-sm uppercase tracking-wider text-white mb-5">Quick Links</h4>
             <nav className="grid grid-cols-2 gap-2">
               {footerLinks.map((link) => (
                 <Link
                   key={link.label}
                   to={link.href}
-                  className="text-sm text-muted-foreground hover:text-primary transition-colors py-1"
+                  className="text-sm text-white/60 hover:text-primary transition-colors py-1"
                 >
                   {link.label}
                 </Link>
@@ -50,17 +50,17 @@ const Footer = () => {
 
           {/* Contact */}
           <div>
-            <h4 className="font-display font-bold text-sm uppercase tracking-wider text-foreground mb-5">Contact</h4>
+            <h4 className="font-display font-bold text-sm uppercase tracking-wider text-white mb-5">Contact</h4>
             <div className="space-y-3">
-              <a href="tel:+919676031464" className="flex items-center gap-3 text-sm text-muted-foreground hover:text-primary transition-colors">
+              <a href="tel:+919676031464" className="flex items-center gap-3 text-sm text-white/60 hover:text-primary transition-colors">
                 <Phone className="w-4 h-4 text-primary" />
                 +91-96760 31464
               </a>
-              <a href="https://wa.me/919676031464" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-sm text-muted-foreground hover:text-primary transition-colors">
+              <a href="https://wa.me/919676031464" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-sm text-white/60 hover:text-primary transition-colors">
                 <MessageCircle className="w-4 h-4 text-primary" />
                 WhatsApp Chat
               </a>
-              <div className="flex items-start gap-3 text-sm text-muted-foreground">
+              <div className="flex items-start gap-3 text-sm text-white/60">
                 <MapPin className="w-4 h-4 text-primary shrink-0 mt-0.5" />
                 Doorstep — We come to you
               </div>
@@ -71,10 +71,10 @@ const Footer = () => {
         {/* Bottom bar */}
         <div className="divider" />
         <div className="py-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <span className="text-xs text-muted-foreground">
+          <span className="text-xs text-white/40">
             © {new Date().getFullYear()} Velociwash. All rights reserved.
           </span>
-          <div className="flex items-center gap-6 text-xs text-muted-foreground">
+          <div className="flex items-center gap-6 text-xs text-white/40">
             <Link to="/support" className="hover:text-primary transition-colors">Privacy Policy</Link>
             <Link to="/support" className="hover:text-primary transition-colors">Terms of Service</Link>
           </div>
