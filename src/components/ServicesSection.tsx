@@ -61,7 +61,7 @@ const ServicesSection = () => {
             </h2>
           </div>
           <Link
-            to="/foam-wash"
+            to="/services"
             className="text-sm font-semibold text-primary hover:text-primary/80 flex items-center gap-1 transition-colors group"
           >
             View all services <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

@@ -127,21 +127,6 @@ const Navbar = () => {
                 <ChevronRight className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
               </Link>
 
-              {serviceLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  to={link.href}
-                  className={`flex items-center justify-between px-4 py-3.5 rounded-xl text-sm font-medium transition-all group ${
-                    location.pathname === link.href
-                      ? "text-primary bg-primary/10 border border-primary/20"
-                      : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
-                  }`}
-                >
-                  {link.label}
-                  <ChevronRight className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
-                </Link>
-              ))}
-
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
