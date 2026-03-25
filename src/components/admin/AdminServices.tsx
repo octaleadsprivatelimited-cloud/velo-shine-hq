@@ -55,31 +55,31 @@ const AdminServices = () => {
     setForm({ title: s.title, description: s.description, badge: s.badge, features: s.features, pricing: s.pricing, imageUrl: s.imageUrl, order: s.order });
   };
 
-  const ServiceForm = ({ onSave, onCancel }: { onSave: () => void; onCancel: () => void }) => (
+  const renderForm = (onSave: () => void, onCancel: () => void) => (
     <div className="bg-card border border-border rounded-xl p-6 space-y-5">
       <div className="grid md:grid-cols-2 gap-4">
         <div className="space-y-2">
           <Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Title *</Label>
-          <Input value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} className="bg-secondary border-border h-11" />
+          <Input value={form.title} onChange={(e) => setForm((f) => ({ ...f, title: e.target.value }))} className="bg-secondary border-border h-11" />
         </div>
         <div className="space-y-2">
           <Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Badge</Label>
-          <Input value={form.badge} onChange={(e) => setForm({ ...form, badge: e.target.value })} placeholder="e.g. Most Popular" className="bg-secondary border-border h-11" />
+          <Input value={form.badge} onChange={(e) => setForm((f) => ({ ...f, badge: e.target.value }))} placeholder="e.g. Most Popular" className="bg-secondary border-border h-11" />
         </div>
       </div>
       <div className="space-y-2">
         <Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Description</Label>
-        <Textarea value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} className="bg-secondary border-border" rows={3} />
+        <Textarea value={form.description} onChange={(e) => setForm((f) => ({ ...f, description: e.target.value }))} className="bg-secondary border-border" rows={3} />
       </div>
       <div className="space-y-2">
         <Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Image URL</Label>
-        <Input value={form.imageUrl} onChange={(e) => setForm({ ...form, imageUrl: e.target.value })} placeholder="https://..." className="bg-secondary border-border h-11" />
+        <Input value={form.imageUrl} onChange={(e) => setForm((f) => ({ ...f, imageUrl: e.target.value }))} placeholder="https://..." className="bg-secondary border-border h-11" />
       </div>
       <div className="space-y-2">
         <Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Features (one per line)</Label>
         <Textarea
           value={form.features.join("\n")}
-          onChange={(e) => setForm({ ...form, features: e.target.value.split("\n") })}
+          onChange={(e) => setForm((f) => ({ ...f, features: e.target.value.split("\n") }))}
           placeholder={"pH-neutral foam\nScratch-free wash"}
           className="bg-secondary border-border" rows={4}
         />
@@ -87,16 +87,16 @@ const AdminServices = () => {
       <div className="space-y-3">
         <div className="flex items-center justify-between">
           <Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Pricing Plans</Label>
-          <Button variant="ghost" size="sm" onClick={() => setForm({ ...form, pricing: [...form.pricing, { plan: "", price: "" }] })} className="text-primary h-8">
+          <Button variant="ghost" size="sm" onClick={() => setForm((f) => ({ ...f, pricing: [...f.pricing, { plan: "", price: "" }] }))} className="text-primary h-8">
             <Plus className="w-3 h-3 mr-1" /> Add Plan
           </Button>
         </div>
         {form.pricing.map((p, i) => (
           <div key={i} className="flex gap-2 items-center">
-            <Input value={p.plan} onChange={(e) => { const np = [...form.pricing]; np[i].plan = e.target.value; setForm({ ...form, pricing: np }); }} placeholder="Plan name" className="bg-secondary border-border h-10" />
-            <Input value={p.price} onChange={(e) => { const np = [...form.pricing]; np[i].price = e.target.value; setForm({ ...form, pricing: np }); }} placeholder="₹999" className="bg-secondary border-border w-32 h-10" />
+            <Input value={p.plan} onChange={(e) => { const np = [...form.pricing]; np[i] = { ...np[i], plan: e.target.value }; setForm((f) => ({ ...f, pricing: np })); }} placeholder="Plan name" className="bg-secondary border-border h-10" />
+            <Input value={p.price} onChange={(e) => { const np = [...form.pricing]; np[i] = { ...np[i], price: e.target.value }; setForm((f) => ({ ...f, pricing: np })); }} placeholder="₹999" className="bg-secondary border-border w-32 h-10" />
             {form.pricing.length > 1 && (
-              <Button variant="ghost" size="icon" onClick={() => setForm({ ...form, pricing: form.pricing.filter((_, j) => j !== i) })} className="text-destructive shrink-0 h-10 w-10">
+              <Button variant="ghost" size="icon" onClick={() => setForm((f) => ({ ...f, pricing: f.pricing.filter((_, j) => j !== i) }))} className="text-destructive shrink-0 h-10 w-10">
                 <X className="w-4 h-4" />
               </Button>
             )}
@@ -123,7 +123,7 @@ const AdminServices = () => {
         )}
       </div>
 
-      {showAdd && <ServiceForm onSave={handleAdd} onCancel={() => setShowAdd(false)} />}
+      {showAdd && renderForm(handleAdd, () => setShowAdd(false))}
 
       {loading ? (
         <div className="text-center py-20 text-muted-foreground">Loading services...</div>
@@ -137,7 +137,7 @@ const AdminServices = () => {
         <div className="space-y-3">
           {services.map((s) =>
             editing === s.id ? (
-              <ServiceForm key={s.id} onSave={() => handleUpdate(s.id!)} onCancel={() => setEditing(null)} />
+              <div key={s.id}>{renderForm(() => handleUpdate(s.id!), () => setEditing(null))}</div>
             ) : (
               <div key={s.id} className="bg-card border border-border rounded-xl p-5 flex items-start justify-between gap-4 group hover:border-primary/20 transition-colors">
                 <div className="flex-1 min-w-0">

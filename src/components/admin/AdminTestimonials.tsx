@@ -50,23 +50,23 @@ const AdminTestimonials = () => {
     } catch { toast({ title: "Failed to delete", variant: "destructive" }); }
   };
 
-  const TestimonialForm = ({ onSave, onCancel }: { onSave: () => void; onCancel: () => void }) => (
+  const renderForm = (onSave: () => void, onCancel: () => void) => (
     <div className="bg-card border border-border rounded-xl p-6 space-y-5">
       <div className="grid md:grid-cols-2 gap-4">
         <div className="space-y-2">
           <Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Customer Name *</Label>
-          <Input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="bg-secondary border-border h-11" />
+          <Input value={form.name} onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))} className="bg-secondary border-border h-11" />
         </div>
         <div className="space-y-2">
           <Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Car Model</Label>
-          <Input value={form.car} onChange={(e) => setForm({ ...form, car: e.target.value })} placeholder="e.g. Hyundai Creta" className="bg-secondary border-border h-11" />
+          <Input value={form.car} onChange={(e) => setForm((f) => ({ ...f, car: e.target.value }))} placeholder="e.g. Hyundai Creta" className="bg-secondary border-border h-11" />
         </div>
       </div>
       <div className="space-y-2">
         <Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Rating</Label>
         <div className="flex gap-1.5">
           {[1, 2, 3, 4, 5].map((r) => (
-            <button key={r} type="button" onClick={() => setForm({ ...form, rating: r })} className="p-1 rounded-lg hover:bg-secondary transition-colors">
+            <button key={r} type="button" onClick={() => setForm((f) => ({ ...f, rating: r }))} className="p-1 rounded-lg hover:bg-secondary transition-colors">
               <Star className={`w-7 h-7 ${r <= form.rating ? "fill-primary text-primary" : "text-muted-foreground/30"}`} />
             </button>
           ))}
@@ -74,7 +74,7 @@ const AdminTestimonials = () => {
       </div>
       <div className="space-y-2">
         <Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Review Text *</Label>
-        <Textarea value={form.text} onChange={(e) => setForm({ ...form, text: e.target.value })} className="bg-secondary border-border" rows={3} />
+        <Textarea value={form.text} onChange={(e) => setForm((f) => ({ ...f, text: e.target.value }))} className="bg-secondary border-border" rows={3} />
       </div>
       <div className="flex gap-3 pt-2">
         <Button onClick={onSave} className="bg-primary text-primary-foreground h-10">
@@ -96,7 +96,7 @@ const AdminTestimonials = () => {
         )}
       </div>
 
-      {showAdd && <TestimonialForm onSave={handleAdd} onCancel={() => setShowAdd(false)} />}
+      {showAdd && renderForm(handleAdd, () => setShowAdd(false))}
 
       {loading ? (
         <div className="text-center py-20 text-muted-foreground">Loading testimonials...</div>
@@ -110,7 +110,7 @@ const AdminTestimonials = () => {
         <div className="grid md:grid-cols-2 gap-4">
           {items.map((t) =>
             editing === t.id ? (
-              <TestimonialForm key={t.id} onSave={() => handleUpdate(t.id!)} onCancel={() => setEditing(null)} />
+              <div key={t.id}>{renderForm(() => handleUpdate(t.id!), () => setEditing(null))}</div>
             ) : (
               <div key={t.id} className="bg-card border border-border rounded-xl p-5 group hover:border-primary/20 transition-colors relative">
                 <div className="absolute top-4 right-4 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
