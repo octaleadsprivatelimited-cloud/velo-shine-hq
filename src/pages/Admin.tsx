@@ -158,22 +158,6 @@ const AdminPage = () => {
         </nav>
 
         <div className="p-4 border-t border-border space-y-2">
-          <Button
-            variant="outline"
-            onClick={async () => {
-              try {
-                const result = await seedFirebaseData();
-                if (result.services === 0 && result.testimonials === 0) {
-                  toast({ title: "Data already exists", description: "No seeding needed — collections are not empty." });
-                } else {
-                  toast({ title: "Data seeded!", description: `Added ${result.services} services & ${result.testimonials} testimonials` });
-                }
-              } catch { toast({ title: "Seeding failed", variant: "destructive" }); }
-            }}
-            className="w-full justify-start text-muted-foreground hover:text-primary hover:bg-primary/10 border-border"
-          >
-            <Database className="w-4 h-4 mr-2" /> Seed Default Data
-          </Button>
           <div className="flex items-center gap-3 px-3 py-2">
             <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
               <span className="text-xs font-bold text-primary">{user.email?.[0]?.toUpperCase() || "A"}</span>
