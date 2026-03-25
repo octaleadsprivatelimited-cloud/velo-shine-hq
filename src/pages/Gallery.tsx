@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { X } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import PageHeader from "@/components/PageHeader";
 import Footer from "@/components/Footer";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 import heroImg from "@/assets/hero-car-wash.jpg";
 import foamImg from "@/assets/service-foam-wash.jpg";
@@ -46,15 +48,15 @@ const GalleryPage = () => {
       <section className="pb-24">
         <div className="container mx-auto px-6">
           {/* Filter tabs */}
-          <div className="flex gap-3 mb-10 flex-wrap">
+          <div className="flex gap-2 mb-12 flex-wrap">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActive(cat)}
-                className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                className={`px-6 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${
                   active === cat
                     ? "bg-primary text-primary-foreground"
-                    : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                    : "bg-card border border-border text-muted-foreground hover:text-foreground hover:border-primary/20"
                 }`}
               >
                 {cat}
@@ -62,8 +64,8 @@ const GalleryPage = () => {
             ))}
           </div>
 
-          {/* Grid */}
-          <motion.div layout className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          {/* Masonry-style grid */}
+          <motion.div layout className="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
             <AnimatePresence mode="popLayout">
               {filtered.map((item, i) => (
                 <motion.div
@@ -73,22 +75,23 @@ const GalleryPage = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.3 }}
-                  className="group cursor-pointer rounded-xl overflow-hidden border border-border hover:border-primary/30 transition-colors"
+                  className="group cursor-pointer rounded-2xl overflow-hidden border border-border hover:border-primary/30 transition-colors break-inside-avoid"
                   onClick={() => setSelectedImg(item.src)}
                 >
-                  <div className="aspect-[4/3] overflow-hidden">
+                  <div className="overflow-hidden relative">
                     <img
                       src={item.src}
                       alt={item.alt}
                       loading="lazy"
                       width={800}
                       height={600}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                  </div>
-                  <div className="p-3 bg-card">
-                    <span className="text-xs text-muted-foreground">{item.category}</span>
-                    <p className="text-sm font-medium mt-1">{item.alt}</p>
+                    <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                      <span className="text-xs text-primary font-medium uppercase tracking-wider">{item.category}</span>
+                      <p className="text-sm font-medium mt-1">{item.alt}</p>
+                    </div>
                   </div>
                 </motion.div>
               ))}
@@ -104,22 +107,29 @@ const GalleryPage = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] bg-background/90 backdrop-blur-sm flex items-center justify-center p-6"
+            className="fixed inset-0 z-[100] bg-background/95 backdrop-blur-md flex items-center justify-center p-6"
             onClick={() => setSelectedImg(null)}
           >
+            <button
+              onClick={() => setSelectedImg(null)}
+              className="absolute top-6 right-6 w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center hover:bg-secondary transition-colors"
+            >
+              <X className="w-5 h-5" />
+            </button>
             <motion.img
               initial={{ scale: 0.8 }}
               animate={{ scale: 1 }}
               exit={{ scale: 0.8 }}
               src={selectedImg}
               alt="Gallery preview"
-              className="max-w-full max-h-[80vh] rounded-2xl border border-border object-contain"
+              className="max-w-full max-h-[85vh] rounded-2xl border border-border object-contain"
             />
           </motion.div>
         )}
       </AnimatePresence>
 
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 };

@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
-import { Droplets, SprayCan, Sparkles, Car, ShieldCheck, Clock, Zap, CheckCircle2 } from "lucide-react";
+import { Droplets, SprayCan, Sparkles, Car, ShieldCheck, Clock, Zap, CheckCircle2, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import PageHeader from "@/components/PageHeader";
 import Footer from "@/components/Footer";
+import WhatsAppButton from "@/components/WhatsAppButton";
 import foamWashImg from "@/assets/service-foam-wash.jpg";
 import interiorImg from "@/assets/service-interior.jpg";
 import ceramicImg from "@/assets/service-ceramic.jpg";
@@ -78,20 +79,20 @@ const ServicesPage = () => {
       <PageHeader
         badge="Our Services"
         title={<>Premium Car Care, <span className="text-gradient">Delivered</span></>}
-        description="From quick exterior washes to full ceramic coatings — we bring the detailing studio to your doorstep with premium products and trained professionals."
+        description="From quick exterior washes to full ceramic coatings — we bring the detailing studio to your doorstep."
       />
 
       {/* Why Choose Us */}
-      <section className="pb-16">
+      <section className="pb-20">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {whyUs.map((item, i) => (
               <motion.div
                 key={item.title}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 + i * 0.1 }}
-                className="bg-card border border-border rounded-xl p-6 text-center"
+                className="bg-card border border-border rounded-2xl p-6 text-center hover:border-primary/20 transition-colors"
               >
                 <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mx-auto mb-3">
                   <item.icon className="w-5 h-5 text-primary" />
@@ -106,7 +107,7 @@ const ServicesPage = () => {
 
       {/* Services Detail */}
       <section className="pb-24">
-        <div className="container mx-auto px-6 space-y-12">
+        <div className="container mx-auto px-6 space-y-8">
           {services.map((service, index) => (
             <motion.div
               key={service.title}
@@ -114,22 +115,15 @@ const ServicesPage = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="bg-card border border-border rounded-2xl overflow-hidden"
+              className="bg-card border border-border rounded-2xl overflow-hidden hover:border-primary/20 transition-colors"
             >
-              <div className={`grid ${service.image ? "md:grid-cols-2" : "md:grid-cols-1"}`}>
+              <div className={`grid ${service.image ? "md:grid-cols-5" : "md:grid-cols-1"}`}>
                 {service.image && (
-                  <div className="h-64 md:h-auto overflow-hidden">
-                    <img
-                      src={service.image}
-                      alt={service.title}
-                      loading="lazy"
-                      width={800}
-                      height={600}
-                      className="w-full h-full object-cover"
-                    />
+                  <div className="md:col-span-2 h-64 md:h-auto overflow-hidden">
+                    <img src={service.image} alt={service.title} loading="lazy" width={800} height={600} className="w-full h-full object-cover" />
                   </div>
                 )}
-                <div className="p-8 md:p-10">
+                <div className={`${service.image ? "md:col-span-3" : ""} p-8 md:p-10`}>
                   <div className="flex items-center gap-3 mb-4">
                     {service.badge && (
                       <span className="px-3 py-1 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
@@ -154,16 +148,20 @@ const ServicesPage = () => {
                     ))}
                   </div>
 
-                  <div className="border-t border-border pt-6">
-                    <h4 className="text-sm font-medium text-muted-foreground mb-3">Pricing</h4>
-                    <div className="flex flex-wrap gap-4">
+                  <div className="border-t border-border pt-6 flex flex-wrap items-end justify-between gap-4">
+                    <div className="flex flex-wrap gap-3">
                       {service.pricing.map((p) => (
-                        <div key={p.plan} className="bg-secondary/50 rounded-lg px-4 py-3">
+                        <div key={p.plan} className="bg-secondary/50 rounded-xl px-4 py-3">
                           <div className="text-xs text-muted-foreground">{p.plan}</div>
                           <div className="font-display font-bold text-primary">{p.price}</div>
                         </div>
                       ))}
                     </div>
+                    <Link to="/booking">
+                      <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90 font-display font-semibold">
+                        Book Now <ArrowRight className="w-4 h-4 ml-1" />
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -175,16 +173,16 @@ const ServicesPage = () => {
       {/* CTA */}
       <section className="pb-24">
         <div className="container mx-auto px-6">
-          <div className="bg-card border border-primary/20 rounded-2xl p-10 md:p-16 text-center glow-border">
-            <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
+          <div className="bg-gradient-to-br from-primary/10 via-card to-card border border-primary/20 rounded-3xl p-10 md:p-16 text-center glow-border">
+            <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">
               Ready to Get <span className="text-gradient">Started</span>?
             </h2>
             <p className="text-muted-foreground mb-8 max-w-md mx-auto">
               Book your first wash today and experience the Velociwash difference.
             </p>
             <Link to="/booking">
-              <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-display font-semibold text-base px-10">
-                Book a Wash
+              <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-display font-semibold text-base px-10 h-14">
+                Book a Wash <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
             </Link>
           </div>
@@ -192,6 +190,7 @@ const ServicesPage = () => {
       </section>
 
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 };

@@ -3,6 +3,7 @@ import { Target, Eye, Heart, Award, Users, Leaf } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import PageHeader from "@/components/PageHeader";
 import Footer from "@/components/Footer";
+import WhatsAppButton from "@/components/WhatsAppButton";
 import teamImg from "@/assets/about-team.jpg";
 
 const values = [
@@ -32,7 +33,7 @@ const AboutPage = () => {
       {/* Mission & Vision */}
       <section className="pb-24">
         <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-12 items-center mb-24">
+          <div className="grid md:grid-cols-2 gap-12 items-center mb-28">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -51,7 +52,7 @@ const AboutPage = () => {
               transition={{ duration: 0.6 }}
             >
               <div className="space-y-8">
-                <div>
+                <div className="bg-card border border-border rounded-2xl p-6 hover:border-primary/20 transition-colors">
                   <div className="flex items-center gap-3 mb-3">
                     <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
                       <Target className="w-5 h-5 text-primary" />
@@ -63,7 +64,7 @@ const AboutPage = () => {
                   </p>
                 </div>
 
-                <div>
+                <div className="bg-card border border-border rounded-2xl p-6 hover:border-primary/20 transition-colors">
                   <div className="flex items-center gap-3 mb-3">
                     <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
                       <Eye className="w-5 h-5 text-primary" />
@@ -86,10 +87,10 @@ const AboutPage = () => {
             className="text-center mb-12"
           >
             <span className="text-sm font-medium text-primary uppercase tracking-widest">Our Values</span>
-            <h2 className="font-display text-3xl md:text-4xl font-bold mt-4">What Drives Us</h2>
+            <h2 className="font-display text-3xl md:text-5xl font-bold mt-4">What Drives Us</h2>
           </motion.div>
 
-          <div className="grid md:grid-cols-4 gap-6 mb-24">
+          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-5 mb-28">
             {values.map((v, i) => (
               <motion.div
                 key={v.title}
@@ -97,7 +98,7 @@ const AboutPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="bg-card border border-border rounded-xl p-6 hover:border-primary/20 transition-colors"
+                className="bg-card border border-border rounded-2xl p-6 hover:border-primary/20 transition-colors"
               >
                 <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-4">
                   <v.icon className="w-5 h-5 text-primary" />
@@ -116,7 +117,7 @@ const AboutPage = () => {
             className="text-center mb-12"
           >
             <span className="text-sm font-medium text-primary uppercase tracking-widest">Our Journey</span>
-            <h2 className="font-display text-3xl md:text-4xl font-bold mt-4">Milestones</h2>
+            <h2 className="font-display text-3xl md:text-5xl font-bold mt-4">Milestones</h2>
           </motion.div>
 
           <div className="max-w-2xl mx-auto">
@@ -130,11 +131,11 @@ const AboutPage = () => {
                 className="flex gap-6 mb-8 last:mb-0"
               >
                 <div className="flex flex-col items-center">
-                  <div className="w-3 h-3 rounded-full bg-primary shrink-0" />
+                  <div className="w-4 h-4 rounded-full bg-primary border-4 border-primary/20 shrink-0" />
                   {i < milestones.length - 1 && <div className="w-px flex-1 bg-border mt-2" />}
                 </div>
                 <div className="pb-8">
-                  <span className="text-sm font-medium text-primary">{m.year}</span>
+                  <span className="text-sm font-medium text-primary font-display">{m.year}</span>
                   <p className="text-secondary-foreground mt-1">{m.event}</p>
                 </div>
               </motion.div>
@@ -144,6 +145,7 @@ const AboutPage = () => {
       </section>
 
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 };
