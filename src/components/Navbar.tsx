@@ -139,18 +139,18 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Menu Button */}
-        <div className="flex items-center gap-4 md:hidden">
+        <div className="flex items-center gap-2.5 md:hidden">
           <Link
             to="/booking"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground font-display font-semibold text-sm hover:bg-primary/90 transition-all btn-glow"
+            className="inline-flex items-center px-3.5 py-1.5 rounded-lg bg-primary text-primary-foreground font-display font-semibold text-xs hover:bg-primary/90 transition-all btn-glow"
           >
             Book Now
           </Link>
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="w-10 h-10 rounded-lg bg-secondary/50 border border-border text-foreground flex items-center justify-center hover:bg-secondary hover:border-primary/30 transition-all"
+            className="w-9 h-9 rounded-lg bg-secondary/50 border border-border text-foreground flex items-center justify-center hover:bg-secondary hover:border-primary/30 transition-all"
           >
-            {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {isOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
           </button>
         </div>
       </div>
