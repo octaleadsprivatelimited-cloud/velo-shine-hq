@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { getServices, addService, updateService, deleteService, type Service } from "@/lib/adminService";
+import ImageUploadField from "@/components/admin/ImageUploadField";
 
 const emptyService = { title: "", description: "", badge: "", features: [""], pricing: [{ plan: "", price: "" }], imageUrl: "", order: 0 };
 
