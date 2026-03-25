@@ -20,7 +20,7 @@ const Navbar = () => {
   const [servicesOpen, setServicesOpen] = useState(false);
   const location = useLocation();
   const isHome = location.pathname === "/";
-  const showWhiteText = isHome && !scrolled;
+  const showWhiteText = !scrolled;
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
