@@ -8,7 +8,7 @@ import { onAuthStateChanged, signInWithEmailAndPassword, signOut, type User } fr
 import { auth } from "@/lib/firebase";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import { seedFirebaseData } from "@/lib/seedData";
+
 import AdminLogin from "@/components/admin/AdminLogin";
 import AdminBookings from "@/components/admin/AdminBookings";
 import AdminServices from "@/components/admin/AdminServices";
