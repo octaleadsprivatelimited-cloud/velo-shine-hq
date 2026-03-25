@@ -64,6 +64,11 @@ const services = [
 const ServicesPage = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <SEO
+        title="Car Wash & Detailing Services — Velociwash Doorstep Car Care"
+        description="Explore Velociwash's full range of doorstep car care services. Foam wash, interior detailing, ceramic coating, and regular cleaning plans."
+        keywords="car wash services, car detailing services, foam wash service, ceramic coating, interior detailing, doorstep car care, Velociwash services"
+      />
       <Navbar />
 
       <section className="pt-32 pb-8 bg-background">

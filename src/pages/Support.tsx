@@ -16,6 +16,11 @@ const contactMethods = [
 const SupportPage = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <SEO
+        title="Support & Contact — Velociwash Customer Help Center"
+        description="Get in touch with Velociwash support. Call, WhatsApp, or email us for booking help, service queries, refunds, and more. Available 7 AM – 8 PM."
+        keywords="Velociwash support, car wash contact, customer service, car wash helpline, booking support, Velociwash phone number"
+      />
       <Navbar />
 
       {/* Hero */}
