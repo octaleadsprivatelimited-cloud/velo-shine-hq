@@ -46,12 +46,12 @@ const BookingPage = () => {
     try {
       const { addBooking } = await import("@/lib/adminService");
       await addBooking({ ...form, date: format(date, "PPP") });
+      toast({ title: "Booking confirmed!", description: "We'll contact you shortly to confirm your slot." });
+      setSubmitted(true);
     } catch (error) {
       console.error("Failed to save booking:", error);
+      toast({ title: "Something went wrong", variant: "destructive" });
     }
-    const message = `Hi Velociwash! I'd like to book a wash.\n\nName: ${form.name}\nPhone: ${form.phone}\nCar: ${form.carType} - ${form.carModel}\nService: ${form.service}\nDate: ${format(date, "PPP")}\nTime: ${form.timeSlot}\nAddress: ${form.address}${form.notes ? `\nNotes: ${form.notes}` : ""}`;
-    window.open(`https://wa.me/919676031464?text=${encodeURIComponent(message)}`, "_blank");
-    setSubmitted(true);
   };
 
   if (submitted) {
@@ -63,8 +63,8 @@ const BookingPage = () => {
             <div className="w-20 h-20 rounded-2xl bg-primary/10 border border-primary/25 flex items-center justify-center mx-auto mb-6">
               <CheckCircle2 className="w-10 h-10 text-primary" />
             </div>
-            <h2 className="font-display text-3xl font-extrabold mb-4">Booking Sent!</h2>
-            <p className="text-muted-foreground mb-8">We'll confirm your slot shortly via WhatsApp.</p>
+            <h2 className="font-display text-3xl font-extrabold mb-4">Booking Confirmed!</h2>
+            <p className="text-muted-foreground mb-8">We'll contact you shortly to confirm your slot.</p>
             <Button onClick={() => setSubmitted(false)} variant="outline" className="border-border text-foreground hover:bg-secondary hover:border-primary/30 font-display rounded-xl">
               Book Another Wash
             </Button>
@@ -89,7 +89,7 @@ const BookingPage = () => {
               Schedule a <span className="text-gradient">Wash</span>
             </h1>
             <p className="text-lg text-muted-foreground max-w-lg leading-relaxed">
-              Fill in your details and we'll confirm via WhatsApp.
+              Fill in your details and we'll confirm your appointment.
             </p>
           </motion.div>
         </div>
@@ -174,7 +174,7 @@ const BookingPage = () => {
               </div>
 
               <Button type="submit" size="lg" className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-display font-bold text-base h-14 btn-glow glow-border rounded-xl">
-                Confirm & Send via WhatsApp
+                Confirm Booking
               </Button>
             </motion.form>
 
