@@ -27,7 +27,7 @@ const Footer = () => {
                 VELOCI<span className="text-gradient">WASH</span>
               </span>
             </Link>
-            <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
+            <p className="text-sm text-white/60 leading-relaxed max-w-xs">
               Premium doorstep car care services. We bring our own water, electricity, and professional-grade products.
             </p>
           </div>
