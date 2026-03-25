@@ -9,7 +9,7 @@ const services = [
     title: "Doorstep Car Foam Wash",
     description: "Single time plans and monthly plans available",
     image: foamWashImg,
-    href: "/foam-wash",
+    href: "/services",
     badge: "New!",
     available: true,
   },
@@ -17,7 +17,7 @@ const services = [
     title: "Doorstep Regular Car Cleaning",
     description: "Fresh microfiber and fresh water for every car!",
     image: interiorImg,
-    href: "/regular-cleaning",
+    href: "/services",
     badge: "New!",
     available: true,
   },
@@ -61,7 +61,7 @@ const ServicesSection = () => {
             </h2>
           </div>
           <Link
-            to="/foam-wash"
+            to="/services"
             className="text-sm font-semibold text-primary hover:text-primary/80 flex items-center gap-1 transition-colors group"
           >
             View all services <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
