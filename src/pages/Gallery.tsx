@@ -4,6 +4,7 @@ import { X, Camera } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import SEO from "@/components/SEO";
 
 import heroImg from "@/assets/hero-car-wash.jpg";
 import foamImg from "@/assets/service-foam-wash.jpg";
@@ -37,6 +38,11 @@ const GalleryPage = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <SEO
+        title="Gallery — Velociwash Car Wash Transformations & Results"
+        description="See stunning before & after car wash transformations by Velociwash. Exterior foam wash, interior detailing, and ceramic coating results gallery."
+        keywords="car wash gallery, car detailing results, before after car wash, foam wash results, ceramic coating gallery, Velociwash portfolio"
+      />
       <Navbar />
 
       <section className="pt-32 pb-10 relative bg-background">

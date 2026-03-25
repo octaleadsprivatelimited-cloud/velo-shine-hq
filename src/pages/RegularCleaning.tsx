@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import SEO from "@/components/SEO";
 import interiorImg from "@/assets/service-interior.jpg";
 
 const plans = [
@@ -65,6 +66,11 @@ const plans = [
 const RegularCleaningPage = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <SEO
+        title="Doorstep Regular Car Cleaning Service — Velociwash Daily Plans"
+        description="Affordable doorstep regular car cleaning by Velociwash. Alternate day or everyday plans with fresh microfiber and purified water. Starting ₹599/month."
+        keywords="regular car cleaning, daily car wash, alternate day car wash, doorstep car cleaning, monthly car wash plan, Velociwash cleaning plans"
+      />
       <Navbar />
 
       {/* Hero */}

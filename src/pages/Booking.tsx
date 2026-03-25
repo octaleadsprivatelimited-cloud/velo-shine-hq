@@ -14,6 +14,7 @@ import { useToast } from "@/hooks/use-toast";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import SEO from "@/components/SEO";
 
 const carTypes = ["Hatchback", "Sedan", "SUV", "MUV", "Luxury"];
 const serviceTypes = ["Foam Wash", "Interior Detailing", "Ceramic Coating", "Regular Cleaning"];
@@ -77,6 +78,11 @@ const BookingPage = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <SEO
+        title="Book a Car Wash — Schedule Your Doorstep Service | Velociwash"
+        description="Book your doorstep car wash with Velociwash. Choose your service, pick a time slot, and we'll come to you. Easy online booking for foam wash, detailing & more."
+        keywords="book car wash, schedule car wash, doorstep car wash booking, car detailing appointment, Velociwash booking, online car wash booking"
+      />
       <Navbar />
 
       <section className="pt-32 pb-10 relative bg-background">

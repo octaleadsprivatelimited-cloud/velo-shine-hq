@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import SEO from "@/components/SEO";
 import foamWashImg from "@/assets/service-foam-wash.jpg";
 
 const plans = [
@@ -115,6 +116,11 @@ const FoamWashPage = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <SEO
+        title="Doorstep Car Foam Wash Service — Velociwash Premium Cleaning"
+        description="Book a premium doorstep foam wash with Velociwash. pH-neutral snow foam, scratch-free cleaning, own water & power. Plans starting at ₹679."
+        keywords="car foam wash, doorstep foam wash, snow foam car wash, premium car wash, scratch-free car wash, Velociwash foam wash, car cleaning at home"
+      />
       <Navbar />
 
       {/* Hero */}
