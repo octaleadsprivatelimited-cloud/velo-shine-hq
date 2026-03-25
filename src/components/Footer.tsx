@@ -12,7 +12,7 @@ const footerLinks = [
 
 const Footer = () => {
   return (
-    <footer className="border-t border-border bg-card/30 relative">
+    <footer className="dark-section border-t border-white/10 relative">
       <div className="absolute inset-0 noise opacity-10" />
 
       <div className="container mx-auto px-6 relative z-10">
