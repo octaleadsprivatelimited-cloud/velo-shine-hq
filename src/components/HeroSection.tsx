@@ -17,8 +17,8 @@ const HeroSection = () => {
           className="w-full h-full object-cover scale-105"
           loading="eager"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/30" />
-        <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[hsl(225,25%,5%)] via-[hsl(225,25%,5%/0.7)] to-[hsl(225,25%,5%/0.4)]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[hsl(225,25%,5%/0.85)] via-[hsl(225,25%,5%/0.3)] to-transparent" />
         {/* Noise texture overlay */}
         <div className="absolute inset-0 noise opacity-30" />
       </div>
