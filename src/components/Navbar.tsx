@@ -47,7 +47,7 @@ const Navbar = () => {
           <div className="w-9 h-9 rounded-lg bg-primary/10 border border-primary/30 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
             <Droplets className="w-4 h-4 text-primary" />
           </div>
-          <span className="font-display text-xl font-bold tracking-tight text-foreground">
+          <span className={`font-display text-xl font-bold tracking-tight transition-colors ${scrolled ? "text-foreground" : "text-white"}`}>
             VELOCI<span className="text-gradient">WASH</span>
           </span>
         </Link>
@@ -57,7 +57,11 @@ const Navbar = () => {
           <Link
             to="/"
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-              location.pathname === "/" ? "text-primary bg-primary/10" : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
+              location.pathname === "/"
+                ? "text-primary bg-primary/10"
+                : scrolled
+                  ? "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
+                  : "text-white/80 hover:text-white hover:bg-white/10"
             }`}
           >
             Home
@@ -73,7 +77,9 @@ const Navbar = () => {
               className={`flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                 ["/foam-wash", "/regular-cleaning"].includes(location.pathname)
                   ? "text-primary bg-primary/10"
-                  : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
+                  : scrolled
+                    ? "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
+                    : "text-white/80 hover:text-white hover:bg-white/10"
               }`}
             >
               Services
@@ -111,7 +117,11 @@ const Navbar = () => {
               key={link.href}
               to={link.href}
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                location.pathname === link.href ? "text-primary bg-primary/10" : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
+                location.pathname === link.href
+                  ? "text-primary bg-primary/10"
+                  : scrolled
+                    ? "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
+                    : "text-white/80 hover:text-white hover:bg-white/10"
               }`}
             >
               {link.label}
