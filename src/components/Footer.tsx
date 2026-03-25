@@ -12,7 +12,10 @@ const footerLinks = [
 
 const Footer = () => {
   return (
-    <footer className="dark-section border-t border-white/10 relative">
+    <footer className="dark-section border-t border-white/10 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-[hsl(225,30%,8%)] via-[hsl(225,25%,5%)] to-[hsl(225,20%,3%)]" />
+      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] rounded-full bg-primary/5 blur-[180px] pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] rounded-full bg-accent/5 blur-[150px] pointer-events-none" />
       <div className="absolute inset-0 noise opacity-10" />
 
       <div className="container mx-auto px-6 relative z-10">
