@@ -77,7 +77,7 @@ const HeroSection = () => {
             <Button
               size="lg"
               variant="outline"
-              className="border-border/60 text-foreground hover:bg-secondary/50 hover:border-primary/30 font-display font-semibold text-base h-14 rounded-xl backdrop-blur-sm"
+              className="border-white/30 text-white hover:bg-white/10 hover:border-white/50 font-display font-semibold text-base h-14 rounded-xl backdrop-blur-sm"
             >
               <Play className="w-4 h-4 mr-2 text-primary" /> Explore Services
             </Button>
