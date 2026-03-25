@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   LayoutDashboard, CalendarCheck, Wrench, Image, MessageSquareQuote,
   LogOut, Menu, X, ChevronRight
 } from "lucide-react";
+import { onAuthStateChanged, signInWithEmailAndPassword, signOut, type User } from "firebase/auth";
+import { auth } from "@/lib/firebase";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import AdminLogin from "@/components/admin/AdminLogin";
@@ -11,9 +13,6 @@ import AdminBookings from "@/components/admin/AdminBookings";
 import AdminServices from "@/components/admin/AdminServices";
 import AdminGallery from "@/components/admin/AdminGallery";
 import AdminTestimonials from "@/components/admin/AdminTestimonials";
-
-const ADMIN_EMAIL = "admin@velociwash.com";
-const ADMIN_PASSWORD = "velociwash2026";
 
 const navItems = [
   { key: "bookings", label: "Bookings", icon: CalendarCheck, description: "Manage appointments" },
@@ -24,23 +23,49 @@ const navItems = [
 
 const AdminPage = () => {
   const { toast } = useToast();
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
+  const [authLoading, setAuthLoading] = useState(true);
+  const [loginLoading, setLoginLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [activeTab, setActiveTab] = useState("bookings");
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  const handleLogin = (e: React.FormEvent) => {
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (u) => {
+      setUser(u);
+      setAuthLoading(false);
+    });
+    return unsubscribe;
+  }, []);
+
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
-      setIsAuthenticated(true);
+    setLoginLoading(true);
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
       toast({ title: "Welcome, Admin!" });
-    } else {
-      toast({ title: "Invalid credentials", variant: "destructive" });
+    } catch (err: any) {
+      toast({ title: "Invalid credentials", description: err.message, variant: "destructive" });
+    } finally {
+      setLoginLoading(false);
     }
   };
 
-  if (!isAuthenticated) {
+  const handleLogout = async () => {
+    await signOut(auth);
+    toast({ title: "Signed out" });
+  };
+
+  if (authLoading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <p className="text-muted-foreground">Loading...</p>
+      </div>
+    );
+  }
+
+  if (!user) {
     return (
       <AdminLogin
         email={email}
@@ -48,6 +73,7 @@ const AdminPage = () => {
         onEmailChange={setEmail}
         onPasswordChange={setPassword}
         onSubmit={handleLogin}
+        loading={loginLoading}
       />
     );
   }
@@ -66,7 +92,6 @@ const AdminPage = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground flex">
-      {/* Mobile overlay */}
       <AnimatePresence>
         {sidebarOpen && (
           <motion.div
@@ -79,13 +104,11 @@ const AdminPage = () => {
         )}
       </AnimatePresence>
 
-      {/* Sidebar */}
       <aside
         className={`fixed lg:sticky top-0 left-0 z-50 h-screen w-72 bg-card border-r border-border flex flex-col transition-transform duration-300 lg:translate-x-0 ${
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        {/* Logo area */}
         <div className="p-6 border-b border-border">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -103,7 +126,6 @@ const AdminPage = () => {
           </div>
         </div>
 
-        {/* Navigation */}
         <nav className="flex-1 p-4 space-y-1.5 overflow-y-auto">
           <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider px-3 mb-3">Management</p>
           {navItems.map((item) => {
@@ -134,20 +156,19 @@ const AdminPage = () => {
           })}
         </nav>
 
-        {/* Footer */}
         <div className="p-4 border-t border-border">
           <div className="flex items-center gap-3 px-3 py-2 mb-3">
             <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
-              <span className="text-xs font-bold text-primary">A</span>
+              <span className="text-xs font-bold text-primary">{user.email?.[0]?.toUpperCase() || "A"}</span>
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-sm font-medium truncate">Admin</p>
-              <p className="text-xs text-muted-foreground truncate">{ADMIN_EMAIL}</p>
+              <p className="text-xs text-muted-foreground truncate">{user.email}</p>
             </div>
           </div>
           <Button
             variant="ghost"
-            onClick={() => setIsAuthenticated(false)}
+            onClick={handleLogout}
             className="w-full justify-start text-muted-foreground hover:text-destructive hover:bg-destructive/10"
           >
             <LogOut className="w-4 h-4 mr-2" /> Sign Out
@@ -155,9 +176,7 @@ const AdminPage = () => {
         </div>
       </aside>
 
-      {/* Main content */}
       <main className="flex-1 min-h-screen overflow-x-hidden">
-        {/* Top bar */}
         <header className="sticky top-0 z-30 bg-background/80 backdrop-blur-xl border-b border-border">
           <div className="flex items-center gap-4 px-6 py-4">
             <Button variant="ghost" size="icon" className="lg:hidden" onClick={() => setSidebarOpen(true)}>
@@ -173,7 +192,6 @@ const AdminPage = () => {
           </div>
         </header>
 
-        {/* Page content */}
         <div className="p-6 lg:p-8">
           <motion.div
             key={activeTab}
