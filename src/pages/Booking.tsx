@@ -46,12 +46,12 @@ const BookingPage = () => {
     try {
       const { addBooking } = await import("@/lib/adminService");
       await addBooking({ ...form, date: format(date, "PPP") });
+      toast({ title: "Booking confirmed!", description: "We'll contact you shortly to confirm your slot." });
+      setSubmitted(true);
     } catch (error) {
       console.error("Failed to save booking:", error);
+      toast({ title: "Something went wrong", variant: "destructive" });
     }
-    const message = `Hi Velociwash! I'd like to book a wash.\n\nName: ${form.name}\nPhone: ${form.phone}\nCar: ${form.carType} - ${form.carModel}\nService: ${form.service}\nDate: ${format(date, "PPP")}\nTime: ${form.timeSlot}\nAddress: ${form.address}${form.notes ? `\nNotes: ${form.notes}` : ""}`;
-    window.open(`https://wa.me/919676031464?text=${encodeURIComponent(message)}`, "_blank");
-    setSubmitted(true);
   };
 
   if (submitted) {
