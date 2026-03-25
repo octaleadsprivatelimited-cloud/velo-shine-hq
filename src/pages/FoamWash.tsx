@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Droplets, CheckCircle2, ArrowRight, Sparkles, ShieldCheck, Zap, Clock } from "lucide-react";
+import { Droplets, CheckCircle2, ArrowRight, Sparkles, ShieldCheck, Zap, Clock, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -117,40 +117,66 @@ const FoamWashPage = () => {
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
 
-      {/* Hero */}
-      <section className="relative pt-28 pb-20 overflow-hidden">
+      {/* Hero — compact, impactful */}
+      <section className="relative pt-24 overflow-hidden">
         <div className="absolute inset-0">
           <img src={foamWashImg} alt="Doorstep Car Foam Wash" className="w-full h-full object-cover" loading="eager" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[hsl(225,25%,3%/0.95)] via-[hsl(225,25%,5%/0.85)] to-[hsl(225,25%,5%/0.4)]" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[hsl(225,25%,3%)] via-transparent to-[hsl(225,25%,5%/0.5)]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[hsl(225,25%,3%/0.95)] via-[hsl(225,25%,5%/0.85)] to-[hsl(225,25%,5%/0.5)]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[hsl(225,25%,3%)] via-transparent to-[hsl(225,25%,5%/0.6)]" />
           <div className="absolute inset-0 noise opacity-20" />
         </div>
-        <div className="container mx-auto px-6 relative z-10 py-16">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/10 backdrop-blur-sm mb-6">
-              <Droplets className="w-4 h-4 text-primary" />
-              <span className="text-sm font-semibold text-primary">Most Popular Service</span>
-            </div>
-            <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-extrabold mb-4 text-white text-shadow-hero">
-              Doorstep Car{" "}<span className="text-gradient">Foam Wash</span>
-            </h1>
-            <p className="text-lg md:text-xl text-white/80 max-w-xl mb-8 leading-relaxed text-shadow-sm">
-              Where convenience meets quality and affordability. Premium foam wash delivered to your doorstep.
-            </p>
-            <Link to="/booking">
-              <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-display font-bold text-base px-10 h-14 btn-glow glow-border rounded-xl">
-                Schedule Wash <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
-            </Link>
-          </motion.div>
+        <div className="container mx-auto px-6 relative z-10 py-20 md:py-28">
+          <div className="grid lg:grid-cols-2 gap-10 items-center">
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/10 backdrop-blur-sm mb-6">
+                <Droplets className="w-4 h-4 text-primary" />
+                <span className="text-sm font-semibold text-primary">Most Popular Service</span>
+              </div>
+              <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 text-white text-shadow-hero leading-tight">
+                Doorstep Car{" "}<span className="text-gradient">Foam Wash</span>
+              </h1>
+              <p className="text-lg text-white/80 max-w-lg mb-8 leading-relaxed text-shadow-sm">
+                Where convenience meets quality and affordability. Premium foam wash delivered to your doorstep.
+              </p>
+              <div className="flex flex-wrap items-center gap-4">
+                <Link to="/booking">
+                  <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-display font-bold text-base px-8 h-14 btn-glow glow-border rounded-xl">
+                    Schedule Wash <ArrowRight className="w-5 h-5 ml-2" />
+                  </Button>
+                </Link>
+                <div className="flex items-center gap-1.5 text-white/60 text-sm text-shadow-sm">
+                  {[1,2,3,4,5].map(i => <Star key={i} className="w-4 h-4 fill-primary text-primary" />)}
+                  <span className="ml-1 text-white/80 font-semibold">4.9/5</span>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Quick highlights on right */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.3 }}
+              className="hidden lg:grid grid-cols-2 gap-4"
+            >
+              {highlights.map((item) => (
+                <div key={item.title} className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-5 group hover:bg-white/10 transition-all">
+                  <div className="w-11 h-11 rounded-xl bg-primary/20 border border-primary/30 flex items-center justify-center mb-3 group-hover:bg-primary transition-all">
+                    <item.icon className="w-5 h-5 text-primary group-hover:text-primary-foreground transition-colors" />
+                  </div>
+                  <h3 className="font-display font-bold text-sm text-white mb-1">{item.title}</h3>
+                  <p className="text-xs text-white/60">{item.desc}</p>
+                </div>
+              ))}
+            </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* Highlights */}
-      <section className="py-16 bg-secondary/50 relative">
+      {/* Mobile highlights */}
+      <section className="py-10 bg-secondary/50 relative lg:hidden">
         <div className="absolute inset-0 noise opacity-10" />
         <div className="container mx-auto px-6 relative z-10">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 gap-4">
             {highlights.map((item, i) => (
               <motion.div
                 key={item.title}
@@ -158,10 +184,10 @@ const FoamWashPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="bg-card border border-border rounded-2xl p-6 text-center hover:border-primary/30 transition-all duration-500 card-shine group"
+                className="bg-card border border-border rounded-2xl p-5 text-center hover:border-primary/30 transition-all duration-500 card-shine group"
               >
-                <div className="w-14 h-14 rounded-2xl bg-primary/10 border border-primary/25 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary group-hover:border-primary transition-all duration-300">
-                  <item.icon className="w-6 h-6 text-primary group-hover:text-primary-foreground transition-colors" />
+                <div className="w-12 h-12 rounded-2xl bg-primary/10 border border-primary/25 flex items-center justify-center mx-auto mb-3 group-hover:bg-primary transition-all">
+                  <item.icon className="w-5 h-5 text-primary group-hover:text-primary-foreground transition-colors" />
                 </div>
                 <h3 className="font-display font-bold text-sm mb-1">{item.title}</h3>
                 <p className="text-xs text-muted-foreground">{item.desc}</p>
@@ -185,59 +211,57 @@ const FoamWashPage = () => {
             <p className="text-muted-foreground mt-4 max-w-md mx-auto">All plans include full interior + exterior service. Monthly plans save you more.</p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 max-w-6xl mx-auto">
             {plans.map((plan, i) => (
               <motion.div
                 key={plan.name}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className={`bg-card border rounded-2xl p-7 md:p-9 transition-all duration-500 card-shine ${
+                transition={{ delay: i * 0.08 }}
+                className={`bg-card border rounded-2xl p-6 transition-all duration-500 card-shine flex flex-col ${
                   plan.popular ? "border-primary/40 glow-border" : "border-border hover:border-primary/20"
                 }`}
               >
-                <div className="flex items-start justify-between mb-5">
-                  <div>
-                    <div className="flex items-center gap-2 mb-1">
-                      <h3 className="font-display text-xl font-bold">{plan.name}</h3>
-                      {plan.popular && (
-                        <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-primary/15 text-primary border border-primary/25">
-                          Popular
-                        </span>
-                      )}
-                    </div>
-                    <p className="text-sm text-muted-foreground">{plan.subtitle}</p>
+                <div className="mb-4">
+                  <div className="flex items-center gap-2 mb-1">
+                    <h3 className="font-display text-lg font-bold">{plan.name}</h3>
+                    {plan.popular && (
+                      <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-primary/15 text-primary border border-primary/25">
+                        Popular
+                      </span>
+                    )}
                   </div>
+                  <p className="text-xs text-muted-foreground">{plan.subtitle}</p>
                 </div>
 
                 <div className="flex items-baseline gap-2 mb-1">
-                  <span className="text-sm text-muted-foreground line-through">{plan.originalPrice}</span>
-                  <span className="font-display text-4xl font-extrabold text-primary">{plan.price}</span>
+                  <span className="text-xs text-muted-foreground line-through">{plan.originalPrice}</span>
+                  <span className="font-display text-3xl font-extrabold text-primary">{plan.price}</span>
                 </div>
                 {plan.discount && (
-                  <div className="flex items-center gap-3 mb-1">
-                    <span className="text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-full border border-primary/20">{plan.discount}</span>
-                    {plan.perWash && <span className="text-xs text-muted-foreground">{plan.perWash}</span>}
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-[10px] font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-full border border-primary/20">{plan.discount}</span>
+                    {plan.perWash && <span className="text-[11px] text-muted-foreground">{plan.perWash}</span>}
                   </div>
                 )}
 
-                <div className="mt-6 mb-6">
+                <div className="mt-4 mb-4 flex-1">
                   <button
                     onClick={() => setExpandedPlan(expandedPlan === i ? null : i)}
                     className="text-xs text-primary font-semibold hover:text-primary/80 transition-colors"
                   >
-                    {expandedPlan === i ? "Hide" : "Show"} included services
+                    {expandedPlan === i ? "Hide" : "Show"} services
                   </button>
                   {expandedPlan === i && (
                     <motion.div
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: "auto" }}
-                      className="mt-4 grid grid-cols-1 gap-2"
+                      className="mt-3 space-y-1.5"
                     >
                       {plan.features.map((f) => (
-                        <div key={f} className="flex items-center gap-2 text-sm">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0" />
+                        <div key={f} className="flex items-start gap-1.5 text-xs">
+                          <CheckCircle2 className="w-3 h-3 text-primary shrink-0 mt-0.5" />
                           <span className="text-muted-foreground">{f}</span>
                         </div>
                       ))}
@@ -245,9 +269,9 @@ const FoamWashPage = () => {
                   )}
                 </div>
 
-                <Link to="/booking">
-                  <Button className={`w-full font-display font-bold h-12 rounded-xl ${plan.popular ? "bg-primary text-primary-foreground hover:bg-primary/90 btn-glow" : "bg-secondary text-foreground hover:bg-secondary/80"}`}>
-                    Select Plan <ArrowRight className="w-4 h-4 ml-2" />
+                <Link to="/booking" className="mt-auto">
+                  <Button className={`w-full font-display font-bold h-11 rounded-xl text-sm ${plan.popular ? "bg-primary text-primary-foreground hover:bg-primary/90 btn-glow" : "bg-secondary text-foreground hover:bg-secondary/80"}`}>
+                    Select Plan <ArrowRight className="w-4 h-4 ml-1" />
                   </Button>
                 </Link>
               </motion.div>
