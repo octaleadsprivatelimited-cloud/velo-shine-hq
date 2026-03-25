@@ -47,6 +47,10 @@ export const updateBookingStatus = async (id: string, status: Booking["status"])
   await updateDoc(doc(db, "bookings", id), { status });
 };
 
+export const updateBooking = async (id: string, data: Partial<Omit<Booking, "id" | "createdAt">>) => {
+  await updateDoc(doc(db, "bookings", id), data);
+};
+
 export const deleteBooking = async (id: string) => {
   await deleteDoc(doc(db, "bookings", id));
 };
