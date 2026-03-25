@@ -72,7 +72,7 @@ const AdminServices = () => {
         <Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Description</Label>
         <Textarea value={form.description} onChange={(e) => setForm((f) => ({ ...f, description: e.target.value }))} className="bg-secondary border-border" rows={3} />
       </div>
-      <ImageUploadField label="Image" value={form.imageUrl} onChange={(url) => setForm((f) => ({ ...f, imageUrl: url }))} folder="services" />
+      <ImageUploadField label="Image" value={form.imageUrl} onChange={(url) => setForm((f) => ({ ...f, imageUrl: url }))} />
       <div className="space-y-2">
         <Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Features (one per line)</Label>
         <Textarea

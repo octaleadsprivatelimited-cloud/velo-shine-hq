@@ -2,17 +2,16 @@ import { useState, useRef } from "react";
 import { Upload, X, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { uploadImage } from "@/lib/imageUpload";
+import { compressImageToBase64 } from "@/lib/imageUpload";
 import { useToast } from "@/hooks/use-toast";
 
 interface ImageUploadFieldProps {
   label?: string;
   value: string;
   onChange: (url: string) => void;
-  folder?: string;
 }
 
-const ImageUploadField = ({ label = "Image", value, onChange, folder = "uploads" }: ImageUploadFieldProps) => {
+const ImageUploadField = ({ label = "Image", value, onChange }: ImageUploadFieldProps) => {
   const { toast } = useToast();
   const [uploading, setUploading] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -24,11 +23,11 @@ const ImageUploadField = ({ label = "Image", value, onChange, folder = "uploads"
     }
     setUploading(true);
     try {
-      const url = await uploadImage(file, folder);
-      onChange(url);
-      toast({ title: "Image uploaded & compressed" });
+      const base64 = await compressImageToBase64(file);
+      onChange(base64);
+      toast({ title: "Image compressed & ready" });
     } catch (err: any) {
-      toast({ title: "Upload failed", description: err.message, variant: "destructive" });
+      toast({ title: "Compression failed", description: err.message, variant: "destructive" });
     } finally {
       setUploading(false);
     }
@@ -47,14 +46,11 @@ const ImageUploadField = ({ label = "Image", value, onChange, folder = "uploads"
       {value ? (
         <div className="relative w-44 h-32 rounded-xl overflow-hidden border border-border group">
           <img src={value} alt="Preview" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-            <Button
-              type="button"
-              size="sm"
-              variant="secondary"
-              onClick={() => { onChange(""); if (inputRef.current) inputRef.current.value = ""; }}
-              className="h-7 text-xs"
-            >
+          <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+            <Button type="button" size="sm" variant="secondary" onClick={() => inputRef.current?.click()} className="h-7 text-xs">
+              Change
+            </Button>
+            <Button type="button" size="sm" variant="secondary" onClick={() => onChange("")} className="h-7 text-xs">
               <X className="w-3 h-3 mr-1" /> Remove
             </Button>
           </div>
@@ -69,13 +65,13 @@ const ImageUploadField = ({ label = "Image", value, onChange, folder = "uploads"
           {uploading ? (
             <div className="flex flex-col items-center gap-2">
               <Loader2 className="w-8 h-8 text-primary animate-spin" />
-              <p className="text-xs text-muted-foreground">Compressing & uploading...</p>
+              <p className="text-xs text-muted-foreground">Compressing...</p>
             </div>
           ) : (
             <div className="flex flex-col items-center gap-2">
               <Upload className="w-8 h-8 text-muted-foreground/50" />
               <p className="text-xs text-muted-foreground">Click or drag & drop image</p>
-              <p className="text-[10px] text-muted-foreground/60">Auto-compressed to WebP</p>
+              <p className="text-[10px] text-muted-foreground/60">Auto-compressed before saving</p>
             </div>
           )}
         </div>
@@ -86,7 +82,7 @@ const ImageUploadField = ({ label = "Image", value, onChange, folder = "uploads"
         type="file"
         accept="image/*"
         className="hidden"
-        onChange={(e) => { const f = e.target.files?.[0]; if (f) handleFile(f); }}
+        onChange={(e) => { const f = e.target.files?.[0]; if (f) handleFile(f); e.target.value = ""; }}
       />
     </div>
   );

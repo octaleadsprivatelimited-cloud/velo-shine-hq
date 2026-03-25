@@ -1,13 +1,11 @@
-import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
-
-const MAX_WIDTH = 1200;
-const MAX_HEIGHT = 1200;
-const QUALITY = 0.7;
+const MAX_WIDTH = 800;
+const MAX_HEIGHT = 800;
+const QUALITY = 0.6;
 
 /**
- * Compress an image file using canvas before uploading.
+ * Compress an image file and return a base64 data URL to store directly in Firestore.
  */
-const compressImage = (file: File): Promise<Blob> => {
+export const compressImageToBase64 = (file: File): Promise<string> => {
   return new Promise((resolve, reject) => {
     const img = new Image();
     const url = URL.createObjectURL(file);
@@ -27,32 +25,9 @@ const compressImage = (file: File): Promise<Blob> => {
       const ctx = canvas.getContext("2d")!;
       ctx.drawImage(img, 0, 0, width, height);
 
-      canvas.toBlob(
-        (blob) => {
-          if (blob) resolve(blob);
-          else reject(new Error("Compression failed"));
-        },
-        "image/webp",
-        QUALITY
-      );
+      resolve(canvas.toDataURL("image/webp", QUALITY));
     };
     img.onerror = () => reject(new Error("Failed to load image"));
     img.src = url;
   });
-};
-
-/**
- * Compress and upload an image to Firebase Storage.
- * Returns the public download URL.
- */
-export const uploadImage = async (
-  file: File,
-  folder: string = "uploads"
-): Promise<string> => {
-  const compressed = await compressImage(file);
-  const storage = getStorage();
-  const fileName = `${folder}/${Date.now()}_${file.name.replace(/\.[^.]+$/, "")}.webp`;
-  const storageRef = ref(storage, fileName);
-  await uploadBytes(storageRef, compressed, { contentType: "image/webp" });
-  return getDownloadURL(storageRef);
 };
