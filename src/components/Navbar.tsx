@@ -49,7 +49,7 @@ const Navbar = () => {
           <div className="w-9 h-9 rounded-lg bg-primary/10 border border-primary/30 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
             <Droplets className="w-4 h-4 text-primary" />
           </div>
-          <span className={`font-display text-xl font-bold tracking-tight transition-colors ${scrolled ? "text-foreground" : "text-white"}`}>
+          <span className={`font-display text-xl font-bold tracking-tight transition-colors ${showWhiteText ? "text-white" : "text-foreground"}`}>
             VELOCI<span className="text-gradient">WASH</span>
           </span>
         </Link>
