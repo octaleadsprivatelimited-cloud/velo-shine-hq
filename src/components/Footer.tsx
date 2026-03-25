@@ -50,7 +50,7 @@ const Footer = () => {
 
           {/* Contact */}
           <div>
-            <h4 className="font-display font-bold text-sm uppercase tracking-wider text-foreground mb-5">Contact</h4>
+            <h4 className="font-display font-bold text-sm uppercase tracking-wider text-white mb-5">Contact</h4>
             <div className="space-y-3">
               <a href="tel:+919676031464" className="flex items-center gap-3 text-sm text-muted-foreground hover:text-primary transition-colors">
                 <Phone className="w-4 h-4 text-primary" />
