@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Phone, HelpCircle } from "lucide-react";
+import { Phone, HelpCircle, MessageCircle } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -9,97 +9,112 @@ import {
 
 const faqs = [
   {
-    question: "How can I get the best deal on car services for my vehicle?",
-    answer:
-      "We offer subscription plans that save you up to 40% compared to single washes. Check our Services page for monthly plans starting at ₹599/month.",
+    question: "Do you bring your own water and electricity?",
+    answer: "Yes! We arrive fully equipped with our own water supply, portable power units, and all premium cleaning products. You don't need to provide anything.",
   },
   {
-    question: "Will I know the cost upfront before booking a service?",
-    answer:
-      "Absolutely! All our pricing is transparent and listed on the Services page. There are no hidden charges.",
+    question: "How long does a foam wash take?",
+    answer: "A standard foam wash takes 30-45 minutes depending on the vehicle size. Interior detailing takes 1-2 hours.",
   },
   {
-    question: "How much time will it take to get my car washed?",
-    answer:
-      "A standard foam wash takes 30-45 minutes. Interior detailing takes 1-2 hours depending on the car size.",
+    question: "What areas do you serve?",
+    answer: "We currently serve all major areas in Hyderabad including Gachibowli, Kondapur, Madhapur, Kukatpally, Miyapur, Jubilee Hills, Banjara Hills, and surrounding areas.",
   },
   {
-    question: "Does Velociwash come fully equipped with water and electricity?",
-    answer:
-      "Yes! We bring our own water supply, electricity, and all premium cleaning products. You don't need to provide anything.",
+    question: "Will the wash scratch my car?",
+    answer: "Absolutely not. We use pH-neutral snow foam and premium microfiber towels that are gentle on your car's paint. Each towel is fresh and never reused between cars.",
   },
   {
-    question: "What are the different types of payment methods that are accepted?",
-    answer:
-      "We accept all UPI apps (GPay, PhonePe, Paytm), cash, and online bank transfers. Payment is collected after the service.",
+    question: "What payment methods do you accept?",
+    answer: "We accept all UPI apps (GPay, PhonePe, Paytm), cash, and online bank transfers. Payment is collected after the service is completed.",
+  },
+  {
+    question: "Can I subscribe to a monthly plan?",
+    answer: "Yes! We offer monthly subscription plans that save you up to 40% compared to single washes. Check our Services page for details.",
   },
 ];
 
 const FAQSection = () => {
   return (
     <section className="py-24 relative bg-background">
-      <div className="absolute inset-0 noise opacity-10" />
-
       <div className="container mx-auto px-6 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-14"
-        >
-          <div className="flex items-center justify-center gap-2 mb-3">
-            <HelpCircle className="w-4 h-4 text-primary" />
-            <span className="text-sm font-semibold text-primary uppercase tracking-widest">FAQ</span>
-          </div>
-          <h2 className="font-display text-3xl md:text-5xl font-extrabold">
-            Frequently asked <span className="text-gradient">Questions</span>
-          </h2>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="max-w-3xl mx-auto"
-        >
-          <Accordion type="single" collapsible className="space-y-3">
-            {faqs.map((faq, i) => (
-              <AccordionItem
-                key={i}
-                value={`faq-${i}`}
-                className="bg-card border border-border rounded-xl px-6 data-[state=open]:border-primary/30 data-[state=open]:glow-border transition-all duration-300"
-              >
-                <AccordionTrigger className="font-display font-semibold text-left hover:no-underline py-5 hover:text-primary transition-colors">
-                  {faq.question}
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground leading-relaxed pb-5">
-                  {faq.answer}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-
+        <div className="grid lg:grid-cols-5 gap-12 max-w-6xl mx-auto">
+          {/* Left heading */}
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mt-12 bg-card border border-border rounded-2xl p-8"
+            className="lg:col-span-2"
           >
-            <p className="text-muted-foreground mb-2 font-medium">
-              Can't find what you're looking for?
+            <div className="flex items-center gap-2 mb-3">
+              <HelpCircle className="w-4 h-4 text-primary" />
+              <span className="text-sm font-semibold text-primary uppercase tracking-widest">FAQ</span>
+            </div>
+            <h2 className="font-display text-3xl md:text-4xl font-extrabold mb-4">
+              Got <span className="text-gradient">questions?</span>
+            </h2>
+            <p className="text-muted-foreground mb-8">
+              Everything you need to know about our doorstep car wash services.
             </p>
-            <p className="text-sm text-muted-foreground mb-4">Contact us here:</p>
-            <a
-              href="tel:+919676031464"
-              className="inline-flex items-center gap-2 text-primary font-display font-bold hover:text-primary/80 transition-colors text-lg"
-            >
-              <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/25 flex items-center justify-center">
-                <Phone className="w-4 h-4" />
+
+            <div className="bg-card border border-border rounded-2xl p-6">
+              <p className="text-sm text-muted-foreground mb-4">Still have questions? Reach out to us:</p>
+              <div className="space-y-3">
+                <a
+                  href="tel:+919676031464"
+                  className="flex items-center gap-3 text-foreground hover:text-primary transition-colors group"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/25 flex items-center justify-center group-hover:bg-primary transition-all">
+                    <Phone className="w-4 h-4 text-primary group-hover:text-primary-foreground transition-colors" />
+                  </div>
+                  <div>
+                    <div className="text-xs text-muted-foreground">Call us</div>
+                    <div className="font-display font-bold text-sm">+91-96760 31464</div>
+                  </div>
+                </a>
+                <a
+                  href="https://wa.me/919676031464"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 text-foreground hover:text-primary transition-colors group"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/25 flex items-center justify-center group-hover:bg-primary transition-all">
+                    <MessageCircle className="w-4 h-4 text-primary group-hover:text-primary-foreground transition-colors" />
+                  </div>
+                  <div>
+                    <div className="text-xs text-muted-foreground">WhatsApp</div>
+                    <div className="font-display font-bold text-sm">Chat with us</div>
+                  </div>
+                </a>
               </div>
-              +91-96760 31464
-            </a>
+            </div>
           </motion.div>
-        </motion.div>
+
+          {/* Right accordion */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="lg:col-span-3"
+          >
+            <Accordion type="single" collapsible className="space-y-3">
+              {faqs.map((faq, i) => (
+                <AccordionItem
+                  key={i}
+                  value={`faq-${i}`}
+                  className="bg-card border border-border rounded-xl px-6 data-[state=open]:border-primary/30 transition-all duration-300"
+                >
+                  <AccordionTrigger className="font-display font-semibold text-left hover:no-underline py-5 hover:text-primary transition-colors">
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground leading-relaxed pb-5">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
