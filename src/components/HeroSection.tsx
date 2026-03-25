@@ -17,8 +17,8 @@ const HeroSection = () => {
           className="w-full h-full object-cover scale-105"
           loading="eager"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/30" />
-        <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[hsl(225,25%,5%)] via-[hsl(225,25%,5%/0.7)] to-[hsl(225,25%,5%/0.4)]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[hsl(225,25%,5%/0.85)] via-[hsl(225,25%,5%/0.3)] to-transparent" />
         {/* Noise texture overlay */}
         <div className="absolute inset-0 noise opacity-30" />
       </div>
@@ -43,7 +43,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold leading-[0.95] mb-6 max-w-5xl"
+          className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold leading-[0.95] mb-6 max-w-5xl text-white"
         >
           Your car deserves{" "}
           <span className="text-gradient">premium</span> care
@@ -53,7 +53,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-lg md:text-xl text-muted-foreground max-w-xl mb-10 leading-relaxed"
+          className="text-lg md:text-xl text-white/70 max-w-xl mb-10 leading-relaxed"
         >
           Professional foam wash & cleaning delivered to your doorstep.
           We bring our own water, electricity & premium products.
@@ -76,8 +76,7 @@ const HeroSection = () => {
           <Link to="/foam-wash">
             <Button
               size="lg"
-              variant="outline"
-              className="border-border/60 text-foreground hover:bg-secondary/50 hover:border-primary/30 font-display font-semibold text-base h-14 rounded-xl backdrop-blur-sm"
+              className="border border-white/30 bg-transparent text-white hover:bg-white/10 hover:border-white/50 font-display font-semibold text-base h-14 rounded-xl backdrop-blur-sm"
             >
               <Play className="w-4 h-4 mr-2 text-primary" /> Explore Services
             </Button>
@@ -89,7 +88,7 @@ const HeroSection = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 0.8 }}
-          className="mt-14 flex flex-wrap items-center gap-6 text-sm text-muted-foreground"
+          className="mt-14 flex flex-wrap items-center gap-6 text-sm text-white/60"
         >
           <div className="flex items-center gap-2">
             <div className="flex -space-x-2">

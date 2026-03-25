@@ -21,7 +21,7 @@ const BoldStatement = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="font-display text-3xl md:text-5xl lg:text-6xl font-bold max-w-4xl mx-auto leading-tight mb-8"
+          className="font-display text-3xl md:text-5xl lg:text-6xl font-bold max-w-4xl mx-auto leading-tight mb-8 text-white"
         >
           We get our own electricity and water to ensure{" "}
           <span className="text-gradient">highest quality</span> car wash
