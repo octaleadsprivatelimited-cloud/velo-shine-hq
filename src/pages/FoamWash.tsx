@@ -117,83 +117,82 @@ const FoamWashPage = () => {
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
 
-      {/* Hero — compact, impactful */}
+      {/* Hero */}
       <section className="relative pt-24 overflow-hidden">
         <div className="absolute inset-0">
           <img src={foamWashImg} alt="Doorstep Car Foam Wash" className="w-full h-full object-cover" loading="eager" />
-          <div className="absolute inset-0 bg-[hsl(225,25%,3%/0.75)]" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[hsl(225,25%,3%/0.6)] to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[hsl(225,25%,3%/0.95)] via-transparent to-[hsl(225,25%,3%/0.3)]" />
-          <div className="absolute inset-0 noise opacity-15" />
+          <div className="absolute inset-0 bg-foreground/70" />
+          <div className="absolute inset-0 bg-gradient-to-r from-foreground via-foreground/85 to-foreground/20" />
+          <div className="absolute inset-0 noise opacity-10" />
         </div>
-        <div className="container mx-auto px-6 relative z-10 py-20 md:py-28">
-          <div className="grid lg:grid-cols-2 gap-10 items-center">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/10 backdrop-blur-sm mb-6">
+
+        <div className="container mx-auto px-6 relative z-10 py-16 md:py-24">
+          <div className="max-w-6xl mx-auto grid lg:grid-cols-[1.2fr_0.8fr] gap-8 items-end">
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="rounded-[2rem] border border-background/15 bg-background/10 backdrop-blur-xl p-7 md:p-10 shadow-2xl"
+            >
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/10 mb-6">
                 <Droplets className="w-4 h-4 text-primary" />
                 <span className="text-sm font-semibold text-primary">Most Popular Service</span>
               </div>
-              <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 text-white text-shadow-hero leading-tight">
-                Doorstep Car{" "}<span className="text-primary">Foam Wash</span>
+
+              <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[0.95] text-background mb-5">
+                Doorstep Car <span className="text-primary">Foam Wash</span>
               </h1>
-              <p className="text-lg text-white/80 max-w-lg mb-8 leading-relaxed text-shadow-sm">
-                Where convenience meets quality and affordability. Premium foam wash delivered to your doorstep.
+
+              <p className="text-base md:text-lg text-background/75 max-w-2xl leading-relaxed mb-8">
+                Premium scratch-free foam wash at your doorstep with our own water, electricity, and professional-grade products.
               </p>
-              <div className="flex flex-wrap items-center gap-4">
+
+              <div className="flex flex-wrap items-center gap-4 mb-8">
                 <Link to="/booking">
-                  <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-display font-bold text-base px-8 h-14 btn-glow glow-border rounded-xl">
+                  <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-display font-bold px-8 h-14 rounded-xl btn-glow glow-border">
                     Schedule Wash <ArrowRight className="w-5 h-5 ml-2" />
                   </Button>
                 </Link>
-                <div className="flex items-center gap-1.5 text-white/60 text-sm text-shadow-sm">
-                  {[1,2,3,4,5].map(i => <Star key={i} className="w-4 h-4 fill-primary text-primary" />)}
-                  <span className="ml-1 text-white/80 font-semibold">4.9/5</span>
+                <div className="flex items-center gap-1.5 text-sm text-background/70">
+                  {[1, 2, 3, 4, 5].map((i) => (
+                    <Star key={i} className="w-4 h-4 fill-primary text-primary" />
+                  ))}
+                  <span className="ml-1 font-semibold text-background">4.9/5</span>
+                </div>
+              </div>
+
+              <div className="grid sm:grid-cols-3 gap-3">
+                <div className="rounded-2xl border border-background/10 bg-background/5 p-4">
+                  <div className="text-xs uppercase tracking-[0.2em] text-background/45 mb-1">Starts at</div>
+                  <div className="font-display text-3xl font-extrabold text-primary">₹679</div>
+                </div>
+                <div className="rounded-2xl border border-background/10 bg-background/5 p-4">
+                  <div className="text-xs uppercase tracking-[0.2em] text-background/45 mb-1">Duration</div>
+                  <div className="font-display text-xl font-bold text-background">30–45 min</div>
+                </div>
+                <div className="rounded-2xl border border-background/10 bg-background/5 p-4">
+                  <div className="text-xs uppercase tracking-[0.2em] text-background/45 mb-1">Includes</div>
+                  <div className="font-display text-xl font-bold text-background">Interior + Exterior</div>
                 </div>
               </div>
             </motion.div>
 
-            {/* Quick highlights on right */}
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.3 }}
-              className="hidden lg:grid grid-cols-2 gap-4"
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="grid sm:grid-cols-2 lg:grid-cols-1 gap-4"
             >
               {highlights.map((item) => (
-                <div key={item.title} className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-5 group hover:bg-white/10 transition-all">
-                  <div className="w-11 h-11 rounded-xl bg-primary/20 border border-primary/30 flex items-center justify-center mb-3 group-hover:bg-primary transition-all">
-                    <item.icon className="w-5 h-5 text-primary group-hover:text-primary-foreground transition-colors" />
+                <div key={item.title} className="rounded-2xl border border-background/12 bg-background/8 backdrop-blur-md p-5">
+                  <div className="w-11 h-11 rounded-xl bg-primary/15 border border-primary/25 flex items-center justify-center mb-3">
+                    <item.icon className="w-5 h-5 text-primary" />
                   </div>
-                  <h3 className="font-display font-bold text-sm text-white mb-1">{item.title}</h3>
-                  <p className="text-xs text-white/60">{item.desc}</p>
+                  <h3 className="font-display text-lg font-bold text-background mb-1">{item.title}</h3>
+                  <p className="text-sm text-background/65">{item.desc}</p>
                 </div>
               ))}
             </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Mobile highlights */}
-      <section className="py-10 bg-secondary/50 relative lg:hidden">
-        <div className="absolute inset-0 noise opacity-10" />
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="grid grid-cols-2 gap-4">
-            {highlights.map((item, i) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="bg-card border border-border rounded-2xl p-5 text-center hover:border-primary/30 transition-all duration-500 card-shine group"
-              >
-                <div className="w-12 h-12 rounded-2xl bg-primary/10 border border-primary/25 flex items-center justify-center mx-auto mb-3 group-hover:bg-primary transition-all">
-                  <item.icon className="w-5 h-5 text-primary group-hover:text-primary-foreground transition-colors" />
-                </div>
-                <h3 className="font-display font-bold text-sm mb-1">{item.title}</h3>
-                <p className="text-xs text-muted-foreground">{item.desc}</p>
-              </motion.div>
-            ))}
           </div>
         </div>
       </section>
