@@ -48,8 +48,8 @@ const RegularCleaningPage = () => {
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
 
-      <section className="pt-32 pb-10 relative">
-        <div className="absolute inset-0 noise opacity-15" />
+      <section className="pt-32 pb-10 relative bg-background">
+        <div className="absolute inset-0 noise opacity-10" />
         <div className="absolute top-20 right-0 w-96 h-96 bg-primary/5 rounded-full blur-[120px]" />
         <div className="container mx-auto px-6 relative z-10">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
@@ -67,8 +67,9 @@ const RegularCleaningPage = () => {
         </div>
       </section>
 
-      <section className="py-12 pb-24">
-        <div className="container mx-auto px-6">
+      <section className="py-12 pb-24 bg-secondary/50 relative">
+        <div className="absolute inset-0 noise opacity-10" />
+        <div className="container mx-auto px-6 relative z-10">
           <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             {plans.map((plan, i) => (
               <motion.div
@@ -90,13 +91,13 @@ const RegularCleaningPage = () => {
                   <span className="font-display text-4xl font-extrabold text-primary">{plan.price}</span>
                   <span className="text-sm text-muted-foreground">/month</span>
                 </div>
-                <p className="text-sm text-secondary-foreground mb-6">{plan.tagline}</p>
+                <p className="text-sm text-foreground mb-6">{plan.tagline}</p>
 
                 <div className="space-y-2.5 mb-7">
                   {plan.features.map((f) => (
                     <div key={f} className="flex items-start gap-2.5 text-sm">
                       <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-                      <span className="text-secondary-foreground">{f}</span>
+                      <span className="text-muted-foreground">{f}</span>
                     </div>
                   ))}
                 </div>

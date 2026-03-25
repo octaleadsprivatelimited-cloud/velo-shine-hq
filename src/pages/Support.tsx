@@ -14,8 +14,8 @@ const SupportPage = () => {
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
 
-      <section className="pt-32 pb-10 relative">
-        <div className="absolute inset-0 noise opacity-15" />
+      <section className="pt-32 pb-10 relative bg-background">
+        <div className="absolute inset-0 noise opacity-10" />
         <div className="absolute top-20 left-1/2 w-96 h-96 bg-primary/5 rounded-full blur-[120px]" />
         <div className="container mx-auto px-6 relative z-10">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
@@ -33,8 +33,9 @@ const SupportPage = () => {
         </div>
       </section>
 
-      <section className="py-8 pb-24">
-        <div className="container mx-auto px-6 max-w-2xl space-y-6">
+      <section className="py-8 pb-24 bg-secondary/50 relative">
+        <div className="absolute inset-0 noise opacity-10" />
+        <div className="container mx-auto px-6 max-w-2xl space-y-6 relative z-10">
           {/* Contact */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -49,7 +50,7 @@ const SupportPage = () => {
                   href={c.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-4 p-4 rounded-xl bg-secondary/30 border border-border hover:border-primary/30 transition-all duration-500 group card-shine"
+                  className="flex items-center gap-4 p-4 rounded-xl bg-background border border-border hover:border-primary/30 transition-all duration-500 group card-shine"
                 >
                   <div className="w-12 h-12 rounded-2xl bg-primary/10 border border-primary/25 flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:border-primary transition-all duration-300">
                     <c.icon className="w-5 h-5 text-primary group-hover:text-primary-foreground transition-colors" />
@@ -73,14 +74,14 @@ const SupportPage = () => {
           >
             <h2 className="font-display text-lg font-bold mb-5">Working Hours</h2>
             <div className="grid grid-cols-2 gap-4">
-              <div className="bg-secondary/30 rounded-xl p-5 border border-border hover:border-primary/20 transition-colors">
+              <div className="bg-background rounded-xl p-5 border border-border hover:border-primary/20 transition-colors">
                 <div className="flex items-center gap-2 mb-2">
                   <Clock className="w-4 h-4 text-primary" />
                   <span className="text-xs text-muted-foreground uppercase tracking-wider">Mon – Sun</span>
                 </div>
                 <div className="font-display font-bold text-sm">7:00 AM – 8:00 PM</div>
               </div>
-              <div className="bg-secondary/30 rounded-xl p-5 border border-border hover:border-primary/20 transition-colors">
+              <div className="bg-background rounded-xl p-5 border border-border hover:border-primary/20 transition-colors">
                 <div className="flex items-center gap-2 mb-2">
                   <MapPin className="w-4 h-4 text-primary" />
                   <span className="text-xs text-muted-foreground uppercase tracking-wider">Service Area</span>
@@ -105,7 +106,7 @@ const SupportPage = () => {
                   href={s === "WhatsApp" ? "https://wa.me/919676031464" : "#"}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center py-3.5 px-4 rounded-xl bg-secondary/30 border border-border hover:border-primary/30 hover:bg-primary/5 transition-all duration-300 text-sm font-semibold text-secondary-foreground"
+                  className="flex items-center justify-center py-3.5 px-4 rounded-xl bg-background border border-border hover:border-primary/30 hover:bg-primary/5 transition-all duration-300 text-sm font-semibold text-foreground"
                 >
                   {s}
                 </a>
@@ -128,7 +129,7 @@ const SupportPage = () => {
               ].map((l) => (
                 <div
                   key={l.label}
-                  className="flex items-center gap-4 p-4 rounded-xl bg-secondary/30 border border-border hover:border-primary/20 transition-colors"
+                  className="flex items-center gap-4 p-4 rounded-xl bg-background border border-border hover:border-primary/20 transition-colors"
                 >
                   <div className="w-12 h-12 rounded-2xl bg-primary/10 border border-primary/25 flex items-center justify-center shrink-0">
                     <l.icon className="w-5 h-5 text-primary" />

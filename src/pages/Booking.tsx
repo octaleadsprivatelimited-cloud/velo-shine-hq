@@ -79,8 +79,8 @@ const BookingPage = () => {
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
 
-      <section className="pt-32 pb-10 relative">
-        <div className="absolute inset-0 noise opacity-15" />
+      <section className="pt-32 pb-10 relative bg-background">
+        <div className="absolute inset-0 noise opacity-10" />
         <div className="absolute top-20 right-0 w-96 h-96 bg-primary/5 rounded-full blur-[120px]" />
         <div className="container mx-auto px-6 relative z-10">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
@@ -95,8 +95,9 @@ const BookingPage = () => {
         </div>
       </section>
 
-      <section className="py-8 pb-24">
-        <div className="container mx-auto px-6">
+      <section className="py-8 pb-24 bg-secondary/50 relative">
+        <div className="absolute inset-0 noise opacity-10" />
+        <div className="container mx-auto px-6 relative z-10">
           <div className="grid lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {/* Form */}
             <motion.form
@@ -108,11 +109,11 @@ const BookingPage = () => {
               <div className="grid sm:grid-cols-2 gap-5">
                 <div className="space-y-2">
                   <Label htmlFor="name" className="text-sm font-semibold">Full Name *</Label>
-                  <Input id="name" placeholder="Your name" value={form.name} onChange={(e) => handleChange("name", e.target.value)} className="bg-secondary/50 border-border h-12 rounded-xl focus:border-primary/50 transition-colors" />
+                  <Input id="name" placeholder="Your name" value={form.name} onChange={(e) => handleChange("name", e.target.value)} className="bg-background border-border h-12 rounded-xl focus:border-primary/50 transition-colors" />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="phone" className="text-sm font-semibold">Phone Number *</Label>
-                  <Input id="phone" placeholder="+91 XXXXX XXXXX" value={form.phone} onChange={(e) => handleChange("phone", e.target.value)} className="bg-secondary/50 border-border h-12 rounded-xl focus:border-primary/50 transition-colors" />
+                  <Input id="phone" placeholder="+91 XXXXX XXXXX" value={form.phone} onChange={(e) => handleChange("phone", e.target.value)} className="bg-background border-border h-12 rounded-xl focus:border-primary/50 transition-colors" />
                 </div>
               </div>
 
@@ -120,20 +121,20 @@ const BookingPage = () => {
                 <div className="space-y-2">
                   <Label className="text-sm font-semibold">Car Type *</Label>
                   <Select onValueChange={(v) => handleChange("carType", v)}>
-                    <SelectTrigger className="bg-secondary/50 border-border h-12 rounded-xl"><SelectValue placeholder="Select car type" /></SelectTrigger>
+                    <SelectTrigger className="bg-background border-border h-12 rounded-xl"><SelectValue placeholder="Select car type" /></SelectTrigger>
                     <SelectContent>{carTypes.map((t) => <SelectItem key={t} value={t}>{t}</SelectItem>)}</SelectContent>
                   </Select>
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="carModel" className="text-sm font-semibold">Car Model</Label>
-                  <Input id="carModel" placeholder="e.g. Hyundai Creta" value={form.carModel} onChange={(e) => handleChange("carModel", e.target.value)} className="bg-secondary/50 border-border h-12 rounded-xl focus:border-primary/50 transition-colors" />
+                  <Input id="carModel" placeholder="e.g. Hyundai Creta" value={form.carModel} onChange={(e) => handleChange("carModel", e.target.value)} className="bg-background border-border h-12 rounded-xl focus:border-primary/50 transition-colors" />
                 </div>
               </div>
 
               <div className="space-y-2">
                 <Label className="text-sm font-semibold">Service *</Label>
                 <Select onValueChange={(v) => handleChange("service", v)}>
-                  <SelectTrigger className="bg-secondary/50 border-border h-12 rounded-xl"><SelectValue placeholder="Select service" /></SelectTrigger>
+                  <SelectTrigger className="bg-background border-border h-12 rounded-xl"><SelectValue placeholder="Select service" /></SelectTrigger>
                   <SelectContent>{serviceTypes.map((s) => <SelectItem key={s} value={s}>{s}</SelectItem>)}</SelectContent>
                 </Select>
               </div>
@@ -143,7 +144,7 @@ const BookingPage = () => {
                   <Label className="text-sm font-semibold">Preferred Date *</Label>
                   <Popover>
                     <PopoverTrigger asChild>
-                      <Button variant="outline" className={cn("w-full justify-start text-left font-normal bg-secondary/50 border-border h-12 rounded-xl", !date && "text-muted-foreground")}>
+                      <Button variant="outline" className={cn("w-full justify-start text-left font-normal bg-background border-border h-12 rounded-xl", !date && "text-muted-foreground")}>
                         <CalendarIcon className="mr-2 h-4 w-4" />
                         {date ? format(date, "PPP") : "Pick a date"}
                       </Button>
@@ -156,7 +157,7 @@ const BookingPage = () => {
                 <div className="space-y-2">
                   <Label className="text-sm font-semibold">Time Slot *</Label>
                   <Select onValueChange={(v) => handleChange("timeSlot", v)}>
-                    <SelectTrigger className="bg-secondary/50 border-border h-12 rounded-xl"><SelectValue placeholder="Select time" /></SelectTrigger>
+                    <SelectTrigger className="bg-background border-border h-12 rounded-xl"><SelectValue placeholder="Select time" /></SelectTrigger>
                     <SelectContent>{timeSlots.map((t) => <SelectItem key={t} value={t}>{t}</SelectItem>)}</SelectContent>
                   </Select>
                 </div>
@@ -164,12 +165,12 @@ const BookingPage = () => {
 
               <div className="space-y-2">
                 <Label htmlFor="address" className="text-sm font-semibold">Address *</Label>
-                <Textarea id="address" placeholder="Full address" value={form.address} onChange={(e) => handleChange("address", e.target.value)} className="bg-secondary/50 border-border rounded-xl" rows={3} />
+                <Textarea id="address" placeholder="Full address" value={form.address} onChange={(e) => handleChange("address", e.target.value)} className="bg-background border-border rounded-xl" rows={3} />
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="notes" className="text-sm font-semibold">Additional Notes</Label>
-                <Textarea id="notes" placeholder="Any special instructions..." value={form.notes} onChange={(e) => handleChange("notes", e.target.value)} className="bg-secondary/50 border-border rounded-xl" rows={2} />
+                <Textarea id="notes" placeholder="Any special instructions..." value={form.notes} onChange={(e) => handleChange("notes", e.target.value)} className="bg-background border-border rounded-xl" rows={2} />
               </div>
 
               <Button type="submit" size="lg" className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-display font-bold text-base h-14 btn-glow glow-border rounded-xl">

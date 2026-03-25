@@ -65,7 +65,7 @@ const ServicesPage = () => {
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
 
-      <section className="pt-32 pb-8">
+      <section className="pt-32 pb-8 bg-background">
         <div className="container mx-auto px-6">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             <h1 className="font-display text-4xl md:text-6xl font-bold mb-4">
@@ -78,8 +78,9 @@ const ServicesPage = () => {
         </div>
       </section>
 
-      <section className="py-12">
-        <div className="container mx-auto px-6 space-y-6">
+      <section className="py-12 bg-secondary/50 relative">
+        <div className="absolute inset-0 noise opacity-10" />
+        <div className="container mx-auto px-6 space-y-6 relative z-10">
           {services.map((service, i) => (
             <motion.div
               key={service.title}
@@ -108,7 +109,7 @@ const ServicesPage = () => {
                     {service.features.map((f) => (
                       <div key={f} className="flex items-center gap-2 text-sm">
                         <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
-                        <span className="text-secondary-foreground">{f}</span>
+                        <span className="text-foreground">{f}</span>
                       </div>
                     ))}
                   </div>

@@ -26,8 +26,9 @@ const AboutPage = () => {
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
 
-      <section className="pt-32 pb-10 relative">
-        <div className="absolute inset-0 noise opacity-15" />
+      {/* Hero */}
+      <section className="pt-32 pb-10 relative bg-background">
+        <div className="absolute inset-0 noise opacity-10" />
         <div className="absolute top-20 left-0 w-96 h-96 bg-accent/5 rounded-full blur-[120px]" />
         <div className="container mx-auto px-6 relative z-10">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
@@ -42,9 +43,10 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Stats bar */}
-      <section className="py-10">
-        <div className="container mx-auto px-6">
+      {/* Stats */}
+      <section className="py-10 bg-secondary/50">
+        <div className="absolute inset-0 noise opacity-10" />
+        <div className="container mx-auto px-6 relative z-10">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {stats.map((s, i) => (
               <motion.div
@@ -63,7 +65,8 @@ const AboutPage = () => {
         </div>
       </section>
 
-      <section className="py-14">
+      {/* Mission & Vision */}
+      <section className="py-14 bg-background">
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-8 mb-20">
             <motion.div
@@ -106,15 +109,20 @@ const AboutPage = () => {
               </div>
             </motion.div>
           </div>
+        </div>
+      </section>
 
-          {/* Values */}
+      {/* Values */}
+      <section className="py-14 bg-secondary/50 relative">
+        <div className="absolute inset-0 noise opacity-10" />
+        <div className="container mx-auto px-6 relative z-10">
           <div className="text-center mb-12">
             <span className="text-sm font-semibold text-primary uppercase tracking-widest">What drives us</span>
             <h2 className="font-display text-2xl md:text-4xl font-extrabold mt-4">
               Our <span className="text-gradient">Values</span>
             </h2>
           </div>
-          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-5 mb-16">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-16">
             {values.map((v, i) => (
               <motion.div
                 key={v.title}
@@ -132,8 +140,12 @@ const AboutPage = () => {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
 
-          {/* CTA */}
+      {/* CTA */}
+      <section className="py-14 bg-background">
+        <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
