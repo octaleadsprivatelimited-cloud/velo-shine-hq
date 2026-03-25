@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { getServices, addService, updateService, deleteService, type Service } from "@/lib/adminService";
+import ImageUploadField from "@/components/admin/ImageUploadField";
 
 const emptyService = { title: "", description: "", badge: "", features: [""], pricing: [{ plan: "", price: "" }], imageUrl: "", order: 0 };
 
@@ -71,10 +72,7 @@ const AdminServices = () => {
         <Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Description</Label>
         <Textarea value={form.description} onChange={(e) => setForm((f) => ({ ...f, description: e.target.value }))} className="bg-secondary border-border" rows={3} />
       </div>
-      <div className="space-y-2">
-        <Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Image URL</Label>
-        <Input value={form.imageUrl} onChange={(e) => setForm((f) => ({ ...f, imageUrl: e.target.value }))} placeholder="https://..." className="bg-secondary border-border h-11" />
-      </div>
+      <ImageUploadField label="Image" value={form.imageUrl} onChange={(url) => setForm((f) => ({ ...f, imageUrl: url }))} folder="services" />
       <div className="space-y-2">
         <Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Features (one per line)</Label>
         <Textarea

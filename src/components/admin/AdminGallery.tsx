@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { getGalleryItems, addGalleryItem, updateGalleryItem, deleteGalleryItem, type GalleryItem } from "@/lib/adminService";
+import ImageUploadField from "@/components/admin/ImageUploadField";
 
 const categories = ["Exterior", "Interior", "Detailing"];
 const emptyItem = { imageUrl: "", alt: "", category: "Exterior", order: 0 };
@@ -54,8 +55,7 @@ const AdminGallery = () => {
   const ItemForm = ({ onSave, onCancel }: { onSave: () => void; onCancel: () => void }) => (
     <div className="bg-card border border-border rounded-xl p-6 space-y-5 col-span-full">
       <div className="space-y-2">
-        <Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Image URL *</Label>
-        <Input value={form.imageUrl} onChange={(e) => setForm({ ...form, imageUrl: e.target.value })} placeholder="https://..." className="bg-secondary border-border h-11" />
+      <ImageUploadField label="Image *" value={form.imageUrl} onChange={(url) => setForm({ ...form, imageUrl: url })} folder="gallery" />
       </div>
       <div className="grid md:grid-cols-2 gap-4">
         <div className="space-y-2">
@@ -72,11 +72,6 @@ const AdminGallery = () => {
           </Select>
         </div>
       </div>
-      {form.imageUrl && (
-        <div className="rounded-xl overflow-hidden border border-border w-44 h-32">
-          <img src={form.imageUrl} alt="Preview" className="w-full h-full object-cover" />
-        </div>
-      )}
       <div className="flex gap-3 pt-2">
         <Button onClick={onSave} className="bg-primary text-primary-foreground h-10">
           <Save className="w-4 h-4 mr-2" /> Save
