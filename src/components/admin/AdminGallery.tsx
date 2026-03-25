@@ -72,11 +72,6 @@ const AdminGallery = () => {
           </Select>
         </div>
       </div>
-      {form.imageUrl && (
-        <div className="rounded-xl overflow-hidden border border-border w-44 h-32">
-          <img src={form.imageUrl} alt="Preview" className="w-full h-full object-cover" />
-        </div>
-      )}
       <div className="flex gap-3 pt-2">
         <Button onClick={onSave} className="bg-primary text-primary-foreground h-10">
           <Save className="w-4 h-4 mr-2" /> Save
