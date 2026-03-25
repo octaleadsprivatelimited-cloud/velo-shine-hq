@@ -41,10 +41,8 @@ const services = [
 
 const ServicesSection = () => {
   return (
-    <section className="py-24 relative">
-      {/* Section background accent */}
-      <div className="absolute inset-0 section-gradient" />
-      <div className="absolute top-0 left-0 right-0 divider" />
+    <section className="py-24 relative bg-secondary/50">
+      <div className="absolute inset-0 noise opacity-10" />
 
       <div className="container mx-auto px-6 relative z-10">
         <motion.div

@@ -34,10 +34,7 @@ const testimonials = [
 
 const TestimonialsSection = () => {
   return (
-    <section className="py-24 relative overflow-hidden">
-      <div className="absolute top-0 left-0 right-0 divider" />
-      <div className="absolute bottom-0 left-0 right-0 divider" />
-      
+    <section className="py-24 relative overflow-hidden bg-secondary/50">
       {/* Accent glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary/3 blur-[150px]" />
 
