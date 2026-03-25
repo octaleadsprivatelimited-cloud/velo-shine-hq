@@ -6,7 +6,7 @@ import heroImg from "@/assets/hero-car-wash.jpg";
 
 const BoldStatement = () => {
   return (
-    <section className="relative py-32 overflow-hidden">
+    <section className="relative py-32 overflow-hidden dark-section">
       <div className="absolute inset-0">
         <img
           src={heroImg}

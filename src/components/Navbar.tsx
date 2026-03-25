@@ -70,7 +70,7 @@ const Navbar = () => {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="glass-strong border-t border-border/50 mt-2"
+            className="bg-white border-t border-border shadow-xl mt-2"
           >
             <div className="flex flex-col p-5 max-w-lg mx-auto space-y-1">
               {navLinks.map((link) => (

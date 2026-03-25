@@ -6,7 +6,7 @@ import heroImage from "@/assets/hero-car-wash.jpg";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-end overflow-hidden">
+    <section className="relative min-h-screen flex items-end overflow-hidden dark-section">
       {/* Background image with overlay */}
       <div className="absolute inset-0">
         <img

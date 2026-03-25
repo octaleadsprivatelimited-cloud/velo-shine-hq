@@ -71,10 +71,10 @@ const Footer = () => {
         {/* Bottom bar */}
         <div className="divider" />
         <div className="py-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <span className="text-xs text-muted-foreground">
+          <span className="text-xs text-white/40">
             © {new Date().getFullYear()} Velociwash. All rights reserved.
           </span>
-          <div className="flex items-center gap-6 text-xs text-muted-foreground">
+          <div className="flex items-center gap-6 text-xs text-white/40">
             <Link to="/support" className="hover:text-primary transition-colors">Privacy Policy</Link>
             <Link to="/support" className="hover:text-primary transition-colors">Terms of Service</Link>
           </div>
