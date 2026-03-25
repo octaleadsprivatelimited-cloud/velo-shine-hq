@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { getGalleryItems, addGalleryItem, updateGalleryItem, deleteGalleryItem, type GalleryItem } from "@/lib/adminService";
+import ImageUploadField from "@/components/admin/ImageUploadField";
 
 const categories = ["Exterior", "Interior", "Detailing"];
 const emptyItem = { imageUrl: "", alt: "", category: "Exterior", order: 0 };
