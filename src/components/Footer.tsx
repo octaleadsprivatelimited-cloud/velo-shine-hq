@@ -40,7 +40,7 @@ const Footer = () => {
                 <Link
                   key={link.label}
                   to={link.href}
-                  className="text-sm text-muted-foreground hover:text-primary transition-colors py-1"
+                  className="text-sm text-white/60 hover:text-primary transition-colors py-1"
                 >
                   {link.label}
                 </Link>
