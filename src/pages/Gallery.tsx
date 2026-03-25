@@ -45,18 +45,21 @@ const GalleryPage = () => {
       />
       <Navbar />
 
-      <section className="pt-32 pb-10 relative bg-background">
+      <section className="relative pt-24 overflow-hidden bg-foreground">
+        <div className="absolute inset-0 bg-gradient-to-br from-foreground via-foreground to-[hsl(225,25%,12%)]" />
+        <div className="absolute top-16 left-1/3 w-[500px] h-[500px] bg-primary/8 rounded-full blur-[150px]" />
+        <div className="absolute bottom-0 right-10 w-[350px] h-[350px] bg-accent/5 rounded-full blur-[120px]" />
         <div className="absolute inset-0 noise opacity-10" />
-        <div className="container mx-auto px-6 relative z-10">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-            <div className="flex items-center gap-2 mb-4">
+        <div className="container mx-auto px-6 relative z-10 py-16 md:py-24">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-2xl">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/10 backdrop-blur-sm mb-6">
               <Camera className="w-4 h-4 text-primary" />
-              <span className="text-sm font-semibold text-primary uppercase tracking-widest">Portfolio</span>
+              <span className="text-sm font-semibold text-primary">Portfolio</span>
             </div>
-            <h1 className="font-display text-4xl md:text-6xl font-extrabold mb-4">
-              Our <span className="text-gradient">Gallery</span>
+            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold mb-5 text-background leading-tight">
+              Our <span className="text-primary">Gallery</span>
             </h1>
-            <p className="text-lg text-muted-foreground max-w-lg leading-relaxed">
+            <p className="text-lg text-background/65 max-w-lg leading-relaxed">
               Browse our portfolio of car transformations.
             </p>
           </motion.div>

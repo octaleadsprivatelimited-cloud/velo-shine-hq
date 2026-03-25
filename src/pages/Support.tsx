@@ -25,6 +25,9 @@ const SupportPage = () => {
 
       {/* Hero */}
       <section className="relative pt-24 overflow-hidden bg-foreground">
+        <div className="absolute inset-0 bg-gradient-to-br from-foreground via-foreground to-[hsl(225,25%,12%)]" />
+        <div className="absolute top-16 left-1/3 w-[500px] h-[500px] bg-primary/8 rounded-full blur-[150px]" />
+        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[120px]" />
         <div className="absolute inset-0 noise opacity-10" />
         <div className="container mx-auto px-6 relative z-10 py-16 md:py-24">
           <div className="grid lg:grid-cols-2 gap-10 items-center">

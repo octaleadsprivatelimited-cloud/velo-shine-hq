@@ -71,13 +71,21 @@ const ServicesPage = () => {
       />
       <Navbar />
 
-      <section className="pt-32 pb-8 bg-background">
-        <div className="container mx-auto px-6">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-            <h1 className="font-display text-4xl md:text-6xl font-bold mb-4">
-              Our <span className="text-gradient">Services</span>
+      <section className="relative pt-24 overflow-hidden bg-foreground">
+        <div className="absolute inset-0 bg-gradient-to-br from-foreground via-foreground to-[hsl(225,25%,12%)]" />
+        <div className="absolute top-10 right-1/4 w-[500px] h-[500px] bg-primary/8 rounded-full blur-[150px]" />
+        <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-accent/5 rounded-full blur-[100px]" />
+        <div className="absolute inset-0 noise opacity-10" />
+        <div className="container mx-auto px-6 relative z-10 py-16 md:py-24">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-2xl">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/10 backdrop-blur-sm mb-6">
+              <Sparkles className="w-4 h-4 text-primary" />
+              <span className="text-sm font-semibold text-primary">What We Offer</span>
+            </div>
+            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold mb-5 text-background leading-tight">
+              Our <span className="text-primary">Services</span>
             </h1>
-            <p className="text-lg text-muted-foreground max-w-lg">
+            <p className="text-lg text-background/65 max-w-lg leading-relaxed">
               From quick washes to full ceramic coatings — we bring the studio to your doorstep.
             </p>
           </motion.div>
