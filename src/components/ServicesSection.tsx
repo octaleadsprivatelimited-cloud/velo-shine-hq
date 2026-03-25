@@ -68,7 +68,7 @@ const ServicesSection = () => {
           </Link>
         </motion.div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
           {services.map((service, i) => (
             <motion.div
               key={service.title}
@@ -79,7 +79,7 @@ const ServicesSection = () => {
             >
               {service.available ? (
                 <Link to={service.href} className="block group">
-                  <div className="relative rounded-2xl overflow-hidden border border-border bg-card hover:border-primary/40 transition-all duration-500 h-[300px] md:h-[380px] card-shine">
+                  <div className="relative rounded-2xl overflow-hidden border border-border bg-card hover:border-primary/40 transition-all duration-500 h-[280px] lg:h-[340px] card-shine">
                     {service.image && (
                       <>
                         <img
@@ -88,22 +88,22 @@ const ServicesSection = () => {
                           loading="lazy"
                           className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-card via-card/70 to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[hsl(225,25%,5%)] via-[hsl(225,25%,5%/0.6)] to-transparent" />
                       </>
                     )}
-                    <div className="relative h-full flex flex-col justify-end p-7 md:p-9">
-                      <h3 className="font-display text-xl md:text-2xl font-bold mb-2 group-hover:text-primary transition-colors">
+                    <div className="relative h-full flex flex-col justify-end p-5 lg:p-7">
+                      <h3 className="font-display text-lg lg:text-xl font-bold mb-1.5 text-white group-hover:text-primary transition-colors text-shadow-sm">
                         {service.title}
                       </h3>
-                      <p className="text-sm text-muted-foreground mb-5">
+                      <p className="text-xs lg:text-sm text-white/70 mb-4 text-shadow-sm">
                         {service.description}
                       </p>
                       <div className="flex items-center justify-between">
-                        <span className="text-sm font-bold text-primary flex items-center gap-2 group-hover:gap-3 transition-all">
-                          Book now <ArrowRight className="w-4 h-4" />
+                        <span className="text-xs lg:text-sm font-bold text-primary flex items-center gap-1.5 group-hover:gap-2.5 transition-all">
+                          Book now <ArrowRight className="w-3.5 h-3.5" />
                         </span>
                         {service.badge && (
-                          <span className="px-3 py-1.5 rounded-full text-xs font-bold bg-primary/15 text-primary border border-primary/25">
+                          <span className="px-2 py-1 rounded-full text-[10px] lg:text-xs font-bold bg-primary/15 text-primary border border-primary/25">
                             {service.badge}
                           </span>
                         )}
@@ -112,16 +112,17 @@ const ServicesSection = () => {
                   </div>
                 </Link>
               ) : (
-                <div className="relative rounded-2xl overflow-hidden border border-border bg-card h-[300px] md:h-[380px]">
-                  <div className="absolute inset-0 noise opacity-30" />
-                  <div className="h-full flex flex-col justify-end p-7 md:p-9 relative">
-                    <h3 className="font-display text-xl md:text-2xl font-bold mb-2 text-foreground/60">
+                <div className="relative rounded-2xl overflow-hidden border border-border bg-card h-[280px] lg:h-[340px]">
+                  <div className="absolute inset-0 bg-secondary/50" />
+                  <div className="absolute inset-0 noise opacity-20" />
+                  <div className="h-full flex flex-col justify-end p-5 lg:p-7 relative">
+                    <h3 className="font-display text-lg lg:text-xl font-bold mb-1.5 text-foreground">
                       {service.title}
                     </h3>
-                    <p className="text-sm text-muted-foreground mb-5">
+                    <p className="text-xs lg:text-sm text-muted-foreground mb-4">
                       {service.description}
                     </p>
-                    <span className="px-3 py-1.5 rounded-full text-xs font-bold bg-secondary text-foreground/50 border border-border w-fit">
+                    <span className="px-2.5 py-1.5 rounded-full text-[10px] lg:text-xs font-bold bg-muted text-muted-foreground border border-border w-fit">
                       {service.badge}
                     </span>
                   </div>
