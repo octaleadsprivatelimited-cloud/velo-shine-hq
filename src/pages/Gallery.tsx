@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X } from "lucide-react";
+import { X, Camera } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -39,13 +39,18 @@ const GalleryPage = () => {
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
 
-      <section className="pt-32 pb-8">
-        <div className="container mx-auto px-6">
+      <section className="pt-32 pb-10 relative">
+        <div className="absolute inset-0 noise opacity-15" />
+        <div className="container mx-auto px-6 relative z-10">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-            <h1 className="font-display text-4xl md:text-6xl font-bold mb-4">
+            <div className="flex items-center gap-2 mb-4">
+              <Camera className="w-4 h-4 text-primary" />
+              <span className="text-sm font-semibold text-primary uppercase tracking-widest">Portfolio</span>
+            </div>
+            <h1 className="font-display text-4xl md:text-6xl font-extrabold mb-4">
               Our <span className="text-gradient">Gallery</span>
             </h1>
-            <p className="text-lg text-muted-foreground max-w-lg">
+            <p className="text-lg text-muted-foreground max-w-lg leading-relaxed">
               Browse our portfolio of car transformations.
             </p>
           </motion.div>
@@ -54,15 +59,15 @@ const GalleryPage = () => {
 
       <section className="py-8 pb-24">
         <div className="container mx-auto px-6">
-          <div className="flex gap-2 mb-8 flex-wrap">
+          <div className="flex gap-2 mb-10 flex-wrap">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActive(cat)}
-                className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${
+                className={`px-6 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 ${
                   active === cat
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-card border border-border text-muted-foreground hover:text-foreground hover:border-primary/20"
+                    ? "bg-primary text-primary-foreground glow-border"
+                    : "bg-card border border-border text-muted-foreground hover:text-foreground hover:border-primary/30"
                 }`}
               >
                 {cat}
@@ -70,7 +75,7 @@ const GalleryPage = () => {
             ))}
           </div>
 
-          <motion.div layout className="grid grid-cols-2 lg:grid-cols-3 gap-4">
+          <motion.div layout className="grid grid-cols-2 lg:grid-cols-3 gap-5">
             <AnimatePresence mode="popLayout">
               {filtered.map((item) => (
                 <motion.div
@@ -79,15 +84,20 @@ const GalleryPage = () => {
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
-                  className="group cursor-pointer rounded-2xl overflow-hidden border border-border hover:border-primary/30 transition-colors aspect-[4/3]"
+                  className="group cursor-pointer rounded-2xl overflow-hidden border border-border hover:border-primary/30 transition-all duration-500 aspect-[4/3] relative"
                   onClick={() => setSelectedImg(item.src)}
                 >
                   <img
                     src={item.src}
                     alt={item.alt}
                     loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <p className="text-sm font-medium text-foreground">{item.alt}</p>
+                    <p className="text-xs text-primary">{item.category}</p>
+                  </div>
                 </motion.div>
               ))}
             </AnimatePresence>
@@ -95,18 +105,19 @@ const GalleryPage = () => {
         </div>
       </section>
 
+      {/* Lightbox */}
       <AnimatePresence>
         {selectedImg && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] bg-background/95 backdrop-blur-md flex items-center justify-center p-6"
+            className="fixed inset-0 z-[100] bg-background/95 backdrop-blur-xl flex items-center justify-center p-6"
             onClick={() => setSelectedImg(null)}
           >
             <button
               onClick={() => setSelectedImg(null)}
-              className="absolute top-6 right-6 w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center"
+              className="absolute top-6 right-6 w-12 h-12 rounded-xl bg-card border border-border flex items-center justify-center hover:border-primary/30 transition-colors"
             >
               <X className="w-5 h-5" />
             </button>

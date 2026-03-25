@@ -120,24 +120,25 @@ const FoamWashPage = () => {
       {/* Hero */}
       <section className="relative pt-28 pb-20 overflow-hidden">
         <div className="absolute inset-0">
-          <img src={foamWashImg} alt="Doorstep Car Foam Wash" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-background/50" />
+          <img src={foamWashImg} alt="Doorstep Car Foam Wash" className="w-full h-full object-cover" loading="eager" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-background/40" />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/60" />
+          <div className="absolute inset-0 noise opacity-20" />
         </div>
         <div className="container mx-auto px-6 relative z-10 py-16">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/5 backdrop-blur-sm mb-6">
               <Droplets className="w-4 h-4 text-primary" />
-              <span className="text-sm font-medium text-primary">Most Popular Service</span>
+              <span className="text-sm font-semibold text-primary">Most Popular Service</span>
             </div>
-            <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold mb-4">
+            <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-extrabold mb-4">
               Doorstep Car{" "}<span className="text-gradient">Foam Wash</span>
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-xl mb-8">
+            <p className="text-lg md:text-xl text-muted-foreground max-w-xl mb-8 leading-relaxed">
               Where convenience meets quality and affordability. Premium foam wash delivered to your doorstep.
             </p>
             <Link to="/booking">
-              <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-display font-semibold text-base px-10 h-14 glow-border">
+              <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-display font-bold text-base px-10 h-14 btn-glow glow-border rounded-xl">
                 Schedule Wash <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
             </Link>
@@ -148,7 +149,7 @@ const FoamWashPage = () => {
       {/* Highlights */}
       <section className="py-16">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
             {highlights.map((item, i) => (
               <motion.div
                 key={item.title}
@@ -156,12 +157,12 @@ const FoamWashPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="bg-card border border-border rounded-2xl p-5 text-center hover:border-primary/20 transition-colors"
+                className="bg-card border border-border rounded-2xl p-6 text-center hover:border-primary/30 transition-all duration-500 card-shine group"
               >
-                <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mx-auto mb-3">
-                  <item.icon className="w-5 h-5 text-primary" />
+                <div className="w-14 h-14 rounded-2xl bg-primary/10 border border-primary/25 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary group-hover:border-primary transition-all duration-300">
+                  <item.icon className="w-6 h-6 text-primary group-hover:text-primary-foreground transition-colors" />
                 </div>
-                <h3 className="font-display font-semibold text-sm mb-1">{item.title}</h3>
+                <h3 className="font-display font-bold text-sm mb-1">{item.title}</h3>
                 <p className="text-xs text-muted-foreground">{item.desc}</p>
               </motion.div>
             ))}
@@ -170,16 +171,17 @@ const FoamWashPage = () => {
       </section>
 
       {/* Pricing Plans */}
-      <section className="py-16">
-        <div className="container mx-auto px-6">
+      <section className="py-20">
+        <div className="absolute inset-0 section-gradient" />
+        <div className="container mx-auto px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <span className="text-sm font-medium text-primary uppercase tracking-widest">Pricing</span>
-            <h2 className="font-display text-3xl md:text-5xl font-bold mt-4">Choose Your Plan</h2>
+            <span className="text-sm font-semibold text-primary uppercase tracking-widest">Pricing</span>
+            <h2 className="font-display text-3xl md:text-5xl font-extrabold mt-4">Choose Your Plan</h2>
             <p className="text-muted-foreground mt-4 max-w-md mx-auto">All plans include full interior + exterior service. Monthly plans save you more.</p>
           </motion.div>
 
@@ -191,16 +193,16 @@ const FoamWashPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className={`bg-card border rounded-2xl p-6 md:p-8 transition-all duration-300 ${
+                className={`bg-card border rounded-2xl p-7 md:p-9 transition-all duration-500 card-shine ${
                   plan.popular ? "border-primary/40 glow-border" : "border-border hover:border-primary/20"
                 }`}
               >
-                <div className="flex items-start justify-between mb-4">
+                <div className="flex items-start justify-between mb-5">
                   <div>
                     <div className="flex items-center gap-2 mb-1">
                       <h3 className="font-display text-xl font-bold">{plan.name}</h3>
                       {plan.popular && (
-                        <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-primary/20 text-primary border border-primary/30">
+                        <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-primary/15 text-primary border border-primary/25">
                           Popular
                         </span>
                       )}
@@ -211,19 +213,19 @@ const FoamWashPage = () => {
 
                 <div className="flex items-baseline gap-2 mb-1">
                   <span className="text-sm text-muted-foreground line-through">{plan.originalPrice}</span>
-                  <span className="font-display text-3xl font-bold text-primary">{plan.price}</span>
+                  <span className="font-display text-4xl font-extrabold text-primary">{plan.price}</span>
                 </div>
                 {plan.discount && (
                   <div className="flex items-center gap-3 mb-1">
-                    <span className="text-xs font-semibold text-primary bg-primary/10 px-2 py-0.5 rounded-full">{plan.discount}</span>
+                    <span className="text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-full border border-primary/20">{plan.discount}</span>
                     {plan.perWash && <span className="text-xs text-muted-foreground">{plan.perWash}</span>}
                   </div>
                 )}
 
-                <div className="mt-5 mb-6">
+                <div className="mt-6 mb-6">
                   <button
                     onClick={() => setExpandedPlan(expandedPlan === i ? null : i)}
-                    className="text-xs text-primary font-medium hover:text-primary/80 transition-colors"
+                    className="text-xs text-primary font-semibold hover:text-primary/80 transition-colors"
                   >
                     {expandedPlan === i ? "Hide" : "Show"} included services
                   </button>
@@ -231,7 +233,7 @@ const FoamWashPage = () => {
                     <motion.div
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: "auto" }}
-                      className="mt-3 grid grid-cols-1 gap-1.5"
+                      className="mt-4 grid grid-cols-1 gap-2"
                     >
                       {plan.features.map((f) => (
                         <div key={f} className="flex items-center gap-2 text-sm">
@@ -244,8 +246,8 @@ const FoamWashPage = () => {
                 </div>
 
                 <Link to="/booking">
-                  <Button className={`w-full font-display font-semibold ${plan.popular ? "bg-primary text-primary-foreground hover:bg-primary/90" : "bg-secondary text-secondary-foreground hover:bg-secondary/80"}`}>
-                    Select Plan
+                  <Button className={`w-full font-display font-bold h-12 rounded-xl ${plan.popular ? "bg-primary text-primary-foreground hover:bg-primary/90 btn-glow" : "bg-secondary text-secondary-foreground hover:bg-secondary/80"}`}>
+                    Select Plan <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
                 </Link>
               </motion.div>
@@ -257,17 +259,27 @@ const FoamWashPage = () => {
       {/* CTA */}
       <section className="py-20">
         <div className="container mx-auto px-6">
-          <div className="bg-gradient-to-br from-primary/10 via-card to-card border border-primary/20 rounded-3xl p-10 md:p-16 text-center glow-border">
-            <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
-              Ready to Get Your Car <span className="text-gradient">Sparkling</span>?
-            </h2>
-            <p className="text-muted-foreground mb-8 max-w-md mx-auto">Book your foam wash now and experience the Velociwash difference.</p>
-            <Link to="/booking">
-              <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-display font-semibold text-base px-10 h-14">
-                Book Now <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
-            </Link>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="relative rounded-3xl overflow-hidden"
+          >
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/15 via-card to-accent/5" />
+            <div className="absolute inset-0 noise opacity-20" />
+            <div className="relative border border-primary/20 rounded-3xl p-10 md:p-16 text-center glow-border">
+              <div className="divider-accent mx-auto mb-6" />
+              <h2 className="font-display text-3xl md:text-4xl font-extrabold mb-4">
+                Ready to Get Your Car <span className="text-gradient">Sparkling</span>?
+              </h2>
+              <p className="text-muted-foreground mb-8 max-w-md mx-auto">Book your foam wash now and experience the Velociwash difference.</p>
+              <Link to="/booking">
+                <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-display font-bold text-base px-10 h-14 btn-glow rounded-xl">
+                  Book Now <ArrowRight className="w-5 h-5 ml-2" />
+                </Button>
+              </Link>
+            </div>
+          </motion.div>
         </div>
       </section>
 
