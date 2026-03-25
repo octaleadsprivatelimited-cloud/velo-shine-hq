@@ -71,9 +71,10 @@ const RegularCleaningPage = () => {
       <section className="relative pt-24 overflow-hidden">
         <div className="absolute inset-0">
           <img src={interiorImg} alt="Regular Car Cleaning" className="w-full h-full object-cover" loading="eager" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[hsl(225,25%,3%/0.95)] via-[hsl(225,25%,5%/0.85)] to-[hsl(225,25%,5%/0.5)]" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[hsl(225,25%,3%)] via-transparent to-[hsl(225,25%,5%/0.6)]" />
-          <div className="absolute inset-0 noise opacity-20" />
+          <div className="absolute inset-0 bg-[hsl(225,25%,3%/0.75)]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[hsl(225,25%,3%/0.6)] to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[hsl(225,25%,3%/0.95)] via-transparent to-[hsl(225,25%,3%/0.3)]" />
+          <div className="absolute inset-0 noise opacity-15" />
         </div>
         <div className="container mx-auto px-6 relative z-10 py-20 md:py-28">
           <div className="max-w-2xl">
@@ -83,7 +84,7 @@ const RegularCleaningPage = () => {
                 <span className="text-sm font-semibold text-primary">Subscription Plans</span>
               </div>
               <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 text-white text-shadow-hero leading-tight">
-                Regular Car <span className="text-gradient">Cleaning</span>
+                Regular Car <span className="text-primary">Cleaning</span>
               </h1>
               <p className="text-lg text-white/80 max-w-xl mb-8 leading-relaxed text-shadow-sm">
                 Affordable daily or alternate-day cleaning with fresh water and microfiber for every car.
