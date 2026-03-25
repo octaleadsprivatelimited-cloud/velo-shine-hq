@@ -2,12 +2,13 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   LayoutDashboard, CalendarCheck, Wrench, Image, MessageSquareQuote,
-  LogOut, Menu, X, ChevronRight
+  LogOut, Menu, X, ChevronRight, Database
 } from "lucide-react";
 import { onAuthStateChanged, signInWithEmailAndPassword, signOut, type User } from "firebase/auth";
 import { auth } from "@/lib/firebase";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
+import { seedFirebaseData } from "@/lib/seedData";
 import AdminLogin from "@/components/admin/AdminLogin";
 import AdminBookings from "@/components/admin/AdminBookings";
 import AdminServices from "@/components/admin/AdminServices";
