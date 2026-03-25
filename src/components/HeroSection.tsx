@@ -43,7 +43,7 @@ const HeroSection = () => {
             className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[0.95] mb-6 text-white text-shadow-hero"
           >
             Doorstep car wash,{" "}
-            <span className="text-gradient">done right.</span>
+            <span className="text-primary">done right.</span>
           </motion.h1>
 
           <motion.p
