@@ -63,8 +63,8 @@ const BookingPage = () => {
             <div className="w-20 h-20 rounded-2xl bg-primary/10 border border-primary/25 flex items-center justify-center mx-auto mb-6">
               <CheckCircle2 className="w-10 h-10 text-primary" />
             </div>
-            <h2 className="font-display text-3xl font-extrabold mb-4">Booking Sent!</h2>
-            <p className="text-muted-foreground mb-8">We'll confirm your slot shortly via WhatsApp.</p>
+            <h2 className="font-display text-3xl font-extrabold mb-4">Booking Confirmed!</h2>
+            <p className="text-muted-foreground mb-8">We'll contact you shortly to confirm your slot.</p>
             <Button onClick={() => setSubmitted(false)} variant="outline" className="border-border text-foreground hover:bg-secondary hover:border-primary/30 font-display rounded-xl">
               Book Another Wash
             </Button>
