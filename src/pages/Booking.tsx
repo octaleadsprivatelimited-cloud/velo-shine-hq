@@ -14,6 +14,7 @@ import { useToast } from "@/hooks/use-toast";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import SEO from "@/components/SEO";
 
 const carTypes = ["Hatchback", "Sedan", "SUV", "MUV", "Luxury"];
 const serviceTypes = ["Foam Wash", "Interior Detailing", "Ceramic Coating", "Regular Cleaning"];

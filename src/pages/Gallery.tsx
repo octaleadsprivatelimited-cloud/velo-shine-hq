@@ -4,6 +4,7 @@ import { X, Camera } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import SEO from "@/components/SEO";
 
 import heroImg from "@/assets/hero-car-wash.jpg";
 import foamImg from "@/assets/service-foam-wash.jpg";

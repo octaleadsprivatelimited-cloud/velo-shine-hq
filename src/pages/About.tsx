@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import SEO from "@/components/SEO";
 import teamImg from "@/assets/about-team.jpg";
 
 const values = [
@@ -24,6 +25,11 @@ const stats = [
 const AboutPage = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <SEO
+        title="About Velociwash — Our Story & Mission | Doorstep Car Care"
+        description="Learn about Velociwash's mission to deliver premium doorstep car care. Our passionate team brings excellence, eco-conscious cleaning, and customer-first service."
+        keywords="about Velociwash, car wash company, doorstep car care team, eco-friendly car wash, car detailing company"
+      />
       <Navbar />
 
       {/* Hero */}

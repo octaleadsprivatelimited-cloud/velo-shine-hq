@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import SEO from "@/components/SEO";
 
 const contactMethods = [
   { icon: Phone, label: "Call Us", value: "+91 96760 31464", subtitle: "Available 7 AM – 8 PM", href: "tel:+919676031464", color: "bg-blue-500/10 border-blue-500/25 text-blue-500" },

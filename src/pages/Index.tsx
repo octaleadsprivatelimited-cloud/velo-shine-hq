@@ -8,10 +8,16 @@ import FAQSection from "@/components/FAQSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import SEO from "@/components/SEO";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <SEO
+        title="Velociwash — Premium Doorstep Car Wash & Detailing Services"
+        description="Velociwash offers premium doorstep car wash, foam wash, interior detailing, and ceramic coating services. We come to you with our own water and power supply."
+        keywords="car wash, doorstep car wash, foam wash, car detailing, ceramic coating, interior cleaning, car care, Velociwash, mobile car wash"
+      />
       <Navbar />
       <HeroSection />
       <ServicesSection />
