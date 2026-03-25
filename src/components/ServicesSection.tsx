@@ -25,17 +25,9 @@ const services = [
     title: "Doorstep Car General Service",
     description: "Guaranteed discounted price. Usage of genuine spares only.",
     image: null,
-    href: "#",
-    badge: "Coming soon",
-    available: false,
-  },
-  {
-    title: "Doorstep Fuel Delivery",
-    description: "Full volume. For sure. Safe dispensing of Petrol & Diesel",
-    image: null,
-    href: "#",
-    badge: "Coming soon",
-    available: false,
+    href: "/services",
+    badge: "New!",
+    available: true,
   },
 ];
 
@@ -68,7 +60,7 @@ const ServicesSection = () => {
           </Link>
         </motion.div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
           {services.map((service, i) => (
             <motion.div
               key={service.title}
