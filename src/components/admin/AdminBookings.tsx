@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Trash2, RefreshCw, CheckCircle2, Clock, XCircle, CalendarCheck, Users, TrendingUp, Pencil, Eye, MapPin, Phone, Car, Wrench, X } from "lucide-react";
+import { Trash2, RefreshCw, CheckCircle2, Clock, XCircle, CalendarCheck, Users, TrendingUp, Pencil, Eye, MapPin, Phone, Car, Wrench, X, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -179,6 +179,11 @@ const AdminBookings = () => {
                       <div className="flex items-center justify-end gap-1">
                         <Button variant="ghost" size="icon" onClick={() => setViewBooking(booking)} className="text-muted-foreground hover:text-foreground h-8 w-8" title="View Details">
                           <Eye className="w-4 h-4" />
+                        </Button>
+                        <Button variant="ghost" size="icon" asChild className="text-[#25D366] hover:text-[#25D366] hover:bg-[#25D366]/10 h-8 w-8" title="WhatsApp">
+                          <a href={`https://wa.me/${booking.phone.replace(/\D/g, '')}?text=${encodeURIComponent(`Hi ${booking.name}, regarding your ${booking.service} booking on ${booking.date} at ${booking.timeSlot}.`)}`} target="_blank" rel="noopener noreferrer">
+                            <MessageCircle className="w-4 h-4" />
+                          </a>
                         </Button>
                         <Button variant="ghost" size="icon" onClick={() => openEdit(booking)} className="text-muted-foreground hover:text-primary h-8 w-8" title="Edit">
                           <Pencil className="w-4 h-4" />
