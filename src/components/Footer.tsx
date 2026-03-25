@@ -1,28 +1,82 @@
 import { Link } from "react-router-dom";
-import { Droplets } from "lucide-react";
+import { Droplets, Phone, MessageCircle, MapPin } from "lucide-react";
+
+const footerLinks = [
+  { label: "About", href: "/about" },
+  { label: "Foam Wash", href: "/foam-wash" },
+  { label: "Regular Cleaning", href: "/regular-cleaning" },
+  { label: "Gallery", href: "/gallery" },
+  { label: "Support", href: "/support" },
+  { label: "Book Now", href: "/booking" },
+];
 
 const Footer = () => {
   return (
-    <footer className="border-t border-border bg-card/50 py-8">
-      <div className="container mx-auto px-6">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <Link to="/" className="flex items-center gap-2">
-            <Droplets className="w-5 h-5 text-primary" />
-            <span className="font-display text-lg font-bold">
-              VELOCI<span className="text-gradient">WASH</span>
-            </span>
-          </Link>
+    <footer className="border-t border-border bg-card/30 relative">
+      <div className="absolute inset-0 noise opacity-10" />
 
-          <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground">
-            <Link to="/about" className="hover:text-foreground transition-colors">About</Link>
-            <Link to="/foam-wash" className="hover:text-foreground transition-colors">Foam Wash</Link>
-            <Link to="/regular-cleaning" className="hover:text-foreground transition-colors">Regular Cleaning</Link>
-            <Link to="/gallery" className="hover:text-foreground transition-colors">Gallery</Link>
-            <Link to="/support" className="hover:text-foreground transition-colors">Support</Link>
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="py-14 grid grid-cols-1 md:grid-cols-3 gap-10">
+          {/* Brand */}
+          <div>
+            <Link to="/" className="flex items-center gap-2.5 mb-4">
+              <div className="w-9 h-9 rounded-lg bg-primary/10 border border-primary/30 flex items-center justify-center">
+                <Droplets className="w-4 h-4 text-primary" />
+              </div>
+              <span className="font-display text-xl font-bold">
+                VELOCI<span className="text-gradient">WASH</span>
+              </span>
+            </Link>
+            <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
+              Premium doorstep car care services. We bring our own water, electricity, and professional-grade products.
+            </p>
           </div>
 
-          <div className="text-xs text-muted-foreground">
-            © 2026 Velociwash
+          {/* Links */}
+          <div>
+            <h4 className="font-display font-bold text-sm uppercase tracking-wider text-foreground mb-5">Quick Links</h4>
+            <nav className="grid grid-cols-2 gap-2">
+              {footerLinks.map((link) => (
+                <Link
+                  key={link.label}
+                  to={link.href}
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors py-1"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h4 className="font-display font-bold text-sm uppercase tracking-wider text-foreground mb-5">Contact</h4>
+            <div className="space-y-3">
+              <a href="tel:+919676031464" className="flex items-center gap-3 text-sm text-muted-foreground hover:text-primary transition-colors">
+                <Phone className="w-4 h-4 text-primary" />
+                +91-96760 31464
+              </a>
+              <a href="https://wa.me/919676031464" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-sm text-muted-foreground hover:text-primary transition-colors">
+                <MessageCircle className="w-4 h-4 text-primary" />
+                WhatsApp Chat
+              </a>
+              <div className="flex items-start gap-3 text-sm text-muted-foreground">
+                <MapPin className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                Doorstep — We come to you
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom bar */}
+        <div className="divider" />
+        <div className="py-6 flex flex-col md:flex-row items-center justify-between gap-4">
+          <span className="text-xs text-muted-foreground">
+            © {new Date().getFullYear()} Velociwash. All rights reserved.
+          </span>
+          <div className="flex items-center gap-6 text-xs text-muted-foreground">
+            <Link to="/support" className="hover:text-primary transition-colors">Privacy Policy</Link>
+            <Link to="/support" className="hover:text-primary transition-colors">Terms of Service</Link>
           </div>
         </div>
       </div>
