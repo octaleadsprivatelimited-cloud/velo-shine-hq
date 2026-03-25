@@ -42,7 +42,7 @@ const HowItWorksSection = () => {
           <p className="text-muted-foreground mt-4 max-w-md mx-auto">No complicated process. Just two steps to a sparkling clean car.</p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="grid grid-cols-2 gap-8 max-w-4xl mx-auto">
           {steps.map((step, i) => (
             <motion.div
               key={step.num}
