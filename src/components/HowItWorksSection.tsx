@@ -1,32 +1,36 @@
 import { motion } from "framer-motion";
-import { UserPlus, CalendarCheck, ArrowDown } from "lucide-react";
-import foamImg from "@/assets/service-foam-wash.jpg";
-import heroImg from "@/assets/hero-car-wash.jpg";
+import { UserPlus, CalendarCheck, Car, Sparkles } from "lucide-react";
 
 const steps = [
   {
     num: 1,
     icon: UserPlus,
-    title: "Signup / Login",
-    description: "Create an account or log in to get started with our services.",
-    image: heroImg,
-    color: "from-primary/20 to-primary/5",
+    title: "Sign Up",
+    description: "Create your account in seconds to get started.",
   },
   {
     num: 2,
     icon: CalendarCheck,
-    title: "Schedule a Wash",
-    description: "Hit on schedule wash and relax while we restore your car's shine!",
-    image: foamImg,
-    color: "from-accent/20 to-accent/5",
+    title: "Book a Wash",
+    description: "Pick your service, date & time slot that works for you.",
+  },
+  {
+    num: 3,
+    icon: Car,
+    title: "We Come to You",
+    description: "Our team arrives at your doorstep fully equipped.",
+  },
+  {
+    num: 4,
+    icon: Sparkles,
+    title: "Enjoy the Shine",
+    description: "Sit back and enjoy your sparkling clean car!",
   },
 ];
 
 const HowItWorksSection = () => {
   return (
     <section className="py-24 relative overflow-hidden bg-background">
-      <div className="absolute inset-0 noise opacity-10" />
-
       <div className="container mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -37,42 +41,27 @@ const HowItWorksSection = () => {
           <span className="text-sm font-semibold text-primary uppercase tracking-widest">Simple Process</span>
           <h2 className="font-display text-3xl md:text-5xl font-extrabold mt-4">
             Book in{" "}
-            <span className="text-gradient">2 Easy</span> Steps
+            <span className="text-gradient">4 Easy</span> Steps
           </h2>
-          <p className="text-muted-foreground mt-4 max-w-md mx-auto">No complicated process. Just two steps to a sparkling clean car.</p>
+          <p className="text-muted-foreground mt-4 max-w-md mx-auto">No complicated process. Just four simple steps to a sparkling clean car.</p>
         </motion.div>
 
-        <div className="grid grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
           {steps.map((step, i) => (
             <motion.div
               key={step.num}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.15 }}
-              className="bg-card border border-border rounded-2xl overflow-hidden hover:border-primary/30 transition-all duration-500 group card-shine"
+              transition={{ delay: i * 0.1 }}
+              className="bg-card border border-border rounded-2xl p-6 text-center hover:border-primary/30 transition-all duration-500 group card-shine"
             >
-              <div className={`p-7 md:p-9 bg-gradient-to-b ${step.color}`}>
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-14 h-14 rounded-2xl bg-primary/10 border border-primary/25 flex items-center justify-center font-display text-2xl font-extrabold text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
-                    {step.num}
-                  </div>
-                  <div>
-                    <h3 className="font-display text-xl font-bold">{step.title}</h3>
-                  </div>
-                </div>
-                <p className="text-muted-foreground leading-relaxed">
-                  {step.description}
-                </p>
+              <div className="w-14 h-14 rounded-2xl bg-primary/10 border border-primary/25 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
+                <step.icon className="w-6 h-6 text-primary group-hover:text-primary-foreground transition-colors" />
               </div>
-              <div className="h-52 overflow-hidden">
-                <img
-                  src={step.image}
-                  alt={step.title}
-                  loading="lazy"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-              </div>
+              <div className="text-xs font-bold text-primary mb-2">Step {step.num}</div>
+              <h3 className="font-display text-lg font-bold mb-2">{step.title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">{step.description}</p>
             </motion.div>
           ))}
         </div>
