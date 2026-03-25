@@ -34,7 +34,7 @@ const Footer = () => {
 
           {/* Links */}
           <div>
-            <h4 className="font-display font-bold text-sm uppercase tracking-wider text-foreground mb-5">Quick Links</h4>
+            <h4 className="font-display font-bold text-sm uppercase tracking-wider text-white mb-5">Quick Links</h4>
             <nav className="grid grid-cols-2 gap-2">
               {footerLinks.map((link) => (
                 <Link
