@@ -37,9 +37,8 @@ const faqs = [
 
 const FAQSection = () => {
   return (
-    <section className="py-24 relative">
-      <div className="absolute top-0 left-0 right-0 divider" />
-      <div className="absolute inset-0 section-gradient" />
+    <section className="py-24 relative bg-background">
+      <div className="absolute inset-0 noise opacity-10" />
 
       <div className="container mx-auto px-6 relative z-10">
         <motion.div
