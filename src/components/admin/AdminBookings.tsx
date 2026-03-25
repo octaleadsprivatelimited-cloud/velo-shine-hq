@@ -1,11 +1,15 @@
 import { useState, useEffect } from "react";
-import { Trash2, RefreshCw, CheckCircle2, Clock, XCircle, CalendarCheck, Users, TrendingUp } from "lucide-react";
+import { Trash2, RefreshCw, CheckCircle2, Clock, XCircle, CalendarCheck, Users, TrendingUp, Pencil, Eye, MapPin, Phone, Car, Wrench, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { getBookings, updateBookingStatus, deleteBooking, type Booking } from "@/lib/adminService";
+import { getBookings, updateBookingStatus, updateBooking, deleteBooking, type Booking } from "@/lib/adminService";
 
 const statusConfig = {
   pending: { label: "Pending", icon: Clock, color: "bg-yellow-500/10 text-yellow-400 border-yellow-500/20" },
@@ -19,6 +23,13 @@ const AdminBookings = () => {
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState("all");
+  const [viewBooking, setViewBooking] = useState<Booking | null>(null);
+  const [editBooking, setEditBooking] = useState<Booking | null>(null);
+  const [editForm, setEditForm] = useState({
+    name: "", phone: "", carType: "", carModel: "", service: "", date: "", timeSlot: "", address: "", notes: "",
+  });
+  const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
+  const [saving, setSaving] = useState(false);
 
   const fetchBookings = async () => {
     setLoading(true);
@@ -36,10 +47,31 @@ const AdminBookings = () => {
     } catch { toast({ title: "Failed to update status", variant: "destructive" }); }
   };
 
+  const openEdit = (booking: Booking) => {
+    setEditBooking(booking);
+    setEditForm({
+      name: booking.name, phone: booking.phone, carType: booking.carType, carModel: booking.carModel,
+      service: booking.service, date: booking.date, timeSlot: booking.timeSlot, address: booking.address, notes: booking.notes,
+    });
+  };
+
+  const handleEditSave = async () => {
+    if (!editBooking?.id) return;
+    setSaving(true);
+    try {
+      await updateBooking(editBooking.id, editForm);
+      setBookings((prev) => prev.map((b) => (b.id === editBooking.id ? { ...b, ...editForm } : b)));
+      setEditBooking(null);
+      toast({ title: "Booking updated successfully" });
+    } catch { toast({ title: "Failed to update booking", variant: "destructive" }); }
+    finally { setSaving(false); }
+  };
+
   const handleDelete = async (id: string) => {
     try {
       await deleteBooking(id);
       setBookings((prev) => prev.filter((b) => b.id !== id));
+      setDeleteConfirm(null);
       toast({ title: "Booking deleted" });
     } catch { toast({ title: "Failed to delete booking", variant: "destructive" }); }
   };
@@ -112,6 +144,7 @@ const AdminBookings = () => {
                 <TableHead className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Customer</TableHead>
                 <TableHead className="hidden md:table-cell text-xs font-semibold uppercase tracking-wider text-muted-foreground">Car</TableHead>
                 <TableHead className="hidden md:table-cell text-xs font-semibold uppercase tracking-wider text-muted-foreground">Service</TableHead>
+                <TableHead className="hidden lg:table-cell text-xs font-semibold uppercase tracking-wider text-muted-foreground">Location</TableHead>
                 <TableHead className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Date</TableHead>
                 <TableHead className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Status</TableHead>
                 <TableHead className="text-right text-xs font-semibold uppercase tracking-wider text-muted-foreground">Actions</TableHead>
@@ -124,12 +157,17 @@ const AdminBookings = () => {
                   <TableRow key={booking.id} className="border-border">
                     <TableCell>
                       <p className="font-medium text-sm">{booking.name}</p>
-                      <p className="text-xs text-muted-foreground">{booking.phone}</p>
+                      <p className="text-xs text-muted-foreground flex items-center gap-1"><Phone className="w-3 h-3" />{booking.phone}</p>
                     </TableCell>
                     <TableCell className="hidden md:table-cell text-sm text-muted-foreground">
-                      {booking.carType} {booking.carModel && `· ${booking.carModel}`}
+                      <span className="flex items-center gap-1"><Car className="w-3.5 h-3.5" />{booking.carType} {booking.carModel && `· ${booking.carModel}`}</span>
                     </TableCell>
-                    <TableCell className="hidden md:table-cell text-sm text-muted-foreground">{booking.service}</TableCell>
+                    <TableCell className="hidden md:table-cell text-sm text-muted-foreground">
+                      <span className="flex items-center gap-1"><Wrench className="w-3.5 h-3.5" />{booking.service}</span>
+                    </TableCell>
+                    <TableCell className="hidden lg:table-cell text-sm text-muted-foreground">
+                      <span className="flex items-center gap-1 max-w-[150px] truncate"><MapPin className="w-3.5 h-3.5 shrink-0" />{booking.address || "—"}</span>
+                    </TableCell>
                     <TableCell>
                       <p className="text-sm">{booking.date}</p>
                       <p className="text-xs text-muted-foreground">{booking.timeSlot}</p>
@@ -138,9 +176,15 @@ const AdminBookings = () => {
                       <Badge variant="outline" className={`${cfg.color} text-xs font-medium`}>{cfg.label}</Badge>
                     </TableCell>
                     <TableCell className="text-right">
-                      <div className="flex items-center justify-end gap-2">
+                      <div className="flex items-center justify-end gap-1">
+                        <Button variant="ghost" size="icon" onClick={() => setViewBooking(booking)} className="text-muted-foreground hover:text-foreground h-8 w-8" title="View Details">
+                          <Eye className="w-4 h-4" />
+                        </Button>
+                        <Button variant="ghost" size="icon" onClick={() => openEdit(booking)} className="text-muted-foreground hover:text-primary h-8 w-8" title="Edit">
+                          <Pencil className="w-4 h-4" />
+                        </Button>
                         <Select value={booking.status} onValueChange={(v) => handleStatusChange(booking.id!, v as Booking["status"])}>
-                          <SelectTrigger className="w-[120px] h-8 text-xs bg-secondary border-border">
+                          <SelectTrigger className="w-[110px] h-8 text-xs bg-secondary border-border">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
@@ -150,7 +194,7 @@ const AdminBookings = () => {
                             <SelectItem value="cancelled">Cancelled</SelectItem>
                           </SelectContent>
                         </Select>
-                        <Button variant="ghost" size="icon" onClick={() => handleDelete(booking.id!)} className="text-destructive hover:text-destructive hover:bg-destructive/10 h-8 w-8">
+                        <Button variant="ghost" size="icon" onClick={() => setDeleteConfirm(booking.id!)} className="text-destructive hover:text-destructive hover:bg-destructive/10 h-8 w-8" title="Delete">
                           <Trash2 className="w-4 h-4" />
                         </Button>
                       </div>
@@ -162,8 +206,126 @@ const AdminBookings = () => {
           </Table>
         </div>
       )}
+
+      {/* View Details Dialog */}
+      <Dialog open={!!viewBooking} onOpenChange={() => setViewBooking(null)}>
+        <DialogContent className="max-w-lg">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <Eye className="w-5 h-5 text-primary" /> Customer Details
+            </DialogTitle>
+          </DialogHeader>
+          {viewBooking && (
+            <div className="space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <DetailItem icon={<Users className="w-4 h-4" />} label="Name" value={viewBooking.name} />
+                <DetailItem icon={<Phone className="w-4 h-4" />} label="Phone" value={viewBooking.phone} />
+                <DetailItem icon={<Car className="w-4 h-4" />} label="Car" value={`${viewBooking.carType} ${viewBooking.carModel || ""}`} />
+                <DetailItem icon={<Wrench className="w-4 h-4" />} label="Service" value={viewBooking.service} />
+                <DetailItem icon={<CalendarCheck className="w-4 h-4" />} label="Date" value={`${viewBooking.date} · ${viewBooking.timeSlot}`} />
+                <DetailItem icon={<MapPin className="w-4 h-4" />} label="Location" value={viewBooking.address || "Not provided"} />
+              </div>
+              {viewBooking.notes && (
+                <div className="bg-secondary/50 rounded-lg p-3">
+                  <p className="text-xs text-muted-foreground font-medium mb-1">Notes</p>
+                  <p className="text-sm">{viewBooking.notes}</p>
+                </div>
+              )}
+              <div className="flex items-center gap-2">
+                <span className="text-xs text-muted-foreground font-medium">Status:</span>
+                <Badge variant="outline" className={`${statusConfig[viewBooking.status].color} text-xs font-medium`}>
+                  {statusConfig[viewBooking.status].label}
+                </Badge>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
+
+      {/* Edit Dialog */}
+      <Dialog open={!!editBooking} onOpenChange={() => setEditBooking(null)}>
+        <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <Pencil className="w-5 h-5 text-primary" /> Edit Booking
+            </DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label>Customer Name</Label>
+                <Input value={editForm.name} onChange={(e) => setEditForm({ ...editForm, name: e.target.value })} />
+              </div>
+              <div className="space-y-2">
+                <Label>Phone</Label>
+                <Input value={editForm.phone} onChange={(e) => setEditForm({ ...editForm, phone: e.target.value })} />
+              </div>
+              <div className="space-y-2">
+                <Label>Car Type</Label>
+                <Input value={editForm.carType} onChange={(e) => setEditForm({ ...editForm, carType: e.target.value })} />
+              </div>
+              <div className="space-y-2">
+                <Label>Car Model</Label>
+                <Input value={editForm.carModel} onChange={(e) => setEditForm({ ...editForm, carModel: e.target.value })} />
+              </div>
+              <div className="space-y-2">
+                <Label>Service</Label>
+                <Input value={editForm.service} onChange={(e) => setEditForm({ ...editForm, service: e.target.value })} />
+              </div>
+              <div className="space-y-2">
+                <Label>Date</Label>
+                <Input value={editForm.date} onChange={(e) => setEditForm({ ...editForm, date: e.target.value })} />
+              </div>
+              <div className="space-y-2">
+                <Label>Time Slot</Label>
+                <Input value={editForm.timeSlot} onChange={(e) => setEditForm({ ...editForm, timeSlot: e.target.value })} />
+              </div>
+              <div className="space-y-2">
+                <Label>Address / Location</Label>
+                <Input value={editForm.address} onChange={(e) => setEditForm({ ...editForm, address: e.target.value })} />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <Label>Notes</Label>
+              <Textarea value={editForm.notes} onChange={(e) => setEditForm({ ...editForm, notes: e.target.value })} rows={3} />
+            </div>
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setEditBooking(null)}>Cancel</Button>
+            <Button onClick={handleEditSave} disabled={saving}>
+              {saving ? "Saving..." : "Save Changes"}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Delete Confirmation Dialog */}
+      <Dialog open={!!deleteConfirm} onOpenChange={() => setDeleteConfirm(null)}>
+        <DialogContent className="max-w-sm">
+          <DialogHeader>
+            <DialogTitle className="text-destructive flex items-center gap-2">
+              <Trash2 className="w-5 h-5" /> Delete Booking
+            </DialogTitle>
+          </DialogHeader>
+          <p className="text-sm text-muted-foreground">Are you sure you want to delete this booking? This action cannot be undone.</p>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setDeleteConfirm(null)}>Cancel</Button>
+            <Button variant="destructive" onClick={() => deleteConfirm && handleDelete(deleteConfirm)}>Delete</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
+
+const DetailItem = ({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) => (
+  <div className="bg-secondary/30 rounded-lg p-3">
+    <div className="flex items-center gap-1.5 text-muted-foreground mb-1">
+      {icon}
+      <span className="text-xs font-medium">{label}</span>
+    </div>
+    <p className="text-sm font-medium">{value}</p>
+  </div>
+);
 
 export default AdminBookings;
