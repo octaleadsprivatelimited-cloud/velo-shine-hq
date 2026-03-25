@@ -89,7 +89,7 @@ const HeroSection = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 0.8 }}
-          className="mt-14 flex flex-wrap items-center gap-6 text-sm text-muted-foreground"
+          className="mt-14 flex flex-wrap items-center gap-6 text-sm text-white/60"
         >
           <div className="flex items-center gap-2">
             <div className="flex -space-x-2">
