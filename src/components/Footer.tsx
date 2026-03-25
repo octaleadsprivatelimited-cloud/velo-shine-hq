@@ -52,15 +52,15 @@ const Footer = () => {
           <div>
             <h4 className="font-display font-bold text-sm uppercase tracking-wider text-white mb-5">Contact</h4>
             <div className="space-y-3">
-              <a href="tel:+919676031464" className="flex items-center gap-3 text-sm text-muted-foreground hover:text-primary transition-colors">
+              <a href="tel:+919676031464" className="flex items-center gap-3 text-sm text-white/60 hover:text-primary transition-colors">
                 <Phone className="w-4 h-4 text-primary" />
                 +91-96760 31464
               </a>
-              <a href="https://wa.me/919676031464" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-sm text-muted-foreground hover:text-primary transition-colors">
+              <a href="https://wa.me/919676031464" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-sm text-white/60 hover:text-primary transition-colors">
                 <MessageCircle className="w-4 h-4 text-primary" />
                 WhatsApp Chat
               </a>
-              <div className="flex items-start gap-3 text-sm text-muted-foreground">
+              <div className="flex items-start gap-3 text-sm text-white/60">
                 <MapPin className="w-4 h-4 text-primary shrink-0 mt-0.5" />
                 Doorstep — We come to you
               </div>
