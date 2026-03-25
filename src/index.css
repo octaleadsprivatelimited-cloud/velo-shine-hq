@@ -48,14 +48,14 @@
     --sidebar-border: 225 15% 15%;
     --sidebar-ring: 38 100% 55%;
 
-    --gradient-primary: linear-gradient(135deg, hsl(38 100% 55%), hsl(28 100% 50%));
-    --gradient-accent: linear-gradient(135deg, hsl(200 100% 50%), hsl(180 100% 40%));
+    --gradient-primary: linear-gradient(135deg, hsl(38 100% 50%), hsl(28 100% 45%));
+    --gradient-accent: linear-gradient(135deg, hsl(200 100% 45%), hsl(180 100% 38%));
     --gradient-hero: linear-gradient(135deg, hsl(225 25% 5%) 0%, hsl(225 30% 8%) 50%, hsl(225 25% 5%) 100%);
-    --gradient-section: linear-gradient(180deg, hsl(225 22% 9% / 0) 0%, hsl(225 22% 9% / 0.5) 50%, hsl(225 22% 9% / 0) 100%);
-    --shadow-glow: 0 0 50px hsl(38 100% 55% / 0.2);
-    --shadow-glow-accent: 0 0 50px hsl(200 100% 50% / 0.15);
-    --shadow-card: 0 10px 40px hsl(225 25% 3% / 0.6);
-    --shadow-card-hover: 0 20px 60px hsl(225 25% 3% / 0.8);
+    --gradient-section: linear-gradient(180deg, hsl(220 14% 96% / 0) 0%, hsl(220 14% 96% / 0.5) 50%, hsl(220 14% 96% / 0) 100%);
+    --shadow-glow: 0 0 50px hsl(38 100% 50% / 0.15);
+    --shadow-glow-accent: 0 0 50px hsl(200 100% 45% / 0.1);
+    --shadow-card: 0 10px 40px hsl(225 25% 3% / 0.08);
+    --shadow-card-hover: 0 20px 60px hsl(225 25% 3% / 0.12);
 
     --font-display: 'Outfit', sans-serif;
     --font-body: 'DM Sans', sans-serif;
