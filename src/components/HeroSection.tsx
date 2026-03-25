@@ -17,10 +17,10 @@ const HeroSection = () => {
           className="w-full h-full object-cover scale-105"
           loading="eager"
         />
-        <div className="absolute inset-0 bg-[hsl(225,25%,3%/0.8)]" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[hsl(225,25%,3%/0.7)] to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[hsl(225,25%,3%/0.95)] via-transparent to-[hsl(225,25%,3%/0.4)]" />
-        <div className="absolute inset-0 noise opacity-15" />
+        <div className="absolute inset-0 bg-[hsl(225,25%,3%/0.85)]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[hsl(225,25%,3%/0.8)] to-[hsl(225,25%,3%/0.3)]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[hsl(225,25%,3%/0.95)] via-[hsl(225,25%,3%/0.2)] to-[hsl(225,25%,3%/0.5)]" />
+        <div className="absolute inset-0 noise opacity-10" />
       </div>
 
       <div className="container mx-auto px-6 relative z-10 pt-24">
