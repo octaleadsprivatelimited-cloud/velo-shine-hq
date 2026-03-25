@@ -77,7 +77,9 @@ const Navbar = () => {
               className={`flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                 ["/foam-wash", "/regular-cleaning"].includes(location.pathname)
                   ? "text-primary bg-primary/10"
-                  : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
+                  : scrolled
+                    ? "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
+                    : "text-white/80 hover:text-white hover:bg-white/10"
               }`}
             >
               Services
