@@ -63,51 +63,6 @@ const Navbar = () => {
             Home
           </Link>
 
-          {/* Services Dropdown */}
-          <div
-            className="relative"
-            onMouseEnter={() => setServicesOpen(true)}
-            onMouseLeave={() => setServicesOpen(false)}
-          >
-            <button
-              className={`flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                ["/foam-wash", "/regular-cleaning"].includes(location.pathname)
-                  ? "text-primary bg-primary/10"
-                  : showWhiteText
-                    ? "text-white/80 hover:text-white hover:bg-white/10"
-                    : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
-              }`}
-            >
-              Services
-              <ChevronDown className={`w-3.5 h-3.5 transition-transform ${servicesOpen ? "rotate-180" : ""}`} />
-            </button>
-            <AnimatePresence>
-              {servicesOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 8 }}
-                  transition={{ duration: 0.2 }}
-                  className="absolute top-full left-0 mt-1 w-72 bg-white rounded-xl border border-border shadow-xl p-2"
-                >
-                  {serviceLinks.map((link) => (
-                    <Link
-                      key={link.href}
-                      to={link.href}
-                      className={`block px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
-                        location.pathname === link.href
-                          ? "text-primary bg-primary/10"
-                          : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
-                      }`}
-                    >
-                      {link.label}
-                    </Link>
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-
           {navLinks.map((link) => (
             <Link
               key={link.href}
