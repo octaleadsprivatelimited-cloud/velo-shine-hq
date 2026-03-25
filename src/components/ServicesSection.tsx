@@ -25,17 +25,9 @@ const services = [
     title: "Doorstep Car General Service",
     description: "Guaranteed discounted price. Usage of genuine spares only.",
     image: null,
-    href: "#",
-    badge: "Coming soon",
-    available: false,
-  },
-  {
-    title: "Doorstep Fuel Delivery",
-    description: "Full volume. For sure. Safe dispensing of Petrol & Diesel",
-    image: null,
-    href: "#",
-    badge: "Coming soon",
-    available: false,
+    href: "/services",
+    badge: "New!",
+    available: true,
   },
 ];
 
