@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Droplets, ChevronRight } from "lucide-react";
+import { Menu, X, ChevronRight } from "lucide-react";
+import logo from "@/assets/logo.png";
 
 const navLinks = [
   { label: "Services", href: "/services" },
@@ -39,13 +40,8 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto flex items-center justify-between px-6">
-        <Link to="/" className="flex items-center gap-2.5 group">
-          <div className="w-9 h-9 rounded-lg bg-primary/10 border border-primary/30 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-            <Droplets className="w-4 h-4 text-primary" />
-          </div>
-          <span className={`font-display text-xl font-bold tracking-tight transition-colors ${showWhiteText ? "text-white" : "text-foreground"}`}>
-            VELOCI<span className="text-gradient">WASH</span>
-          </span>
+        <Link to="/" className="flex items-center group">
+          <img src={logo} alt="Velociwash Logo" className="h-12 w-auto" />
         </Link>
 
         {/* Desktop Nav */}
