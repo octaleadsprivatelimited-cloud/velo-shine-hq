@@ -69,7 +69,7 @@ const Footer = () => {
         {/* Bottom bar */}
         <div className="divider" />
         <div className="py-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <span className="text-xs text-white/40">
+          <span className="text-xs text-white">
             © {new Date().getFullYear()} Velociwash. All rights reserved. Developed by{" "}
             <a href="https://octaleads.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/80 transition-colors font-medium">
               OctaLeads Pvt. Ltd.
