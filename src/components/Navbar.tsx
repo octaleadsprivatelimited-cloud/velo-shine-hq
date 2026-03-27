@@ -105,15 +105,15 @@ const Navbar = () => {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-white border-t border-border shadow-xl mt-2"
+            className="md:hidden bg-foreground/95 backdrop-blur-xl border-t border-white/10 shadow-xl mt-2"
           >
             <div className="flex flex-col p-5 max-w-lg mx-auto space-y-1">
               <Link
                 to="/"
                 className={`flex items-center justify-between px-4 py-3.5 rounded-xl text-sm font-medium transition-all group ${
                   location.pathname === "/"
-                    ? "text-primary bg-primary/10 border border-primary/20"
-                    : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
+                    ? "text-primary bg-primary/15 border border-primary/20"
+                    : "text-white/70 hover:text-white hover:bg-white/10"
                 }`}
               >
                 Home
@@ -126,8 +126,8 @@ const Navbar = () => {
                   to={link.href}
                   className={`flex items-center justify-between px-4 py-3.5 rounded-xl text-sm font-medium transition-all group ${
                     location.pathname === link.href
-                      ? "text-primary bg-primary/10 border border-primary/20"
-                      : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
+                      ? "text-primary bg-primary/15 border border-primary/20"
+                      : "text-white/70 hover:text-white hover:bg-white/10"
                   }`}
                 >
                   {link.label}
