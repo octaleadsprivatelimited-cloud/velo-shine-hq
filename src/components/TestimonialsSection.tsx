@@ -4,6 +4,7 @@ import { Star, ChevronLeft, ChevronRight } from "lucide-react";
 import { getTestimonials } from "@/lib/adminService";
 import useEmblaCarousel from "embla-carousel-react";
 import { Button } from "@/components/ui/button";
+import { CircleRing, CrossPattern } from "@/components/BackgroundPatterns";
 
 const fallbackTestimonials = [
   { name: "RS", text: "Velociwash did an amazing job with foam cleaning for my car. The team was professional, efficient, and exceeded my expectations. I highly recommend them.", rating: 5, initials: "RS" },
@@ -69,6 +70,8 @@ const TestimonialsSection = () => {
 
   return (
     <section className="py-16 relative overflow-hidden bg-background">
+      <CircleRing className="absolute -top-16 -right-16 text-primary/[0.04] pointer-events-none" />
+      <CrossPattern className="absolute bottom-8 left-6 text-foreground/[0.04] pointer-events-none" />
       <div className="container mx-auto px-6 relative z-10">
         {/* Header — left aligned, Microsoft style */}
         <motion.div

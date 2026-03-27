@@ -2,11 +2,14 @@ import { motion } from "framer-motion";
 import { ArrowRight, MessageCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { DiagonalLines, CircleRing } from "@/components/BackgroundPatterns";
 
 const ContactSection = () => {
   return (
-    <section className="py-16 relative bg-foreground">
-      <div className="container mx-auto px-6">
+    <section className="py-16 relative bg-foreground overflow-hidden">
+      <DiagonalLines className="absolute top-0 right-0 text-white/[0.05] pointer-events-none" />
+      <CircleRing className="absolute -bottom-20 -left-20 text-primary/[0.05] pointer-events-none" />
+      <div className="container mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
