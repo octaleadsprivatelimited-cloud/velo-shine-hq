@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Phone, MessageCircle } from "lucide-react";
+import { HexGrid, DotGrid } from "@/components/BackgroundPatterns";
 import {
   Accordion,
   AccordionContent,
