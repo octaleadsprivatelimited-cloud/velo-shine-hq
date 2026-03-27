@@ -75,7 +75,7 @@ const Footer = () => {
               OctaLeads Pvt. Ltd.
             </a>
           </span>
-          <div className="flex items-center gap-6 text-xs text-white/40">
+          <div className="flex items-center gap-6 text-xs text-white">
             <Link to="/support" className="hover:text-primary transition-colors">Privacy Policy</Link>
             <Link to="/support" className="hover:text-primary transition-colors">Terms of Service</Link>
             <a href="/sitemap.xml" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Sitemap</a>
