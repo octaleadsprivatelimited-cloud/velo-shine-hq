@@ -10,40 +10,50 @@ const features = [
 
 const BoldStatement = () => {
   return (
-    <section className="relative py-24 overflow-hidden bg-foreground">
-      <div className="absolute inset-0 noise opacity-10" />
+    <section className="relative py-16 overflow-hidden dark-section">
+      <div className="absolute inset-0 noise opacity-5" />
 
       <div className="container mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-14"
+          className="text-center max-w-2xl mx-auto mb-10"
         >
-          <span className="text-sm font-semibold text-primary uppercase tracking-widest">Why Choose Us</span>
-          <h2 className="font-display text-3xl md:text-5xl font-extrabold mt-4 text-background">
-            We bring <span className="text-gradient">everything</span> we need
+          <span className="inline-block text-xs font-bold text-primary uppercase tracking-[0.2em] mb-4">
+            Why Choose Us
+          </span>
+          <h2 className="font-display text-3xl md:text-5xl font-extrabold mb-3 leading-tight text-white">
+            We bring everything we need
           </h2>
-          <p className="text-background/60 mt-4 max-w-lg mx-auto">
+          <p className="text-base text-white/60 leading-relaxed">
             No hassle for you — our team arrives fully equipped with premium products and trained professionals.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-5xl mx-auto">
           {features.map((f, i) => (
             <motion.div
               key={f.title}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="bg-background/10 border border-background/20 rounded-2xl p-6 text-center backdrop-blur-sm hover:bg-background/15 transition-all duration-300 group"
+              transition={{ delay: i * 0.12, duration: 0.45 }}
+              className="relative group"
             >
-              <div className="w-14 h-14 rounded-2xl bg-primary/20 border border-primary/30 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary transition-all duration-300">
-                <f.icon className="w-6 h-6 text-primary group-hover:text-primary-foreground transition-colors" />
+              <div className="relative bg-white/[0.06] border border-white/10 rounded-xl p-6 h-full hover:border-primary/30 hover:bg-white/[0.08] transition-all duration-300 overflow-hidden">
+                {/* Icon */}
+                <div className="w-12 h-12 rounded-xl bg-primary/15 border border-primary/25 flex items-center justify-center mb-4 group-hover:bg-primary group-hover:border-primary transition-all duration-300">
+                  <f.icon className="w-5 h-5 text-primary group-hover:text-primary-foreground transition-colors duration-300" />
+                </div>
+
+                <h3 className="font-display text-lg font-bold mb-2 text-white">
+                  {f.title}
+                </h3>
+                <p className="text-sm text-white/55 leading-relaxed">
+                  {f.desc}
+                </p>
               </div>
-              <h3 className="font-display text-lg font-bold mb-2 text-background">{f.title}</h3>
-              <p className="text-sm text-background/60 leading-relaxed">{f.desc}</p>
             </motion.div>
           ))}
         </div>
