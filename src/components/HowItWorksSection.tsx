@@ -73,7 +73,7 @@ const HowItWorksSection = () => {
 
                 <div className="relative bg-card border border-border rounded-xl p-6 h-full hover:border-primary/30 hover:shadow-md transition-all duration-300 overflow-hidden">
                   {/* Large faded number background */}
-                  <span className="absolute -top-2 -right-1 font-display text-[80px] font-black text-foreground/[0.03] leading-none select-none pointer-events-none">
+                  <span className="absolute -top-2 -right-1 font-display text-[80px] font-black text-foreground/[0.06] leading-none select-none pointer-events-none">
                     {step.num}
                   </span>
 

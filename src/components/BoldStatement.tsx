@@ -12,8 +12,8 @@ const features = [
 const BoldStatement = () => {
   return (
     <section className="relative py-16 overflow-hidden bg-foreground">
-      <DotGrid className="absolute top-6 right-10 text-white/[0.06] pointer-events-none" />
-      <DiagonalLines className="absolute -bottom-10 -left-10 text-primary/[0.06] pointer-events-none" />
+      <DotGrid className="absolute top-6 right-10 text-white/[0.1] pointer-events-none" />
+      <DiagonalLines className="absolute -bottom-10 -left-10 text-primary/[0.1] pointer-events-none" />
       <div className="container mx-auto px-6 relative z-10">
         {/* Header */}
         <motion.div

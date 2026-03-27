@@ -36,8 +36,8 @@ const services = [
 const ServicesSection = () => {
   return (
     <section className="py-16 relative bg-background overflow-hidden">
-      <DotGrid className="absolute top-8 right-8 text-foreground/[0.04] pointer-events-none" />
-      <CircleRing className="absolute -bottom-20 -left-20 text-primary/[0.04] pointer-events-none" />
+      <DotGrid className="absolute top-8 right-8 text-foreground/[0.08] pointer-events-none" />
+      <CircleRing className="absolute -bottom-20 -left-20 text-primary/[0.08] pointer-events-none" />
       <div className="container mx-auto px-6 relative z-10">
         {/* Header — centered, clean */}
         <motion.div
