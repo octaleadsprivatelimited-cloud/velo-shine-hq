@@ -124,7 +124,7 @@ export const addGalleryItem = async (item: Omit<GalleryItem, "id" | "createdAt">
 
 export const getGalleryItems = async (): Promise<GalleryItem[]> => {
   const q = query(collection(db, "gallery"), orderBy("order", "asc"));
-  const snapshot = await getDocs(q);
+  const snapshot = await withTimeout(getDocs(q));
   return snapshot.docs.map((d) => ({ id: d.id, ...d.data() })) as GalleryItem[];
 };
 
