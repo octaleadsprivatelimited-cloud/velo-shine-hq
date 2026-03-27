@@ -34,14 +34,14 @@ const services = [
 
 const ServicesSection = () => {
   return (
-    <section className="py-28 relative bg-background">
+    <section className="py-16 relative bg-background">
       <div className="container mx-auto px-6 relative z-10">
         {/* Header — centered, clean */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center max-w-2xl mx-auto mb-16"
+          className="text-center max-w-2xl mx-auto mb-10"
         >
           <span className="inline-block text-xs font-bold text-primary uppercase tracking-[0.2em] mb-4">
             Our Services
@@ -55,7 +55,7 @@ const ServicesSection = () => {
         </motion.div>
 
         {/* Cards grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {services.map((service, i) => (
             <motion.div
               key={service.title}
@@ -115,7 +115,7 @@ const ServicesSection = () => {
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mt-14"
+          className="text-center mt-10"
         >
           <Link to="/services">
             <Button variant="outline" size="lg" className="rounded-lg font-display font-semibold px-8 h-12">
