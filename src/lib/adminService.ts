@@ -12,6 +12,15 @@ import {
 } from "firebase/firestore";
 import { db } from "./firebase";
 
+// Timeout wrapper to prevent hanging when Firebase is unreachable
+const withTimeout = <T>(promise: Promise<T>, ms = 3000): Promise<T> =>
+  Promise.race([
+    promise,
+    new Promise<never>((_, reject) =>
+      setTimeout(() => reject(new Error("Firebase request timed out")), ms)
+    ),
+  ]);
+
 // ============ BOOKINGS ============
 export interface Booking {
   id?: string;
@@ -39,7 +48,7 @@ export const addBooking = async (booking: Omit<Booking, "id" | "status" | "creat
 
 export const getBookings = async (): Promise<Booking[]> => {
   const q = query(collection(db, "bookings"), orderBy("createdAt", "desc"));
-  const snapshot = await getDocs(q);
+  const snapshot = await withTimeout(getDocs(q));
   return snapshot.docs.map((d) => ({ id: d.id, ...d.data() })) as Booking[];
 };
 
@@ -83,7 +92,7 @@ export const addService = async (service: Omit<Service, "id" | "createdAt">) => 
 
 export const getServices = async (): Promise<Service[]> => {
   const q = query(collection(db, "services"), orderBy("order", "asc"));
-  const snapshot = await getDocs(q);
+  const snapshot = await withTimeout(getDocs(q));
   return snapshot.docs.map((d) => ({ id: d.id, ...d.data() })) as Service[];
 };
 
@@ -115,7 +124,7 @@ export const addGalleryItem = async (item: Omit<GalleryItem, "id" | "createdAt">
 
 export const getGalleryItems = async (): Promise<GalleryItem[]> => {
   const q = query(collection(db, "gallery"), orderBy("order", "asc"));
-  const snapshot = await getDocs(q);
+  const snapshot = await withTimeout(getDocs(q));
   return snapshot.docs.map((d) => ({ id: d.id, ...d.data() })) as GalleryItem[];
 };
 
@@ -147,7 +156,7 @@ export const addTestimonial = async (testimonial: Omit<Testimonial, "id" | "crea
 
 export const getTestimonials = async (): Promise<Testimonial[]> => {
   const q = query(collection(db, "testimonials"), orderBy("createdAt", "desc"));
-  const snapshot = await getDocs(q);
+  const snapshot = await withTimeout(getDocs(q));
   return snapshot.docs.map((d) => ({ id: d.id, ...d.data() })) as Testimonial[];
 };
 

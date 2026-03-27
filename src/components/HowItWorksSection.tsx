@@ -32,8 +32,8 @@ const steps = [
 const HowItWorksSection = () => {
   return (
     <section className="py-16 relative overflow-hidden bg-secondary/30">
-      <CrossPattern className="absolute top-10 left-6 text-foreground/[0.04] pointer-events-none" />
-      <HexGrid className="absolute -bottom-10 -right-10 text-primary/[0.05] pointer-events-none" />
+      <CrossPattern className="absolute top-10 left-6 text-foreground/[0.08] pointer-events-none" />
+      <HexGrid className="absolute -bottom-10 -right-10 text-primary/[0.1] pointer-events-none" />
       <div className="absolute inset-0 noise opacity-5" />
       <div className="container mx-auto px-6 relative z-10">
         <motion.div
@@ -73,7 +73,7 @@ const HowItWorksSection = () => {
 
                 <div className="relative bg-card border border-border rounded-xl p-6 h-full hover:border-primary/30 hover:shadow-md transition-all duration-300 overflow-hidden">
                   {/* Large faded number background */}
-                  <span className="absolute -top-2 -right-1 font-display text-[80px] font-black text-foreground/[0.03] leading-none select-none pointer-events-none">
+                  <span className="absolute -top-2 -right-1 font-display text-[80px] font-black text-foreground/[0.06] leading-none select-none pointer-events-none">
                     {step.num}
                   </span>
 

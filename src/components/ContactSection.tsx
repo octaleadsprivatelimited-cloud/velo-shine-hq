@@ -7,8 +7,8 @@ import { DiagonalLines, CircleRing } from "@/components/BackgroundPatterns";
 const ContactSection = () => {
   return (
     <section className="py-16 relative bg-foreground overflow-hidden">
-      <DiagonalLines className="absolute top-0 right-0 text-white/[0.05] pointer-events-none" />
-      <CircleRing className="absolute -bottom-20 -left-20 text-primary/[0.05] pointer-events-none" />
+      <DiagonalLines className="absolute top-0 right-0 text-white/[0.08] pointer-events-none" />
+      <CircleRing className="absolute -bottom-20 -left-20 text-primary/[0.08] pointer-events-none" />
       <div className="container mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 16 }}

@@ -70,8 +70,8 @@ const TestimonialsSection = () => {
 
   return (
     <section className="py-16 relative overflow-hidden bg-background">
-      <CircleRing className="absolute -top-16 -right-16 text-primary/[0.04] pointer-events-none" />
-      <CrossPattern className="absolute bottom-8 left-6 text-foreground/[0.04] pointer-events-none" />
+      <CircleRing className="absolute -top-16 -right-16 text-primary/[0.08] pointer-events-none" />
+      <CrossPattern className="absolute bottom-8 left-6 text-foreground/[0.08] pointer-events-none" />
       <div className="container mx-auto px-6 relative z-10">
         {/* Header — left aligned, Microsoft style */}
         <motion.div
