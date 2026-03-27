@@ -9,7 +9,7 @@ const services = [
     title: "Doorstep Car Foam Wash",
     description: "Single time plans and monthly plans available. Premium pH-neutral snow foam for a scratch-free shine.",
     image: foamWashImg,
-    href: "/foam-wash",
+    href: "/services",
     badge: "Popular",
     icon: Droplets,
   },
