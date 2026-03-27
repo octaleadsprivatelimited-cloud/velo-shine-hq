@@ -92,7 +92,7 @@ export const addService = async (service: Omit<Service, "id" | "createdAt">) => 
 
 export const getServices = async (): Promise<Service[]> => {
   const q = query(collection(db, "services"), orderBy("order", "asc"));
-  const snapshot = await getDocs(q);
+  const snapshot = await withTimeout(getDocs(q));
   return snapshot.docs.map((d) => ({ id: d.id, ...d.data() })) as Service[];
 };
 
