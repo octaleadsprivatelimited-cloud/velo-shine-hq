@@ -17,9 +17,8 @@ const HeroSection = () => {
           className="w-full h-full object-cover scale-105"
           loading="eager"
         />
-        <div className="absolute inset-0 bg-[hsl(210,60%,12%/0.85)]" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[hsl(210,60%,10%/0.8)] via-[hsl(210,60%,10%/0.4)] to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[hsl(210,60%,8%/0.9)] via-transparent to-[hsl(210,60%,10%/0.3)]" />
+        <div className="absolute inset-0 bg-[#0a2540]/80" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#071a2f] via-transparent to-[#0a2540]/40" />
         <div className="absolute inset-0 noise opacity-10" />
       </div>
 
