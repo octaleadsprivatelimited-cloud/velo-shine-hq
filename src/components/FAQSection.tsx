@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Phone, HelpCircle, MessageCircle } from "lucide-react";
+import { Phone, MessageCircle } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -36,78 +36,67 @@ const faqs = [
 
 const FAQSection = () => {
   return (
-    <section className="py-24 relative bg-background">
+    <section className="py-16 relative bg-secondary/30">
       <div className="container mx-auto px-6 relative z-10">
-        <div className="grid lg:grid-cols-5 gap-12 max-w-6xl mx-auto">
+        <div className="grid lg:grid-cols-5 gap-10 max-w-6xl mx-auto">
           {/* Left heading */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="lg:col-span-2"
           >
-            <div className="flex items-center gap-2 mb-3">
-              <HelpCircle className="w-4 h-4 text-primary" />
-              <span className="text-sm font-semibold text-primary uppercase tracking-widest">FAQ</span>
-            </div>
-            <h2 className="font-display text-3xl md:text-4xl font-extrabold mb-4">
-              Got <span className="text-gradient">questions?</span>
+            <h2 className="font-display text-2xl md:text-4xl font-bold mb-3">
+              Frequently asked questions
             </h2>
-            <p className="text-muted-foreground mb-8">
+            <p className="text-muted-foreground text-sm leading-relaxed mb-8">
               Everything you need to know about our doorstep car wash services.
             </p>
 
-            <div className="bg-card border border-border rounded-2xl p-6">
-              <p className="text-sm text-muted-foreground mb-4">Still have questions? Reach out to us:</p>
-              <div className="space-y-3">
-                <a
-                  href="tel:+919676031464"
-                  className="flex items-center gap-3 text-foreground hover:text-primary transition-colors group"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/25 flex items-center justify-center group-hover:bg-primary transition-all">
-                    <Phone className="w-4 h-4 text-primary group-hover:text-primary-foreground transition-colors" />
-                  </div>
-                  <div>
-                    <div className="text-xs text-muted-foreground">Call us</div>
-                    <div className="font-display font-bold text-sm">+91-96760 31464</div>
-                  </div>
-                </a>
-                <a
-                  href="https://wa.me/919676031464"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 text-foreground hover:text-primary transition-colors group"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/25 flex items-center justify-center group-hover:bg-primary transition-all">
-                    <MessageCircle className="w-4 h-4 text-primary group-hover:text-primary-foreground transition-colors" />
-                  </div>
-                  <div>
-                    <div className="text-xs text-muted-foreground">WhatsApp</div>
-                    <div className="font-display font-bold text-sm">Chat with us</div>
-                  </div>
-                </a>
-              </div>
+            <div className="space-y-4">
+              <a
+                href="tel:+919676031464"
+                className="flex items-center gap-3 text-foreground hover:text-primary transition-colors"
+              >
+                <Phone className="w-5 h-5 text-primary" />
+                <div>
+                  <div className="text-xs text-muted-foreground">Call us</div>
+                  <div className="font-display font-semibold text-sm">+91-96760 31464</div>
+                </div>
+              </a>
+              <a
+                href="https://wa.me/919676031464"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 text-foreground hover:text-primary transition-colors"
+              >
+                <MessageCircle className="w-5 h-5 text-primary" />
+                <div>
+                  <div className="text-xs text-muted-foreground">WhatsApp</div>
+                  <div className="font-display font-semibold text-sm">Chat with us</div>
+                </div>
+              </a>
             </div>
           </motion.div>
 
           {/* Right accordion */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="lg:col-span-3"
           >
-            <Accordion type="single" collapsible className="space-y-3">
+            <Accordion type="single" collapsible>
               {faqs.map((faq, i) => (
                 <AccordionItem
                   key={i}
                   value={`faq-${i}`}
-                  className="bg-card border border-border rounded-xl px-6 data-[state=open]:border-primary/30 transition-all duration-300"
+                  className="border-b border-border py-1"
                 >
-                  <AccordionTrigger className="font-display font-semibold text-left hover:no-underline py-5 hover:text-primary transition-colors">
+                  <AccordionTrigger className="font-display font-semibold text-left text-sm hover:no-underline py-4 hover:text-primary transition-colors">
                     {faq.question}
                   </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground leading-relaxed pb-5">
+                  <AccordionContent className="text-sm text-muted-foreground leading-relaxed pb-4">
                     {faq.answer}
                   </AccordionContent>
                 </AccordionItem>
