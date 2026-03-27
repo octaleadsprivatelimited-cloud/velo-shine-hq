@@ -34,7 +34,7 @@ const services = [
 
 const ServicesSection = () => {
   return (
-    <section className="py-28 relative bg-background">
+    <section className="py-16 relative bg-background">
       <div className="container mx-auto px-6 relative z-10">
         {/* Header — centered, clean */}
         <motion.div
