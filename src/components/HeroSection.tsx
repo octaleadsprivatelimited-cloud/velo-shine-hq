@@ -54,7 +54,6 @@ const HeroSection = () => {
           >
             We bring premium products to your doorstep. No mess, no hassle — just a sparkling clean car every time.
           </motion.p>
-          </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
