@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, MessageCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { DiagonalLines, CircleRing } from "@/components/BackgroundPatterns";
 
 const ContactSection = () => {
   return (
