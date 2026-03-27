@@ -48,7 +48,7 @@ export const addBooking = async (booking: Omit<Booking, "id" | "status" | "creat
 
 export const getBookings = async (): Promise<Booking[]> => {
   const q = query(collection(db, "bookings"), orderBy("createdAt", "desc"));
-  const snapshot = await getDocs(q);
+  const snapshot = await withTimeout(getDocs(q));
   return snapshot.docs.map((d) => ({ id: d.id, ...d.data() })) as Booking[];
 };
 
