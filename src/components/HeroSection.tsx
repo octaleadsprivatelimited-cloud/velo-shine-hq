@@ -17,7 +17,7 @@ const HeroSection = () => {
           className="w-full h-full object-cover scale-105"
           loading="eager"
         />
-        <div className="absolute inset-0 bg-[hsl(225,25%,3%/0.6)]" />
+        <div className="absolute inset-0 bg-[hsl(210,60%,15%/0.75)]" />
         <div className="absolute inset-0 bg-gradient-to-r from-[hsl(225,25%,3%/0.7)] via-[hsl(225,25%,3%/0.3)] to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-[hsl(225,25%,3%/0.8)] via-transparent to-[hsl(225,25%,3%/0.2)]" />
         <div className="absolute inset-0 noise opacity-10" />
@@ -40,7 +40,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[0.95] mb-6 text-white text-shadow-hero"
+            className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[0.95] mb-6 text-white"
           >
             Doorstep car wash,{" "}
             <span className="text-primary">done right.</span>
@@ -50,9 +50,9 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-lg md:text-xl text-white/80 max-w-xl mb-10 leading-relaxed text-shadow-sm"
+            className="text-lg md:text-xl text-white/80 max-w-xl mb-10 leading-relaxed"
           >
-            We bring our own water, electricity & premium products to your parking spot. 
+            Water will be used at the client's residence. We bring our own electricity & premium products. 
             No mess, no hassle — just a sparkling clean car every time.
           </motion.p>
 

@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Droplets, Zap, Shield, Leaf } from "lucide-react";
 
 const features = [
-  { icon: Droplets, title: "Own Water Supply", desc: "We carry purified water — no need for your tap." },
+  { icon: Droplets, title: "Client's Water", desc: "Water will be used at the client's residence — no extra charges." },
   { icon: Zap, title: "Own Electricity", desc: "Portable power units for all our equipment." },
   { icon: Shield, title: "Premium Products", desc: "pH-neutral, scratch-free imported cleaning agents." },
   { icon: Leaf, title: "Eco-Friendly", desc: "Minimal water usage with responsible disposal." },
@@ -25,7 +25,7 @@ const BoldStatement = () => {
             We bring <span className="text-gradient">everything</span> we need
           </h2>
           <p className="text-background/60 mt-4 max-w-lg mx-auto">
-            No hassle for you — our team arrives fully equipped with water, power, and premium products.
+            No hassle for you — our team arrives fully equipped with electricity, and premium products. Water will be used at the client's residence.
           </p>
         </motion.div>
 

@@ -106,7 +106,7 @@ const plans = [
 
 const highlights = [
   { icon: ShieldCheck, title: "Scratch-Free", desc: "pH-neutral foam, no harsh chemicals" },
-  { icon: Zap, title: "Self-Sufficient", desc: "We bring our own water & electricity" },
+  { icon: Zap, title: "Self-Sufficient", desc: "We bring our own electricity. Water at client's residence." },
   { icon: Clock, title: "30-45 Minutes", desc: "Quick service, no waiting around" },
   { icon: Sparkles, title: "Premium Products", desc: "Imported, professional-grade formulas" },
 ];
@@ -150,7 +150,7 @@ const FoamWashPage = () => {
               </h1>
 
               <p className="text-base md:text-lg text-background/75 max-w-2xl leading-relaxed mb-8">
-                Premium scratch-free foam wash at your doorstep with our own water, electricity, and professional-grade products.
+                Premium scratch-free foam wash at your doorstep. Water will be used at the client's residence. We bring our own electricity and professional-grade products.
               </p>
 
               <div className="flex flex-wrap items-center gap-4 mb-8">
