@@ -17,7 +17,7 @@ const services = [
     title: "Doorstep Regular Car Cleaning",
     description: "Fresh microfiber and fresh water for every car! Keep your car spotless with routine cleaning.",
     image: interiorImg,
-    href: "/regular-cleaning",
+    href: "/services",
     badge: "New!",
     icon: Car,
   },

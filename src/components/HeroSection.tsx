@@ -69,7 +69,7 @@ const HeroSection = () => {
                 BOOK NOW <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
             </Link>
-            <Link to="/foam-wash">
+            <Link to="/services">
               <Button
                 size="lg"
                 className="border border-white/30 bg-white/10 text-white hover:bg-white/20 hover:border-white/50 font-display font-semibold text-base h-14 rounded-xl backdrop-blur-sm"
