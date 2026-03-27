@@ -6,7 +6,6 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import ScrollToTop from "@/components/ScrollToTop";
 import Index from "./pages/Index.tsx";
 import Services from "./pages/Services.tsx";
-import Services from "./pages/Services.tsx";
 import About from "./pages/About.tsx";
 import Gallery from "./pages/Gallery.tsx";
 import Booking from "./pages/Booking.tsx";
