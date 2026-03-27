@@ -3,7 +3,7 @@ import { Droplets, Zap, Shield, Leaf } from "lucide-react";
 
 const features = [
   { icon: Droplets, title: "Client's Water", desc: "Water will be used at the client's residence — no extra charges." },
-  { icon: Zap, title: "Own Electricity", desc: "Portable power units for all our equipment." },
+  { icon: Zap, title: "Electricity", desc: "Portable power units for all our equipment." },
   { icon: Shield, title: "Premium Products", desc: "pH-neutral, scratch-free imported cleaning agents." },
   { icon: Leaf, title: "Eco-Friendly", desc: "Minimal water usage with responsible disposal." },
 ];

@@ -150,7 +150,7 @@ const FoamWashPage = () => {
               </h1>
 
               <p className="text-base md:text-lg text-background/75 max-w-2xl leading-relaxed mb-8">
-                Premium scratch-free foam wash at your doorstep. Water will be used at the client's residence. We bring our own electricity and professional-grade products.
+                Premium scratch-free foam wash at your doorstep. Water will be used at the client's residence. We bring electricity and professional-grade products.
               </p>
 
               <div className="flex flex-wrap items-center gap-4 mb-8">
