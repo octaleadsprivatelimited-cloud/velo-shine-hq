@@ -46,7 +46,7 @@ const HowItWorksSection = () => {
           <p className="text-muted-foreground mt-4 max-w-md mx-auto">No complicated process. Just four simple steps to a sparkling clean car.</p>
         </motion.div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
           {steps.map((step, i) => (
             <motion.div
               key={step.num}
@@ -54,7 +54,7 @@ const HowItWorksSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="bg-card border border-border rounded-2xl p-6 text-center hover:border-primary/30 transition-all duration-500 group card-shine"
+              className="bg-card border border-border rounded-2xl p-5 text-center hover:border-primary/30 transition-all duration-500 group card-shine"
             >
               <div className="w-14 h-14 rounded-2xl bg-primary/10 border border-primary/25 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
                 <step.icon className="w-6 h-6 text-primary group-hover:text-primary-foreground transition-colors" />
