@@ -99,11 +99,11 @@
   }
 
   .text-shadow-hero {
-    text-shadow: 0 2px 20px hsl(225 25% 3% / 0.8), 0 4px 40px hsl(225 25% 3% / 0.5);
+    text-shadow: none;
   }
 
   .text-shadow-sm {
-    text-shadow: 0 1px 8px hsl(225 25% 3% / 0.6);
+    text-shadow: none;
   }
 
   .glow-border {
