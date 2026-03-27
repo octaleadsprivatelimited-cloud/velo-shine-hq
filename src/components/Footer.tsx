@@ -27,7 +27,7 @@ const Footer = () => {
               <img src={logo} alt="Velociwash Logo" className="h-20 -my-3 w-auto" />
             </Link>
             <p className="text-sm text-white/60 leading-relaxed max-w-xs">
-              Premium doorstep car care services. We bring our own electricity and professional-grade products. Water will be used at the client's residence.
+              Premium doorstep car care services. We bring electricity and professional-grade products. Water will be used at the client's residence.
             </p>
           </div>
 

@@ -15,7 +15,7 @@ const Index = () => {
     <div className="min-h-screen bg-background text-foreground">
       <SEO
         title="Velociwash — Premium Doorstep Car Wash & Detailing Services"
-        description="Velociwash offers premium doorstep car wash, foam wash, interior detailing, and ceramic coating services. We come to you with our own electricity and premium products."
+        description="Velociwash offers premium doorstep car wash, foam wash, interior detailing, and ceramic coating services. We come to you with electricity and premium products."
         keywords="car wash, doorstep car wash, foam wash, car detailing, ceramic coating, interior cleaning, car care, Velociwash, mobile car wash"
       />
       <Navbar />
