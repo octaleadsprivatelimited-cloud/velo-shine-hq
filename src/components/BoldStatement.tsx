@@ -25,7 +25,7 @@ const BoldStatement = () => {
             We bring <span className="text-gradient">everything</span> we need
           </h2>
           <p className="text-background/60 mt-4 max-w-lg mx-auto">
-            No hassle for you — our team arrives fully equipped with water, power, and premium products.
+            No hassle for you — our team arrives fully equipped with electricity, and premium products. Water will be used at the client's residence.
           </p>
         </motion.div>
 
