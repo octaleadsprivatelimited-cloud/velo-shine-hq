@@ -4,8 +4,7 @@ import logo from "@/assets/logo.png";
 
 const footerLinks = [
   { label: "About", href: "/about" },
-  { label: "Foam Wash", href: "/foam-wash" },
-  { label: "Regular Cleaning", href: "/regular-cleaning" },
+  { label: "Services", href: "/services" },
   { label: "Gallery", href: "/gallery" },
   { label: "Support", href: "/support" },
   { label: "Book Now", href: "/booking" },

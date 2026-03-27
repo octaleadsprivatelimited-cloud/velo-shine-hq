@@ -6,8 +6,6 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import ScrollToTop from "@/components/ScrollToTop";
 import Index from "./pages/Index.tsx";
 import Services from "./pages/Services.tsx";
-import FoamWash from "./pages/FoamWash.tsx";
-import RegularCleaning from "./pages/RegularCleaning.tsx";
 import About from "./pages/About.tsx";
 import Gallery from "./pages/Gallery.tsx";
 import Booking from "./pages/Booking.tsx";
@@ -27,8 +25,8 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/services" element={<Services />} />
-          <Route path="/foam-wash" element={<FoamWash />} />
-          <Route path="/regular-cleaning" element={<RegularCleaning />} />
+          <Route path="/foam-wash" element={<Services />} />
+          <Route path="/regular-cleaning" element={<Services />} />
           <Route path="/about" element={<About />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/booking" element={<Booking />} />
