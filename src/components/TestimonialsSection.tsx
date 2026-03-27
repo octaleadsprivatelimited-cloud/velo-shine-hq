@@ -4,6 +4,7 @@ import { Star, ChevronLeft, ChevronRight } from "lucide-react";
 import { getTestimonials } from "@/lib/adminService";
 import useEmblaCarousel from "embla-carousel-react";
 import { Button } from "@/components/ui/button";
+import { CircleRing, CrossPattern } from "@/components/BackgroundPatterns";
 
 const fallbackTestimonials = [
   { name: "RS", text: "Velociwash did an amazing job with foam cleaning for my car. The team was professional, efficient, and exceeded my expectations. I highly recommend them.", rating: 5, initials: "RS" },
