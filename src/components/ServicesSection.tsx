@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles, Droplets, Car, Wrench } from "lucide-react";
 import { Link } from "react-router-dom";
 import foamWashImg from "@/assets/service-foam-wash.jpg";
 import interiorImg from "@/assets/service-interior.jpg";
@@ -7,27 +7,27 @@ import interiorImg from "@/assets/service-interior.jpg";
 const services = [
   {
     title: "Doorstep Car Foam Wash",
-    description: "Single time plans and monthly plans available",
+    description: "Single time plans and monthly plans available. Premium pH-neutral snow foam for a scratch-free shine.",
     image: foamWashImg,
-    href: "/services",
-    badge: "New!",
-    available: true,
+    href: "/foam-wash",
+    badge: "Popular",
+    icon: Droplets,
   },
   {
     title: "Doorstep Regular Car Cleaning",
-    description: "Fresh microfiber and fresh water for every car!",
+    description: "Fresh microfiber and fresh water for every car! Keep your car spotless with routine cleaning.",
     image: interiorImg,
-    href: "/services",
+    href: "/regular-cleaning",
     badge: "New!",
-    available: true,
+    icon: Car,
   },
   {
     title: "Doorstep Car General Service",
-    description: "Guaranteed discounted price. Usage of genuine spares only.",
+    description: "Guaranteed discounted price. Usage of genuine spares only. Full mechanical care at your door.",
     image: null,
     href: "/services",
     badge: "New!",
-    available: true,
+    icon: Wrench,
   },
 ];
 
@@ -60,7 +60,7 @@ const ServicesSection = () => {
           </Link>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-7">
           {services.map((service, i) => (
             <motion.div
               key={service.title}
@@ -69,57 +69,51 @@ const ServicesSection = () => {
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
             >
-              {service.available ? (
-                <Link to={service.href} className="block group">
-                  <div className="relative rounded-2xl overflow-hidden border border-border bg-card hover:border-primary/40 transition-all duration-500 h-[280px] lg:h-[340px] card-shine">
-                    {service.image && (
+              <Link to={service.href} className="block group">
+                <div className="relative rounded-2xl overflow-hidden border border-border bg-card hover:border-primary/40 transition-all duration-500 card-shine">
+                  {/* Image thumbnail */}
+                  <div className="relative h-48 overflow-hidden">
+                    {service.image ? (
                       <>
                         <img
                           src={service.image}
                           alt={service.title}
                           loading="lazy"
-                          className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[hsl(225,25%,5%)] via-[hsl(225,25%,5%/0.6)] to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
                       </>
+                    ) : (
+                      <div className="w-full h-full bg-gradient-to-br from-primary/10 via-secondary to-accent/10 flex items-center justify-center">
+                        <service.icon className="w-16 h-16 text-primary/30" />
+                      </div>
                     )}
-                    <div className="relative h-full flex flex-col justify-end p-5 lg:p-7">
-                      <h3 className="font-display text-lg lg:text-xl font-bold mb-1.5 text-white group-hover:text-primary transition-colors text-shadow-sm">
+                    {service.badge && (
+                      <span className="absolute top-3 right-3 px-2.5 py-1 rounded-full text-[10px] font-bold bg-primary/90 text-primary-foreground backdrop-blur-sm">
+                        {service.badge}
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-5 lg:p-6">
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/25 flex items-center justify-center shrink-0 group-hover:bg-primary transition-colors duration-300">
+                        <service.icon className="w-5 h-5 text-primary group-hover:text-primary-foreground transition-colors duration-300" />
+                      </div>
+                      <h3 className="font-display text-base lg:text-lg font-bold group-hover:text-primary transition-colors">
                         {service.title}
                       </h3>
-                      <p className="text-xs lg:text-sm text-white/70 mb-4 text-shadow-sm">
-                        {service.description}
-                      </p>
-                      <div className="flex items-center justify-between">
-                        <span className="text-xs lg:text-sm font-bold text-primary flex items-center gap-1.5 group-hover:gap-2.5 transition-all">
-                          Book now <ArrowRight className="w-3.5 h-3.5" />
-                        </span>
-                        {service.badge && (
-                          <span className="px-2 py-1 rounded-full text-[10px] lg:text-xs font-bold bg-primary/15 text-primary border border-primary/25">
-                            {service.badge}
-                          </span>
-                        )}
-                      </div>
                     </div>
-                  </div>
-                </Link>
-              ) : (
-                <div className="relative rounded-2xl overflow-hidden border border-border bg-card h-[280px] lg:h-[340px]">
-                  <div className="absolute inset-0 bg-secondary/50" />
-                  <div className="absolute inset-0 noise opacity-20" />
-                  <div className="h-full flex flex-col justify-end p-5 lg:p-7 relative">
-                    <h3 className="font-display text-lg lg:text-xl font-bold mb-1.5 text-foreground">
-                      {service.title}
-                    </h3>
-                    <p className="text-xs lg:text-sm text-muted-foreground mb-4">
+                    <p className="text-sm text-muted-foreground leading-relaxed mb-4">
                       {service.description}
                     </p>
-                    <span className="px-2.5 py-1.5 rounded-full text-[10px] lg:text-xs font-bold bg-muted text-muted-foreground border border-border w-fit">
-                      {service.badge}
+                    <span className="text-sm font-bold text-primary flex items-center gap-1.5 group-hover:gap-2.5 transition-all">
+                      Learn more <ArrowRight className="w-4 h-4" />
                     </span>
                   </div>
                 </div>
-              )}
+              </Link>
             </motion.div>
           ))}
         </div>
