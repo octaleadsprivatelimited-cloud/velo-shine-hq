@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
-import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react";
-import { getTestimonials, type Testimonial } from "@/lib/adminService";
+import { Star, ChevronLeft, ChevronRight } from "lucide-react";
+import { getTestimonials } from "@/lib/adminService";
 import useEmblaCarousel from "embla-carousel-react";
 import { Button } from "@/components/ui/button";
 
@@ -48,72 +48,66 @@ const TestimonialsSection = () => {
       .catch(() => {});
   }, []);
 
-  const Card = ({ t, index }: { t: typeof fallbackTestimonials[0]; index: number }) => (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.1 }}
-      className="bg-card border border-border rounded-2xl p-6 hover:border-primary/30 transition-all duration-500 flex flex-col card-shine group h-full"
-    >
-      <Quote className="w-8 h-8 text-primary/20 mb-4 group-hover:text-primary/40 transition-colors" />
-      <div className="flex gap-1 mb-4">
+  const Card = ({ t }: { t: typeof fallbackTestimonials[0] }) => (
+    <div className="bg-background p-7 flex flex-col h-full hover:bg-white/[0.02] transition-colors duration-200">
+      <div className="flex gap-0.5 mb-4">
         {Array.from({ length: t.rating }).map((_, i) => (
           <Star key={i} className="w-4 h-4 fill-primary text-primary" />
         ))}
       </div>
-      <p className="text-sm text-muted-foreground leading-relaxed flex-1 mb-5">{t.text}</p>
-      <div className="flex items-center gap-3 border-t border-border pt-4">
-        <div className="w-9 h-9 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center text-xs font-bold text-primary">
+      <p className="text-sm text-foreground/70 leading-relaxed flex-1 mb-5">
+        "{t.text}"
+      </p>
+      <div className="flex items-center gap-3">
+        <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-xs font-semibold text-primary">
           {t.initials}
         </div>
-        <span className="text-sm font-medium">{t.name}</span>
+        <span className="text-sm font-semibold text-foreground">{t.name}</span>
       </div>
-    </motion.div>
+    </div>
   );
 
   return (
-    <section className="py-24 relative overflow-hidden bg-secondary/50">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary/3 blur-[150px]" />
-
+    <section className="py-16 relative overflow-hidden bg-background">
       <div className="container mx-auto px-6 relative z-10">
+        {/* Header — left aligned, Microsoft style */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="flex items-end justify-between mb-10"
         >
-          <span className="text-sm font-semibold text-primary uppercase tracking-widest">Testimonials</span>
-          <h2 className="font-display text-3xl md:text-5xl font-extrabold mt-4">
-            What our clients <span className="text-gradient">say</span>
+          <h2 className="font-display text-2xl md:text-4xl font-bold">
+            What our clients say
           </h2>
+          {/* Desktop nav arrows */}
+          <div className="hidden lg:flex gap-2">
+            <Button variant="outline" size="icon" onClick={() => emblaApi?.scrollPrev()} disabled={!canPrev} className="rounded-full border-border h-9 w-9">
+              <ChevronLeft className="w-4 h-4" />
+            </Button>
+            <Button variant="outline" size="icon" onClick={() => emblaApi?.scrollNext()} disabled={!canNext} className="rounded-full border-border h-9 w-9">
+              <ChevronRight className="w-4 h-4" />
+            </Button>
+          </div>
         </motion.div>
 
         {/* Desktop carousel */}
         <div className="hidden lg:block">
-          <div className="overflow-hidden" ref={emblaRef}>
-            <div className="flex gap-6">
+          <div className="overflow-hidden rounded-xl border border-border" ref={emblaRef}>
+            <div className="flex">
               {testimonials.map((t, index) => (
-                <div key={t.name + index} className="flex-[0_0_calc(33.333%-16px)] min-w-0">
-                  <Card t={t} index={index} />
+                <div key={t.name + index} className="flex-[0_0_33.333%] min-w-0 border-r border-border last:border-r-0">
+                  <Card t={t} />
                 </div>
               ))}
             </div>
           </div>
-          <div className="flex justify-center gap-3 mt-8">
-            <Button variant="outline" size="icon" onClick={() => emblaApi?.scrollPrev()} disabled={!canPrev} className="rounded-full border-border h-10 w-10">
-              <ChevronLeft className="w-5 h-5" />
-            </Button>
-            <Button variant="outline" size="icon" onClick={() => emblaApi?.scrollNext()} disabled={!canNext} className="rounded-full border-border h-10 w-10">
-              <ChevronRight className="w-5 h-5" />
-            </Button>
-          </div>
         </div>
 
         {/* Mobile/tablet grid */}
-        <div className="grid sm:grid-cols-2 gap-6 lg:hidden">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-border rounded-xl overflow-hidden lg:hidden">
           {testimonials.map((t, index) => (
-            <Card key={t.name + index} t={t} index={index} />
+            <Card key={t.name + index} t={t} />
           ))}
         </div>
       </div>
