@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Droplets, ChevronRight } from "lucide-react";
+import { Menu, X, ChevronRight } from "lucide-react";
+import logo from "@/assets/logo.png";
 
 const navLinks = [
   { label: "Services", href: "/services" },
