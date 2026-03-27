@@ -106,7 +106,7 @@ const plans = [
 
 const highlights = [
   { icon: ShieldCheck, title: "Scratch-Free", desc: "pH-neutral foam, no harsh chemicals" },
-  { icon: Zap, title: "Self-Sufficient", desc: "We bring our own water & electricity" },
+  { icon: Zap, title: "Self-Sufficient", desc: "We bring our own electricity. Water at client's residence." },
   { icon: Clock, title: "30-45 Minutes", desc: "Quick service, no waiting around" },
   { icon: Sparkles, title: "Premium Products", desc: "Imported, professional-grade formulas" },
 ];
