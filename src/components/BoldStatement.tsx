@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Clock, Sparkles, Shield, ThumbsUp } from "lucide-react";
+import { DotGrid, DiagonalLines } from "@/components/BackgroundPatterns";
 
 const features = [
   { icon: Clock, title: "On-Time Service", desc: "We arrive at your doorstep on the scheduled time, every time." },
