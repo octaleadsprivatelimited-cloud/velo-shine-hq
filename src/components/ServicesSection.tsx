@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Droplets, Car, Wrench } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { DotGrid, CircleRing } from "@/components/BackgroundPatterns";
 import foamWashImg from "@/assets/service-foam-wash.jpg";
 import interiorImg from "@/assets/service-interior.jpg";
 
