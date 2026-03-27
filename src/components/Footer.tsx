@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { Droplets, Phone, MessageCircle, MapPin } from "lucide-react";
+import { Phone, MessageCircle, MapPin } from "lucide-react";
+import logo from "@/assets/logo.png";
 
 const footerLinks = [
   { label: "About", href: "/about" },
