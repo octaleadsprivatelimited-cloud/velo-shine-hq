@@ -52,8 +52,8 @@ const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="text-lg md:text-xl text-white/80 max-w-xl mb-10 leading-relaxed"
           >
-            Water will be used at the client's residence. We bring electricity & premium products. 
-            No mess, no hassle — just a sparkling clean car every time.
+            We bring premium products to your doorstep. No mess, no hassle — just a sparkling clean car every time.
+          </motion.p>
           </motion.p>
 
           <motion.div
