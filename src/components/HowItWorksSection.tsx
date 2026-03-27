@@ -30,13 +30,13 @@ const steps = [
 
 const HowItWorksSection = () => {
   return (
-    <section className="py-24 relative overflow-hidden bg-background">
+    <section className="py-16 relative overflow-hidden bg-background">
       <div className="container mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-10"
         >
           <span className="text-sm font-semibold text-primary uppercase tracking-widest">Simple Process</span>
           <h2 className="font-display text-3xl md:text-5xl font-extrabold mt-4">
