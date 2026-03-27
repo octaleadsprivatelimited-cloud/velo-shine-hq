@@ -38,7 +38,7 @@ const Navbar = () => {
     >
       <div className="container mx-auto flex items-center justify-between px-6">
         <Link to="/" className="flex items-center group">
-          <img src={logo} alt="Velociwash Logo" className={`h-16 -my-2 w-auto transition-all duration-500 ${scrolled ? 'brightness-0' : 'brightness-0 invert'}`} />
+          <img src={logo} alt="Velociwash Logo" className={`h-20 -my-4 w-auto transition-all duration-500 ${scrolled ? 'brightness-0' : 'brightness-0 invert'}`} />
         </Link>
 
         {/* Desktop Nav */}
