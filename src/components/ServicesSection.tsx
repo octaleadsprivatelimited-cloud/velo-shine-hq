@@ -41,7 +41,7 @@ const ServicesSection = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center max-w-2xl mx-auto mb-16"
+          className="text-center max-w-2xl mx-auto mb-10"
         >
           <span className="inline-block text-xs font-bold text-primary uppercase tracking-[0.2em] mb-4">
             Our Services
