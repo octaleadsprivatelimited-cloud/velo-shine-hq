@@ -1,11 +1,11 @@
 import { motion } from "framer-motion";
-import { Droplets, Zap, Shield, Leaf } from "lucide-react";
+import { Clock, Sparkles, Shield, ThumbsUp } from "lucide-react";
 
 const features = [
-  { icon: Droplets, title: "Client's Water", desc: "Water will be used at the client's residence — no extra charges." },
-  { icon: Zap, title: "Electricity", desc: "Portable power units for all our equipment." },
-  { icon: Shield, title: "Premium Products", desc: "pH-neutral, scratch-free imported cleaning agents." },
-  { icon: Leaf, title: "Eco-Friendly", desc: "Minimal water usage with responsible disposal." },
+  { icon: Clock, title: "On-Time Service", desc: "We arrive at your doorstep on the scheduled time, every time." },
+  { icon: Sparkles, title: "Premium Products", desc: "pH-neutral, scratch-free imported cleaning agents." },
+  { icon: Shield, title: "Trained Professionals", desc: "Skilled technicians who treat your car with care." },
+  { icon: ThumbsUp, title: "100% Satisfaction", desc: "Not happy? We'll re-do it — no questions asked." },
 ];
 
 const BoldStatement = () => {
@@ -25,7 +25,7 @@ const BoldStatement = () => {
             We bring <span className="text-gradient">everything</span> we need
           </h2>
           <p className="text-background/60 mt-4 max-w-lg mx-auto">
-            No hassle for you — our team arrives fully equipped with electricity, and premium products. Water will be used at the client's residence.
+            No hassle for you — our team arrives fully equipped with premium products and trained professionals.
           </p>
         </motion.div>
 
