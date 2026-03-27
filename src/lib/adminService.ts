@@ -12,6 +12,15 @@ import {
 } from "firebase/firestore";
 import { db } from "./firebase";
 
+// Timeout wrapper to prevent hanging when Firebase is unreachable
+const withTimeout = <T>(promise: Promise<T>, ms = 3000): Promise<T> =>
+  Promise.race([
+    promise,
+    new Promise<never>((_, reject) =>
+      setTimeout(() => reject(new Error("Firebase request timed out")), ms)
+    ),
+  ]);
+
 // ============ BOOKINGS ============
 export interface Booking {
   id?: string;
