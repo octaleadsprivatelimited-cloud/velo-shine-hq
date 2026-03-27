@@ -23,13 +23,8 @@ const Footer = () => {
         <div className="py-14 grid grid-cols-1 md:grid-cols-3 gap-10">
           {/* Brand */}
           <div>
-            <Link to="/" className="flex items-center gap-2.5 mb-4">
-              <div className="w-9 h-9 rounded-lg bg-primary/10 border border-primary/30 flex items-center justify-center">
-                <Droplets className="w-4 h-4 text-primary" />
-              </div>
-              <span className="font-display text-xl font-bold">
-                VELOCI<span className="text-gradient">WASH</span>
-              </span>
+            <Link to="/" className="mb-4 inline-block">
+              <img src={logo} alt="Velociwash Logo" className="h-14 w-auto" />
             </Link>
             <p className="text-sm text-white/60 leading-relaxed max-w-xs">
               Premium doorstep car care services. We bring our own water, electricity, and professional-grade products.
