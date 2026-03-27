@@ -23,7 +23,7 @@ const Footer = () => {
           {/* Brand */}
           <div>
             <Link to="/" className="mb-4 inline-block">
-              <img src={logo} alt="Velociwash Logo" className="h-20 -my-3 w-auto" />
+              <img src={logo} alt="Velociwash Logo" className="h-20 -my-3 w-auto brightness-0 invert" />
             </Link>
             <p className="text-sm text-white/60 leading-relaxed max-w-xs">
               Premium doorstep car care services. We bring professional-grade products to your doorstep. No mess, no hassle.
