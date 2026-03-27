@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { UserPlus, CalendarCheck, Car, Sparkles, ChevronRight } from "lucide-react";
+import { CrossPattern, HexGrid } from "@/components/BackgroundPatterns";
 
 const steps = [
   {
