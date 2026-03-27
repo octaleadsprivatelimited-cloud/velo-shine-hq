@@ -156,7 +156,7 @@ export const addTestimonial = async (testimonial: Omit<Testimonial, "id" | "crea
 
 export const getTestimonials = async (): Promise<Testimonial[]> => {
   const q = query(collection(db, "testimonials"), orderBy("createdAt", "desc"));
-  const snapshot = await getDocs(q);
+  const snapshot = await withTimeout(getDocs(q));
   return snapshot.docs.map((d) => ({ id: d.id, ...d.data() })) as Testimonial[];
 };
 
