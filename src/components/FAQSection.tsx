@@ -37,7 +37,9 @@ const faqs = [
 
 const FAQSection = () => {
   return (
-    <section className="py-16 relative bg-secondary/30">
+    <section className="py-16 relative bg-secondary/30 overflow-hidden">
+      <HexGrid className="absolute -top-8 right-4 text-foreground/[0.04] pointer-events-none" />
+      <DotGrid className="absolute bottom-4 left-4 text-primary/[0.04] pointer-events-none" />
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-5 gap-10 max-w-6xl mx-auto">
           {/* Left heading */}
