@@ -30,10 +30,10 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/10 backdrop-blur-sm mb-8"
+            className="inline-flex items-center gap-3 px-5 py-2.5 rounded-lg bg-white/10 backdrop-blur-md mb-8"
           >
-            <span className="w-2 h-2 rounded-full bg-primary animate-pulse-glow" />
-            <span className="text-sm font-medium text-primary">#1 Doorstep Car Care in Hyderabad</span>
+            <span className="flex items-center justify-center w-5 h-5 rounded bg-primary text-primary-foreground text-[10px] font-bold leading-none">#1</span>
+            <span className="text-sm font-medium text-white/90 tracking-wide">Doorstep Car Care in Hyderabad</span>
           </motion.div>
 
           <motion.h1
