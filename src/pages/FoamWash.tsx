@@ -106,7 +106,7 @@ const plans = [
 
 const highlights = [
   { icon: ShieldCheck, title: "Scratch-Free", desc: "pH-neutral foam, no harsh chemicals" },
-  { icon: Zap, title: "Self-Sufficient", desc: "We bring electricity. Water at client's residence." },
+  { icon: Zap, title: "Fully Equipped", desc: "We bring everything needed to your doorstep" },
   { icon: Clock, title: "30-45 Minutes", desc: "Quick service, no waiting around" },
   { icon: Sparkles, title: "Premium Products", desc: "Imported, professional-grade formulas" },
 ];
@@ -118,7 +118,7 @@ const FoamWashPage = () => {
     <div className="min-h-screen bg-background text-foreground">
       <SEO
         title="Doorstep Car Foam Wash Service — Velociwash Premium Cleaning"
-        description="Book a premium doorstep foam wash with Velociwash. pH-neutral snow foam, scratch-free cleaning, own water & power. Plans starting at ₹679."
+        description="Book a premium doorstep foam wash with Velociwash. pH-neutral snow foam, scratch-free cleaning, professional-grade products. Plans starting at ₹679."
         keywords="car foam wash, doorstep foam wash, snow foam car wash, premium car wash, scratch-free car wash, Velociwash foam wash, car cleaning at home"
       />
       <Navbar />
@@ -150,7 +150,7 @@ const FoamWashPage = () => {
               </h1>
 
               <p className="text-base md:text-lg text-background/75 max-w-2xl leading-relaxed mb-8">
-                Premium scratch-free foam wash at your doorstep. Water will be used at the client's residence. We bring electricity and professional-grade products.
+                Premium scratch-free foam wash at your doorstep. We bring professional-grade products and equipment. No mess, no hassle.
               </p>
 
               <div className="flex flex-wrap items-center gap-4 mb-8">

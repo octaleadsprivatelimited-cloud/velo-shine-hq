@@ -9,8 +9,8 @@ import {
 
 const faqs = [
   {
-    question: "Do you bring your own water and electricity?",
-    answer: "We bring our own portable power units and all premium cleaning products. Water will be used at the client's residence — no extra charges for that.",
+    question: "What do you bring for the wash?",
+    answer: "We bring all premium cleaning products and professional-grade equipment to your doorstep. Everything is included — no extra charges.",
   },
   {
     question: "How long does a foam wash take?",

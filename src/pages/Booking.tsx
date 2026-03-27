@@ -208,7 +208,7 @@ const BookingPage = () => {
               <div className="bg-card border border-border rounded-2xl p-6">
                 <h3 className="font-display font-bold mb-3">Why Velociwash?</h3>
                 <ul className="space-y-2.5">
-                  {["Water at client's residence", "Electricity supply", "pH-neutral premium products", "Trained professionals", "Daily photo proof", "No hidden charges"].map((item) => (
+                  {["Fully equipped service", "pH-neutral premium products", "Trained professionals", "On-time guarantee", "Daily photo proof", "No hidden charges"].map((item) => (
                     <li key={item} className="flex items-center gap-2 text-sm text-muted-foreground">
                       <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0" />
                       {item}
