@@ -229,7 +229,7 @@ const ServicesPage = () => {
             {tabs.map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => { setActiveTab(tab.id); setExpandedPlan(0); }}
+                onClick={() => { setActiveTab(tab.id); }}
                 className={`inline-flex items-center gap-2 px-6 py-3 rounded-xl font-display font-bold text-sm transition-all duration-300 ${
                   activeTab === tab.id
                     ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25"
