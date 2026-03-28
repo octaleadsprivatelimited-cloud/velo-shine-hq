@@ -4,7 +4,6 @@ import { Star, ChevronLeft, ChevronRight } from "lucide-react";
 import { getTestimonials } from "@/lib/adminService";
 import useEmblaCarousel from "embla-carousel-react";
 import { Button } from "@/components/ui/button";
-import { CircleRing, CrossPattern } from "@/components/BackgroundPatterns";
 
 const fallbackTestimonials = [
   { name: "RS", text: "Velociwash did an amazing job with foam cleaning for my car. The team was professional, efficient, and exceeded my expectations. I highly recommend them.", rating: 5, initials: "RS" },
@@ -50,45 +49,44 @@ const TestimonialsSection = () => {
   }, []);
 
   const Card = ({ t }: { t: typeof fallbackTestimonials[0] }) => (
-    <div className="bg-background p-7 flex flex-col h-full hover:bg-white/[0.02] transition-colors duration-200">
-      <div className="flex gap-0.5 mb-4">
+    <div className="bg-card p-6 flex flex-col h-full">
+      <div className="flex gap-0.5 mb-3">
         {Array.from({ length: t.rating }).map((_, i) => (
-          <Star key={i} className="w-4 h-4 fill-primary text-primary" />
+          <Star key={i} className="w-3.5 h-3.5 fill-primary text-primary" />
         ))}
       </div>
-      <p className="text-sm text-foreground/70 leading-relaxed flex-1 mb-5">
+      <p className="text-[13px] text-muted-foreground leading-relaxed flex-1 mb-4">
         "{t.text}"
       </p>
-      <div className="flex items-center gap-3">
-        <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-xs font-semibold text-primary">
+      <div className="flex items-center gap-2.5">
+        <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-[11px] font-semibold text-primary">
           {t.initials}
         </div>
-        <span className="text-sm font-semibold text-foreground">{t.name}</span>
+        <span className="text-sm font-medium">{t.name}</span>
       </div>
     </div>
   );
 
   return (
-    <section className="py-16 relative overflow-hidden bg-background">
-      <CircleRing className="absolute -top-16 -right-16 text-primary/[0.08] pointer-events-none" />
-      <CrossPattern className="absolute bottom-8 left-6 text-foreground/[0.08] pointer-events-none" />
-      <div className="container mx-auto px-6 relative z-10">
-        {/* Header — left aligned, Microsoft style */}
+    <section className="py-20 bg-background">
+      <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="flex items-end justify-between mb-10"
         >
-          <h2 className="font-display text-2xl md:text-4xl font-bold">
-            What our clients say
-          </h2>
-          {/* Desktop nav arrows */}
+          <div>
+            <p className="text-xs font-semibold text-primary uppercase tracking-[0.15em] mb-3">Testimonials</p>
+            <h2 className="font-display text-2xl md:text-[36px] font-bold">
+              What our clients say
+            </h2>
+          </div>
           <div className="hidden lg:flex gap-2">
-            <Button variant="outline" size="icon" onClick={() => emblaApi?.scrollPrev()} disabled={!canPrev} className="rounded-full border-border h-9 w-9">
+            <Button variant="outline" size="icon" onClick={() => emblaApi?.scrollPrev()} disabled={!canPrev} className="rounded-md border-border h-9 w-9">
               <ChevronLeft className="w-4 h-4" />
             </Button>
-            <Button variant="outline" size="icon" onClick={() => emblaApi?.scrollNext()} disabled={!canNext} className="rounded-full border-border h-9 w-9">
+            <Button variant="outline" size="icon" onClick={() => emblaApi?.scrollNext()} disabled={!canNext} className="rounded-md border-border h-9 w-9">
               <ChevronRight className="w-4 h-4" />
             </Button>
           </div>
@@ -96,7 +94,7 @@ const TestimonialsSection = () => {
 
         {/* Desktop carousel */}
         <div className="hidden lg:block">
-          <div className="overflow-hidden rounded-xl border border-border" ref={emblaRef}>
+          <div className="overflow-hidden rounded-md border border-border" ref={emblaRef}>
             <div className="flex">
               {testimonials.map((t, index) => (
                 <div key={t.name + index} className="flex-[0_0_33.333%] min-w-0 border-r border-border last:border-r-0">
@@ -107,10 +105,12 @@ const TestimonialsSection = () => {
           </div>
         </div>
 
-        {/* Mobile/tablet grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-border rounded-xl overflow-hidden lg:hidden">
+        {/* Mobile grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:hidden">
           {testimonials.map((t, index) => (
-            <Card key={t.name + index} t={t} />
+            <div key={t.name + index} className="border border-border rounded-md overflow-hidden">
+              <Card t={t} />
+            </div>
           ))}
         </div>
       </div>

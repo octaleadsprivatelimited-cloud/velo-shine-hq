@@ -1,102 +1,52 @@
 import { motion } from "framer-motion";
-import { UserPlus, CalendarCheck, Car, Sparkles, ChevronRight } from "lucide-react";
-import { CrossPattern, HexGrid } from "@/components/BackgroundPatterns";
+import { UserPlus, CalendarCheck, Car, Sparkles } from "lucide-react";
 
 const steps = [
-  {
-    num: "01",
-    icon: UserPlus,
-    title: "Sign Up",
-    description: "Create your account in seconds to get started.",
-  },
-  {
-    num: "02",
-    icon: CalendarCheck,
-    title: "Book a Wash",
-    description: "Pick your service, date & time slot that works for you.",
-  },
-  {
-    num: "03",
-    icon: Car,
-    title: "We Come to You",
-    description: "Our team arrives at your doorstep fully equipped.",
-  },
-  {
-    num: "04",
-    icon: Sparkles,
-    title: "Enjoy the Shine",
-    description: "Sit back and enjoy your sparkling clean car!",
-  },
+  { num: "1", icon: UserPlus, title: "Sign Up", description: "Create your account in seconds to get started." },
+  { num: "2", icon: CalendarCheck, title: "Book a Wash", description: "Pick your service, date & time slot." },
+  { num: "3", icon: Car, title: "We Come to You", description: "Our team arrives fully equipped at your doorstep." },
+  { num: "4", icon: Sparkles, title: "Enjoy the Shine", description: "Sit back and enjoy your sparkling clean car!" },
 ];
 
 const HowItWorksSection = () => {
   return (
-    <section className="py-16 relative overflow-hidden bg-secondary/30">
-      <CrossPattern className="absolute top-10 left-6 text-foreground/[0.08] pointer-events-none" />
-      <HexGrid className="absolute -bottom-10 -right-10 text-primary/[0.1] pointer-events-none" />
-      <div className="absolute inset-0 noise opacity-5" />
-      <div className="container mx-auto px-6 relative z-10">
+    <section className="py-20 bg-secondary/40">
+      <div className="container mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center max-w-2xl mx-auto mb-12"
+          className="text-center max-w-xl mx-auto mb-12"
         >
-          <span className="inline-block text-xs font-bold text-primary uppercase tracking-[0.2em] mb-4">
-            How It Works
-          </span>
-          <h2 className="font-display text-3xl md:text-5xl font-extrabold mb-3 leading-tight">
-            Simple Process
+          <p className="text-xs font-semibold text-primary uppercase tracking-[0.15em] mb-3">How It Works</p>
+          <h2 className="font-display text-2xl md:text-[36px] font-bold mb-3 leading-tight">
+            Simple 4-step process
           </h2>
-          <p className="text-base text-muted-foreground leading-relaxed">
-            No complicated steps. Just four simple actions to a sparkling clean car.
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            No complicated steps. Just four simple actions to a clean car.
           </p>
         </motion.div>
 
-        <div className="max-w-5xl mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {steps.map((step, i) => (
-              <motion.div
-                key={step.num}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.12, duration: 0.45 }}
-                className="relative group"
-              >
-                {/* Arrow connector — desktop only */}
-                {i < steps.length - 1 && (
-                  <div className="hidden lg:flex absolute -right-3 top-12 z-20 text-border">
-                    <ChevronRight className="w-5 h-5" />
-                  </div>
-                )}
-
-                <div className="relative bg-card border border-border rounded-xl p-6 h-full hover:border-primary/30 hover:shadow-md transition-all duration-300 overflow-hidden">
-                  {/* Large faded number background */}
-                  <span className="absolute -top-2 -right-1 font-display text-[80px] font-black text-foreground/[0.06] leading-none select-none pointer-events-none">
-                    {step.num}
-                  </span>
-
-                  {/* Icon */}
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-4 group-hover:bg-primary group-hover:border-primary transition-all duration-300">
-                    <step.icon className="w-5 h-5 text-primary group-hover:text-primary-foreground transition-colors duration-300" />
-                  </div>
-
-                  {/* Step label */}
-                  <span className="inline-block text-[11px] font-bold text-primary uppercase tracking-widest mb-2">
-                    Step {step.num}
-                  </span>
-
-                  <h3 className="font-display text-lg font-bold mb-2">
-                    {step.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {step.description}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+          {steps.map((step, i) => (
+            <motion.div
+              key={step.num}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="bg-card border border-border rounded-md p-6 text-center hover:shadow-md transition-shadow"
+            >
+              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                <step.icon className="w-5 h-5 text-primary" />
+              </div>
+              <span className="inline-block text-[11px] font-semibold text-muted-foreground uppercase tracking-wider mb-1.5">
+                Step {step.num}
+              </span>
+              <h3 className="font-display text-base font-semibold mb-1.5">{step.title}</h3>
+              <p className="text-[13px] text-muted-foreground leading-relaxed">{step.description}</p>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

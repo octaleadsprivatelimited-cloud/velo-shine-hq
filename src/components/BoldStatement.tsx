@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { Clock, Sparkles, Shield, ThumbsUp } from "lucide-react";
-import { DotGrid, DiagonalLines } from "@/components/BackgroundPatterns";
 
 const features = [
   { icon: Clock, title: "On-Time Service", desc: "We arrive at your doorstep on the scheduled time, every time." },
@@ -11,40 +10,35 @@ const features = [
 
 const BoldStatement = () => {
   return (
-    <section className="relative py-16 overflow-hidden bg-foreground">
-      <DotGrid className="absolute top-6 right-10 text-white/[0.1] pointer-events-none" />
-      <DiagonalLines className="absolute -bottom-10 -left-10 text-primary/[0.1] pointer-events-none" />
-      <div className="container mx-auto px-6 relative z-10">
-        {/* Header */}
+    <section className="py-20 bg-foreground">
+      <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-10"
+          className="text-center max-w-xl mx-auto mb-12"
         >
-          <h2 className="font-display text-2xl md:text-4xl font-bold text-white">
+          <p className="text-xs font-semibold text-primary uppercase tracking-[0.15em] mb-3">Why Us</p>
+          <h2 className="font-display text-2xl md:text-[36px] font-bold text-white leading-tight">
             Why choose Velociwash
           </h2>
         </motion.div>
 
-        {/* Feature grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-white/[0.08] rounded-xl overflow-hidden">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
           {features.map((f, i) => (
             <motion.div
               key={f.title}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.08, duration: 0.4 }}
-              className="relative bg-foreground p-7 hover:bg-white/[0.04] transition-colors duration-200 group cursor-default"
+              transition={{ delay: i * 0.08 }}
+              className="text-center p-6 rounded-md border border-white/10 bg-white/[0.04] hover:bg-white/[0.06] transition-colors"
             >
-              <f.icon className="w-6 h-6 text-primary mb-5" />
-              <h3 className="font-display text-base font-semibold text-white mb-2">
-                {f.title}
-              </h3>
-              <p className="text-sm text-white/50 leading-relaxed">
-                {f.desc}
-              </p>
+              <div className="w-11 h-11 rounded-full bg-primary/15 flex items-center justify-center mx-auto mb-4">
+                <f.icon className="w-5 h-5 text-primary" />
+              </div>
+              <h3 className="font-display text-sm font-semibold text-white mb-1.5">{f.title}</h3>
+              <p className="text-[13px] text-white/50 leading-relaxed">{f.desc}</p>
             </motion.div>
           ))}
         </div>

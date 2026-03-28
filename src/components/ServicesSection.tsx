@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { ArrowRight, Droplets, Car, Wrench } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { DotGrid, CircleRing } from "@/components/BackgroundPatterns";
 import foamWashImg from "@/assets/service-foam-wash.jpg";
 import interiorImg from "@/assets/service-interior.jpg";
 
@@ -35,76 +34,68 @@ const services = [
 
 const ServicesSection = () => {
   return (
-    <section className="py-16 relative bg-background overflow-hidden">
-      <DotGrid className="absolute top-8 right-8 text-foreground/[0.08] pointer-events-none" />
-      <CircleRing className="absolute -bottom-20 -left-20 text-primary/[0.08] pointer-events-none" />
-      <div className="container mx-auto px-6 relative z-10">
-        {/* Header — centered, clean */}
+    <section className="py-20 bg-background">
+      <div className="container mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center max-w-2xl mx-auto mb-10"
+          className="text-center max-w-xl mx-auto mb-12"
         >
-          <span className="inline-block text-xs font-bold text-primary uppercase tracking-[0.2em] mb-4">
-            Our Services
-          </span>
-          <h2 className="font-display text-3xl md:text-5xl font-extrabold mb-4 leading-tight">
+          <p className="text-xs font-semibold text-primary uppercase tracking-[0.15em] mb-3">Our Services</p>
+          <h2 className="font-display text-2xl md:text-[36px] font-bold mb-3 leading-tight">
             What we offer
           </h2>
-          <p className="text-base text-muted-foreground leading-relaxed">
-            Professional car care solutions delivered to your doorstep. Choose the service that fits your needs.
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            Professional car care solutions delivered to your doorstep.
           </p>
         </motion.div>
 
-        {/* Cards grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {services.map((service, i) => (
             <motion.div
               key={service.title}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.12, duration: 0.5 }}
+              transition={{ delay: i * 0.1 }}
             >
               <Link to={service.href} className="block group h-full">
-                <div className="relative h-full rounded-xl overflow-hidden bg-card border border-border shadow-sm hover:shadow-lg transition-shadow duration-300">
+                <div className="h-full rounded-md overflow-hidden bg-card border border-border hover:shadow-md transition-shadow duration-200">
                   {/* Image */}
-                  <div className="relative h-52 overflow-hidden bg-muted">
+                  <div className="relative h-48 overflow-hidden bg-muted">
                     {service.image ? (
                       <img
                         src={service.image}
                         alt={service.title}
                         loading="lazy"
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-300"
                       />
                     ) : (
-                      <div className="w-full h-full bg-muted flex items-center justify-center">
-                        <service.icon className="w-14 h-14 text-muted-foreground/30" />
+                      <div className="w-full h-full bg-secondary flex items-center justify-center">
+                        <service.icon className="w-12 h-12 text-muted-foreground/25" />
                       </div>
                     )}
                     {service.badge && (
-                      <span className="absolute top-4 left-4 px-3 py-1 rounded text-[11px] font-bold uppercase tracking-wider bg-primary text-primary-foreground">
+                      <span className="absolute top-3 left-3 px-2.5 py-1 rounded text-[10px] font-semibold uppercase tracking-wider bg-primary text-primary-foreground">
                         {service.badge}
                       </span>
                     )}
                   </div>
 
                   {/* Content */}
-                  <div className="p-6">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                        <service.icon className="w-[18px] h-[18px] text-primary" />
-                      </div>
-                      <h3 className="font-display text-lg font-bold leading-snug">
+                  <div className="p-5">
+                    <div className="flex items-center gap-2.5 mb-2">
+                      <service.icon className="w-4 h-4 text-primary shrink-0" />
+                      <h3 className="font-display text-[15px] font-semibold leading-snug">
                         {service.title}
                       </h3>
                     </div>
-                    <p className="text-sm text-muted-foreground leading-relaxed mb-5">
+                    <p className="text-[13px] text-muted-foreground leading-relaxed mb-4">
                       {service.description}
                     </p>
-                    <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary group-hover:gap-2.5 transition-all duration-300">
-                      Learn more <ArrowRight className="w-4 h-4" />
+                    <span className="inline-flex items-center gap-1 text-[13px] font-medium text-primary group-hover:gap-2 transition-all">
+                      Learn more <ArrowRight className="w-3.5 h-3.5" />
                     </span>
                   </div>
                 </div>
@@ -113,16 +104,15 @@ const ServicesSection = () => {
           ))}
         </div>
 
-        {/* CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           className="text-center mt-10"
         >
           <Link to="/services">
-            <Button variant="outline" size="lg" className="rounded-lg font-display font-semibold px-8 h-12">
-              View all services <ArrowRight className="w-4 h-4 ml-1" />
+            <Button variant="outline" size="lg" className="rounded-md font-display font-medium text-sm px-6 h-11">
+              View all services <ArrowRight className="w-3.5 h-3.5 ml-1" />
             </Button>
           </Link>
         </motion.div>

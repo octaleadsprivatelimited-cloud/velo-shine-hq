@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronRight } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import logo from "@/assets/logo.png";
 
 const navLinks = [
@@ -15,7 +15,6 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
-  const isHome = location.pathname === "/";
   const showWhiteText = !scrolled;
 
   useEffect(() => {
@@ -30,27 +29,27 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-white/95 backdrop-blur-xl shadow-lg shadow-black/5 py-2 border-b border-border"
-          : "bg-transparent py-4"
+          ? "bg-white/95 backdrop-blur-md shadow-sm py-2 border-b border-border"
+          : "bg-transparent py-3"
       }`}
     >
       <div className="container mx-auto flex items-center justify-between px-6">
-        <Link to="/" className="flex items-center group">
-          <img src={logo} alt="Velociwash Logo" className={`h-20 -my-4 w-auto transition-all duration-500 ${scrolled ? 'brightness-0' : 'brightness-0 invert'}`} />
+        <Link to="/" className="flex items-center">
+          <img src={logo} alt="Velociwash Logo" className={`h-16 -my-2 w-auto transition-all duration-300 ${scrolled ? 'brightness-0' : 'brightness-0 invert'}`} />
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-1">
+        <div className="hidden md:flex items-center gap-0.5">
           <Link
             to="/"
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+            className={`px-3.5 py-2 rounded-md text-sm font-medium transition-colors ${
               location.pathname === "/"
-                ? "text-primary bg-primary/10"
+                ? "text-primary"
                 : showWhiteText
-                  ? "text-white/80 hover:text-white hover:bg-white/10"
-                  : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
+                  ? "text-white/80 hover:text-white"
+                  : "text-muted-foreground hover:text-foreground"
             }`}
           >
             Home
@@ -60,12 +59,12 @@ const Navbar = () => {
             <Link
               key={link.href}
               to={link.href}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+              className={`px-3.5 py-2 rounded-md text-sm font-medium transition-colors ${
                 location.pathname === link.href
-                  ? "text-primary bg-primary/10"
+                  ? "text-primary"
                 : showWhiteText
-                    ? "text-white/80 hover:text-white hover:bg-white/10"
-                    : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
+                    ? "text-white/80 hover:text-white"
+                    : "text-muted-foreground hover:text-foreground"
               }`}
             >
               {link.label}
@@ -74,23 +73,25 @@ const Navbar = () => {
 
           <Link
             to="/booking"
-            className="ml-3 inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground font-display font-semibold text-sm hover:bg-primary/90 transition-all btn-glow"
+            className="ml-4 inline-flex items-center px-5 py-2 rounded-md bg-primary text-primary-foreground font-display font-semibold text-sm hover:bg-primary/90 transition-colors"
           >
             Book Now
           </Link>
         </div>
 
         {/* Mobile Menu Button */}
-        <div className="flex items-center gap-2.5 md:hidden">
+        <div className="flex items-center gap-2 md:hidden">
           <Link
             to="/booking"
-            className="inline-flex items-center px-3.5 py-1.5 rounded-lg bg-primary text-primary-foreground font-display font-semibold text-xs hover:bg-primary/90 transition-all btn-glow"
+            className="inline-flex items-center px-3 py-1.5 rounded-md bg-primary text-primary-foreground font-display font-semibold text-xs hover:bg-primary/90 transition-colors"
           >
             Book Now
           </Link>
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="w-9 h-9 rounded-lg bg-secondary/50 border border-border text-foreground flex items-center justify-center hover:bg-secondary hover:border-primary/30 transition-all"
+            className={`w-9 h-9 rounded-md flex items-center justify-center transition-colors ${
+              scrolled ? 'bg-secondary text-foreground' : 'bg-white/15 text-white'
+            }`}
           >
             {isOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
           </button>
@@ -104,41 +105,35 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden bg-foreground/95 backdrop-blur-xl border-t border-white/10 shadow-xl mt-2"
+            transition={{ duration: 0.2 }}
+            className="md:hidden bg-white border-t border-border shadow-lg"
           >
-            <div className="flex flex-col p-5 max-w-lg mx-auto space-y-1">
+            <div className="flex flex-col p-4 space-y-0.5">
               <Link
                 to="/"
-                className={`flex items-center justify-between px-4 py-3.5 rounded-xl text-sm font-medium transition-all group ${
-                  location.pathname === "/"
-                    ? "text-primary bg-primary/15 border border-primary/20"
-                    : "text-white/70 hover:text-white hover:bg-white/10"
+                className={`px-4 py-3 rounded-md text-sm font-medium transition-colors ${
+                  location.pathname === "/" ? "text-primary bg-primary/5" : "text-foreground hover:bg-secondary"
                 }`}
               >
                 Home
-                <ChevronRight className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
               </Link>
 
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   to={link.href}
-                  className={`flex items-center justify-between px-4 py-3.5 rounded-xl text-sm font-medium transition-all group ${
-                    location.pathname === link.href
-                      ? "text-primary bg-primary/15 border border-primary/20"
-                      : "text-white/70 hover:text-white hover:bg-white/10"
+                  className={`px-4 py-3 rounded-md text-sm font-medium transition-colors ${
+                    location.pathname === link.href ? "text-primary bg-primary/5" : "text-foreground hover:bg-secondary"
                   }`}
                 >
                   {link.label}
-                  <ChevronRight className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
                 </Link>
               ))}
 
-              <div className="pt-3">
+              <div className="pt-2">
                 <Link
                   to="/booking"
-                  className="block px-4 py-3.5 rounded-xl text-sm font-bold bg-primary text-primary-foreground text-center hover:bg-primary/90 transition-colors btn-glow"
+                  className="block px-4 py-3 rounded-md text-sm font-semibold bg-primary text-primary-foreground text-center hover:bg-primary/90 transition-colors"
                 >
                   Schedule a Wash
                 </Link>
