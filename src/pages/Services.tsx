@@ -182,7 +182,6 @@ type Tab = "foam-wash" | "regular" | "general";
 
 const ServicesPage = () => {
   const [activeTab, setActiveTab] = useState<Tab>("foam-wash");
-  const [expandedPlan, setExpandedPlan] = useState<number | null>(0);
 
   const tabs: { id: Tab; label: string; icon: React.ElementType }[] = [
     { id: "foam-wash", label: "Foam Wash", icon: Droplets },
