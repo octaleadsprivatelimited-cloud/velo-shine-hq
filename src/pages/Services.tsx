@@ -182,7 +182,6 @@ type Tab = "foam-wash" | "regular" | "general";
 
 const ServicesPage = () => {
   const [activeTab, setActiveTab] = useState<Tab>("foam-wash");
-  const [expandedPlan, setExpandedPlan] = useState<number | null>(0);
 
   const tabs: { id: Tab; label: string; icon: React.ElementType }[] = [
     { id: "foam-wash", label: "Foam Wash", icon: Droplets },
@@ -230,7 +229,7 @@ const ServicesPage = () => {
             {tabs.map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => { setActiveTab(tab.id); setExpandedPlan(0); }}
+                onClick={() => { setActiveTab(tab.id); }}
                 className={`inline-flex items-center gap-2 px-6 py-3 rounded-xl font-display font-bold text-sm transition-all duration-300 ${
                   activeTab === tab.id
                     ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25"
@@ -258,22 +257,26 @@ const ServicesPage = () => {
                 <p className="text-muted-foreground mt-3 max-w-md mx-auto">All plans include full interior + exterior service.</p>
               </div>
 
-              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-6xl mx-auto">
+              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border max-w-6xl mx-auto rounded-xl overflow-hidden border border-border">
                 {foamWashPlans.map((plan, i) => (
                   <motion.div
                     key={plan.name}
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.08 }}
-                    className={`bg-card border rounded-2xl p-6 transition-all duration-500 card-shine flex flex-col ${
-                      plan.popular ? "border-primary/40 glow-border" : "border-border hover:border-primary/20"
+                    transition={{ delay: i * 0.06 }}
+                    className={`bg-card p-6 flex flex-col relative ${
+                      plan.popular ? "bg-primary/[0.03]" : ""
                     }`}
                   >
-                    <div className="mb-4">
+                    {plan.popular && (
+                      <div className="absolute top-0 left-0 right-0 h-[3px] bg-primary" />
+                    )}
+
+                    <div className="mb-5">
                       <div className="flex items-center gap-2 mb-1">
-                        <h3 className="font-display text-lg font-bold">{plan.name}</h3>
+                        <h3 className="font-display text-base font-bold">{plan.name}</h3>
                         {plan.popular && (
-                          <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-primary/15 text-primary border border-primary/25">
+                          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-primary/10 text-primary">
                             Popular
                           </span>
                         )}
@@ -281,43 +284,36 @@ const ServicesPage = () => {
                       <p className="text-xs text-muted-foreground">{plan.subtitle}</p>
                     </div>
 
-                    <div className="flex items-baseline gap-2 mb-1">
-                      <span className="text-xs text-muted-foreground line-through">{plan.originalPrice}</span>
-                      <span className="font-display text-3xl font-extrabold text-primary">{plan.price}</span>
+                    <div className="mb-1">
+                      <span className="text-xs text-muted-foreground line-through mr-2">{plan.originalPrice}</span>
+                      <span className="font-display text-2xl font-extrabold text-foreground">{plan.price}</span>
                     </div>
                     {plan.discount && (
                       <div className="flex items-center gap-2 mb-1">
-                        <span className="text-[10px] font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-full border border-primary/20">{plan.discount}</span>
+                        <span className="text-[10px] font-bold text-primary bg-primary/10 px-2 py-0.5 rounded">{plan.discount}</span>
                         {plan.perWash && <span className="text-[11px] text-muted-foreground">{plan.perWash}</span>}
                       </div>
                     )}
 
-                    <div className="mt-4 mb-4 flex-1">
-                      <button
-                        onClick={() => setExpandedPlan(expandedPlan === i ? null : i)}
-                        className="text-xs text-primary font-semibold hover:text-primary/80 transition-colors"
-                      >
-                        {expandedPlan === i ? "Hide" : "Show"} services
-                      </button>
-                      {expandedPlan === i && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: "auto" }}
-                          className="mt-3 space-y-1.5"
-                        >
-                          {plan.features.map((f) => (
-                            <div key={f} className="flex items-start gap-1.5 text-xs">
-                              <CheckCircle2 className="w-3 h-3 text-primary shrink-0 mt-0.5" />
-                              <span className="text-muted-foreground">{f}</span>
-                            </div>
-                          ))}
-                        </motion.div>
-                      )}
+                    <div className="border-t border-border my-4" />
+
+                    <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground mb-3">What's included</p>
+                    <div className="space-y-2 flex-1">
+                      {plan.features.map((f) => (
+                        <div key={f} className="flex items-start gap-2 text-[13px]">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
+                          <span className="text-muted-foreground">{f}</span>
+                        </div>
+                      ))}
                     </div>
 
-                    <Link to="/booking" className="mt-auto">
-                      <Button className={`w-full font-display font-bold h-11 rounded-xl text-sm ${plan.popular ? "bg-primary text-primary-foreground hover:bg-primary/90 btn-glow" : "bg-secondary text-foreground hover:bg-secondary/80"}`}>
-                        Book Now <ArrowRight className="w-4 h-4 ml-1" />
+                    <Link to="/booking" className="mt-6">
+                      <Button className={`w-full font-display font-semibold h-10 rounded-lg text-sm ${
+                        plan.popular
+                          ? "bg-primary text-primary-foreground hover:bg-primary/90"
+                          : "bg-secondary text-foreground hover:bg-secondary/80"
+                      }`}>
+                        Book Now <ArrowRight className="w-3.5 h-3.5 ml-1" />
                       </Button>
                     </Link>
                   </motion.div>
