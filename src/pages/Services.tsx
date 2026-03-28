@@ -337,51 +337,64 @@ const ServicesPage = () => {
                 <p className="text-muted-foreground mt-3 max-w-md mx-auto">Affordable daily or alternate-day cleaning subscriptions.</p>
               </div>
 
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border max-w-5xl mx-auto rounded-xl overflow-hidden border border-border">
                 {regularPlans.map((plan, i) => (
                   <motion.div
                     key={plan.name}
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.1 }}
-                    className={`bg-card border rounded-2xl p-7 hover:border-primary/30 transition-all duration-500 card-shine group flex flex-col ${
-                      plan.popular ? "border-primary/40 glow-border" : "border-border"
+                    transition={{ delay: i * 0.06 }}
+                    className={`bg-card p-6 flex flex-col relative ${
+                      plan.popular ? "bg-primary/[0.03]" : ""
                     }`}
                   >
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="w-12 h-12 rounded-2xl bg-primary/10 border border-primary/25 flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-all duration-300">
-                        <plan.icon className="w-5 h-5 text-primary group-hover:text-primary-foreground transition-colors" />
-                      </div>
-                      {plan.popular && (
-                        <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-primary/15 text-primary border border-primary/25">
-                          Popular
-                        </span>
-                      )}
-                    </div>
-                    <h3 className="font-display text-xl font-bold mb-1">{plan.name}</h3>
-                    <p className="text-xs text-muted-foreground mb-4">{plan.subtitle}</p>
+                    {plan.popular && (
+                      <div className="absolute top-0 left-0 right-0 h-[3px] bg-primary" />
+                    )}
 
-                    <div className="flex items-baseline gap-2 mb-1">
-                      <span className="text-sm text-muted-foreground line-through">{plan.originalPrice}</span>
-                      <span className="font-display text-3xl font-extrabold text-primary">{plan.price}</span>
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                        <plan.icon className="w-5 h-5 text-primary" />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <h3 className="font-display text-base font-bold">{plan.name}</h3>
+                          {plan.popular && (
+                            <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-primary/10 text-primary">
+                              Popular
+                            </span>
+                          )}
+                        </div>
+                        <p className="text-xs text-muted-foreground">{plan.subtitle}</p>
+                      </div>
+                    </div>
+
+                    <div className="mb-1">
+                      <span className="text-xs text-muted-foreground line-through mr-2">{plan.originalPrice}</span>
+                      <span className="font-display text-2xl font-extrabold text-foreground">{plan.price}</span>
                       <span className="text-sm text-muted-foreground">/mo</span>
                     </div>
-                    <p className="text-sm text-foreground mb-5">{plan.tagline}</p>
+                    <p className="text-sm text-foreground mb-4">{plan.tagline}</p>
 
-                    <div className="space-y-2 mb-6 flex-1">
+                    <div className="border-t border-border my-3" />
+
+                    <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground mb-3">What's included</p>
+                    <div className="space-y-2 flex-1">
                       {plan.features.map((f) => (
-                        <div key={f} className="flex items-start gap-2 text-sm">
+                        <div key={f} className="flex items-start gap-2 text-[13px]">
                           <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
                           <span className="text-muted-foreground">{f}</span>
                         </div>
                       ))}
                     </div>
 
-                    <Link to="/booking" className="mt-auto">
-                      <Button className={`w-full font-display font-bold h-12 rounded-xl ${
-                        plan.popular ? "bg-primary text-primary-foreground hover:bg-primary/90 btn-glow" : "bg-secondary text-foreground hover:bg-secondary/80"
+                    <Link to="/booking" className="mt-6">
+                      <Button className={`w-full font-display font-semibold h-10 rounded-lg text-sm ${
+                        plan.popular
+                          ? "bg-primary text-primary-foreground hover:bg-primary/90"
+                          : "bg-secondary text-foreground hover:bg-secondary/80"
                       }`}>
-                        Subscribe Now <ArrowRight className="w-4 h-4 ml-2" />
+                        Subscribe Now <ArrowRight className="w-3.5 h-3.5 ml-1" />
                       </Button>
                     </Link>
                   </motion.div>
@@ -405,32 +418,35 @@ const ServicesPage = () => {
                 <p className="text-muted-foreground mt-3 max-w-md mx-auto">Full mechanical care at your doorstep with genuine spares.</p>
               </div>
 
-              <div className="max-w-2xl mx-auto">
-                <div className="bg-card border border-border rounded-2xl p-8 md:p-10 card-shine">
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="w-14 h-14 rounded-2xl bg-primary/10 border border-primary/25 flex items-center justify-center">
-                      <Wrench className="w-7 h-7 text-primary" />
+              <div className="max-w-3xl mx-auto">
+                <div className="bg-card border border-border rounded-xl overflow-hidden">
+                  <div className="p-6 flex items-center gap-4 border-b border-border">
+                    <div className="w-11 h-11 rounded-lg bg-primary/10 flex items-center justify-center">
+                      <Wrench className="w-5 h-5 text-primary" />
                     </div>
                     <div>
-                      <h3 className="font-display text-2xl font-bold">Doorstep Car General Service</h3>
-                      <p className="text-sm text-muted-foreground">Comprehensive car servicing at your location</p>
+                      <h3 className="font-display text-lg font-bold">Doorstep Car General Service</h3>
+                      <p className="text-xs text-muted-foreground">Comprehensive car servicing at your location</p>
                     </div>
                   </div>
 
-                  <div className="grid sm:grid-cols-2 gap-3 mb-8">
-                    {generalServiceFeatures.map((f) => (
-                      <div key={f} className="flex items-center gap-2.5 text-sm">
-                        <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
-                        <span className="text-muted-foreground">{f}</span>
-                      </div>
-                    ))}
+                  <div className="p-6">
+                    <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground mb-4">What's included</p>
+                    <div className="grid sm:grid-cols-2 gap-3 mb-6">
+                      {generalServiceFeatures.map((f) => (
+                        <div key={f} className="flex items-start gap-2 text-[13px]">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
+                          <span className="text-muted-foreground">{f}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
 
-                  <div className="border-t border-border pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+                  <div className="border-t border-border p-6 flex flex-col sm:flex-row items-center justify-between gap-4 bg-secondary/30">
                     <p className="text-sm text-muted-foreground">Contact us for a custom quote based on your car model and service needs.</p>
                     <Link to="/booking">
-                      <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-display font-bold h-12 px-8 rounded-xl btn-glow whitespace-nowrap">
-                        Get Quote <ArrowRight className="w-4 h-4 ml-2" />
+                      <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-display font-semibold h-10 px-8 rounded-lg whitespace-nowrap">
+                        Get Quote <ArrowRight className="w-3.5 h-3.5 ml-1" />
                       </Button>
                     </Link>
                   </div>
