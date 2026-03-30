@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 
 const ContactSection = () => {
   return (
-    <section className="py-14 bg-primary">
+    <section className="py-14 bg-foreground">
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
