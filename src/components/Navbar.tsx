@@ -15,7 +15,19 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
-  const showWhiteText = !scrolled;
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location.pathname]);
+
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  const showWhiteText = !scrolled || isMobile;
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -31,13 +43,13 @@ const Navbar = () => {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-white/95 backdrop-blur-md shadow-sm py-2 border-b border-border"
+          ? "md:bg-white/95 bg-[hsl(0,0%,5%)] backdrop-blur-md shadow-sm py-2 md:border-b md:border-border"
           : "bg-transparent py-3"
       }`}
     >
       <div className="container mx-auto flex items-center justify-between px-6">
         <Link to="/" className="flex items-center">
-          <img src={logo} alt="Velociwash Logo" className={`h-16 -my-2 w-auto transition-all duration-300 ${scrolled ? 'brightness-0' : 'brightness-0 invert'}`} />
+          <img src={logo} alt="Velociwash Logo" className={`h-16 -my-2 w-auto transition-all duration-300 ${scrolled ? 'md:brightness-0 brightness-0 invert' : 'brightness-0 invert'}`} />
         </Link>
 
         {/* Desktop Nav */}
@@ -89,9 +101,7 @@ const Navbar = () => {
           </Link>
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className={`w-9 h-9 rounded-md flex items-center justify-center transition-colors ${
-              scrolled ? 'bg-secondary text-foreground' : 'bg-white/15 text-white'
-            }`}
+            className="w-9 h-9 rounded-md flex items-center justify-center transition-colors bg-white/15 text-white"
           >
             {isOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
           </button>
