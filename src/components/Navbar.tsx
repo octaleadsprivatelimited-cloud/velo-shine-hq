@@ -73,7 +73,7 @@ const Navbar = () => {
 
           <Link
             to="/booking"
-            className="ml-4 inline-flex items-center px-5 py-2 rounded-md bg-primary text-primary-foreground font-display font-semibold text-sm hover:bg-primary/90 transition-colors"
+            className="ml-4 inline-flex items-center px-5 py-2 rounded-md bg-accent text-accent-foreground font-display font-semibold text-sm hover:bg-accent/90 transition-colors"
           >
             Book Now
           </Link>
