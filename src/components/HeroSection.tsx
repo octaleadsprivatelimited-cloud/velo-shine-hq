@@ -6,7 +6,7 @@ import heroImage from "@/assets/hero-car-wash.jpg";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-[85vh] flex items-center overflow-hidden">
+    <section className="relative min-h-[50vh] md:min-h-[85vh] flex items-center overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
         <img
@@ -21,7 +21,7 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-foreground/80 via-foreground/40 to-transparent" />
       </div>
 
-      <div className="container mx-auto px-6 relative z-10 pt-24">
+      <div className="container mx-auto px-6 relative z-10 pt-16 md:pt-24">
         <div className="max-w-2xl">
           {/* Badge */}
           <motion.div
