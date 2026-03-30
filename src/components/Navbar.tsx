@@ -83,7 +83,7 @@ const Navbar = () => {
         <div className="flex items-center gap-2 md:hidden">
           <Link
             to="/booking"
-            className="inline-flex items-center px-3 py-1.5 rounded-md bg-primary text-primary-foreground font-display font-semibold text-xs hover:bg-primary/90 transition-colors"
+            className="inline-flex items-center px-3 py-1.5 rounded-md bg-accent text-accent-foreground font-display font-semibold text-xs hover:bg-accent/90 transition-colors"
           >
             Book Now
           </Link>
