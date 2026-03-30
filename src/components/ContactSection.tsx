@@ -25,7 +25,7 @@ const ContactSection = () => {
             <Link to="/booking">
               <Button
                 size="lg"
-                className="bg-white text-primary hover:bg-white/90 font-display font-semibold px-7 h-11 rounded-md text-sm"
+                className="bg-accent text-accent-foreground hover:bg-accent/90 font-display font-semibold px-7 h-11 rounded-md text-sm"
               >
                 Schedule a Wash <ArrowRight className="w-4 h-4 ml-1.5" />
               </Button>
