@@ -40,7 +40,7 @@ const HeroSection = () => {
             className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-[56px] font-extrabold leading-[1.1] mb-5 text-white"
           >
             Doorstep car wash,{" "}
-            <span className="text-primary">done right.</span>
+            <span className="text-primary" style={{ color: 'hsl(48 100% 50%)' }}>done right.</span>
           </motion.h1>
 
           <motion.p
