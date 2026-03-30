@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Clock, Sparkles, Shield, ThumbsUp } from "lucide-react";
+import whyUsBg from "@/assets/why-us-bg.jpg";
 
 const features = [
   { icon: Clock, title: "On-Time Service", desc: "We arrive at your doorstep on the scheduled time, every time." },
@@ -10,8 +11,10 @@ const features = [
 
 const BoldStatement = () => {
   return (
-    <section className="py-20 bg-foreground">
-      <div className="container mx-auto px-6">
+    <section className="py-20 relative overflow-hidden">
+      <img src={whyUsBg} alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" width={1920} height={1080} />
+      <div className="absolute inset-0 bg-foreground/85" />
+      <div className="container mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
