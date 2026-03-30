@@ -4,6 +4,7 @@ import {
   LayoutDashboard, CalendarCheck, Wrench, Image, MessageSquareQuote,
   LogOut, Menu, X, ChevronRight
 } from "lucide-react";
+import logo from "@/assets/logo.png";
 import { onAuthStateChanged, signInWithEmailAndPassword, signOut, type User } from "firebase/auth";
 import { auth } from "@/lib/firebase";
 import { Button } from "@/components/ui/button";
