@@ -40,7 +40,7 @@ const AdminLogin = ({ email, password, onEmailChange, onPasswordChange, onSubmit
                 type="email"
                 value={email}
                 onChange={(e) => onEmailChange(e.target.value)}
-                placeholder="admin@velociwash.com"
+                placeholder=""
                 className="h-12 bg-secondary border-border text-foreground placeholder:text-muted-foreground"
                 disabled={loading}
               />
