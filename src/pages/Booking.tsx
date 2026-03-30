@@ -44,15 +44,25 @@ const BookingPage = () => {
       toast({ title: "Please fill all required fields", variant: "destructive" });
       return;
     }
+
+    // Save to dashboard
     try {
       const { addBooking } = await import("@/lib/adminService");
       await addBooking({ ...form, date: format(date, "PPP") });
-      toast({ title: "Booking confirmed!", description: "We'll contact you shortly to confirm your slot." });
-      setSubmitted(true);
     } catch (error) {
       console.error("Failed to save booking:", error);
-      toast({ title: "Something went wrong", variant: "destructive" });
     }
+
+    // Build WhatsApp message
+    const formattedDate = format(date, "PPP");
+    const message = `Hi Velociwash! I'd like to book a service.\n\n*Name:* ${form.name}\n*Phone:* ${form.phone}\n*Car:* ${form.carType}${form.carModel ? ` - ${form.carModel}` : ""}\n*Service:* ${form.service}\n*Date:* ${formattedDate}\n*Time:* ${form.timeSlot}\n*Address:* ${form.address}${form.notes ? `\n*Notes:* ${form.notes}` : ""}`;
+    const whatsappUrl = `https://wa.me/919014737381?text=${encodeURIComponent(message)}`;
+
+    toast({ title: "Booking submitted!", description: "Redirecting to WhatsApp..." });
+    setSubmitted(true);
+
+    // Redirect to WhatsApp
+    window.open(whatsappUrl, "_blank");
   };
 
   if (submitted) {
