@@ -14,10 +14,10 @@ const ContactSection = () => {
           className="flex flex-col md:flex-row items-center justify-between gap-6"
         >
           <div>
-            <h2 className="font-display text-xl md:text-3xl font-bold text-primary-foreground mb-1.5">
+            <h2 className="font-display text-xl md:text-3xl font-bold text-white mb-1.5">
               Ready to get your car sparkling?
             </h2>
-            <p className="text-primary-foreground/70 text-sm">
+            <p className="text-white/60 text-sm">
               Book your first wash today and experience the Velociwash difference.
             </p>
           </div>
