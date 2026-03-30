@@ -62,13 +62,17 @@ const Footer = () => {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-white/10 py-5 flex flex-col md:flex-row items-center justify-between gap-3">
-          <span className="text-xs text-white/40">
-            © {new Date().getFullYear()} Velociwash. All rights reserved. Developed by{" "}
-            <a href="https://octaleads.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/80 transition-colors">
-              OctaLeads Pvt. Ltd.
-            </a>
-          </span>
+        <div className="border-t border-white/10 py-5 flex flex-col md:flex-row items-center justify-between gap-3 text-center">
+          <div className="text-xs text-white/40">
+            <span>© {new Date().getFullYear()} Velociwash. All rights reserved.</span>
+            <br className="md:hidden" />
+            <span className="hidden md:inline"> </span>
+            <span>Developed by{" "}
+              <a href="https://octaleads.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/80 transition-colors">
+                OctaLeads Pvt. Ltd.
+              </a>
+            </span>
+          </div>
           <div className="flex items-center gap-5 text-xs text-white/40">
             <Link to="/support" className="hover:text-primary transition-colors">Privacy Policy</Link>
             <Link to="/support" className="hover:text-primary transition-colors">Terms of Service</Link>
