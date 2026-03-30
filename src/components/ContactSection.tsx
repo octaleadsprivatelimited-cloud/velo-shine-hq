@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 
 const ContactSection = () => {
   return (
-    <section className="py-14 bg-primary">
+    <section className="py-14 bg-foreground">
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -14,10 +14,10 @@ const ContactSection = () => {
           className="flex flex-col md:flex-row items-center justify-between gap-6"
         >
           <div>
-            <h2 className="font-display text-xl md:text-3xl font-bold text-primary-foreground mb-1.5">
+            <h2 className="font-display text-xl md:text-3xl font-bold text-white mb-1.5">
               Ready to get your car sparkling?
             </h2>
-            <p className="text-primary-foreground/70 text-sm">
+            <p className="text-white/60 text-sm">
               Book your first wash today and experience the Velociwash difference.
             </p>
           </div>
@@ -25,7 +25,7 @@ const ContactSection = () => {
             <Link to="/booking">
               <Button
                 size="lg"
-                className="bg-white text-primary hover:bg-white/90 font-display font-semibold px-7 h-11 rounded-md text-sm"
+                className="bg-accent text-accent-foreground hover:bg-accent/90 font-display font-semibold px-7 h-11 rounded-md text-sm"
               >
                 Schedule a Wash <ArrowRight className="w-4 h-4 ml-1.5" />
               </Button>
@@ -34,7 +34,7 @@ const ContactSection = () => {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-white/30 text-white hover:bg-white/10 font-display font-medium px-7 h-11 rounded-md text-sm"
+                className="border-white/30 text-white hover:bg-white/10 font-display font-medium px-7 h-11 rounded-md text-sm bg-transparent"
               >
                 <MessageCircle className="w-4 h-4 mr-1.5" /> WhatsApp
               </Button>
