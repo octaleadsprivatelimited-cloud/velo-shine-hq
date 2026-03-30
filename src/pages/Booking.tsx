@@ -38,6 +38,8 @@ const BookingPage = () => {
     setForm((prev) => ({ ...prev, [field]: value }));
   };
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.name || !form.phone || !form.carType || !form.service || !date || !form.timeSlot || !form.address) {
@@ -45,13 +47,12 @@ const BookingPage = () => {
       return;
     }
 
-    // Save to dashboard
-    try {
-      const { addBooking } = await import("@/lib/adminService");
-      await addBooking({ ...form, date: format(date, "PPP") });
-    } catch (error) {
-      console.error("Failed to save booking:", error);
-    }
+    setIsLoading(true);
+
+    // Save to dashboard in background (don't block the redirect)
+    import("@/lib/adminService")
+      .then(({ addBooking }) => addBooking({ ...form, date: format(date, "PPP") }))
+      .catch((error) => console.error("Failed to save booking:", error));
 
     // Build WhatsApp message
     const formattedDate = format(date, "PPP");
@@ -60,6 +61,7 @@ const BookingPage = () => {
 
     toast({ title: "Booking submitted!", description: "Redirecting to WhatsApp..." });
     setSubmitted(true);
+    setIsLoading(false);
 
     // Redirect to WhatsApp
     window.open(whatsappUrl, "_blank");
