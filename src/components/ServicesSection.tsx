@@ -26,7 +26,7 @@ const services = [
   {
     title: "Doorstep Car General Service",
     description: "Guaranteed discounted price. Usage of genuine spares only. Full mechanical care at your door.",
-    image: null,
+    image: generalServiceImg,
     href: "/services",
     badge: "New",
     icon: Wrench,
