@@ -15,7 +15,8 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
-  const showWhiteText = !scrolled;
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  const showWhiteText = !scrolled || isMobile;
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
