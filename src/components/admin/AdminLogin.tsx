@@ -30,7 +30,7 @@ const AdminLogin = ({ email, password, onEmailChange, onPasswordChange, onSubmit
               <img src={logo} alt="Velociwash Logo" className="h-24 w-auto brightness-0 dark:invert" />
             </div>
             <h1 className="font-display text-2xl md:text-3xl font-bold">Welcome back</h1>
-            <p className="text-muted-foreground mt-2 text-sm">Sign in to the Velociwash admin panel</p>
+            
           </div>
 
           <form onSubmit={onSubmit} className="space-y-5">
