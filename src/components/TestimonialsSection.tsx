@@ -34,6 +34,14 @@ const TestimonialsSection = () => {
   }, [emblaApi, onSelect]);
 
   useEffect(() => {
+    if (!mobileApi) return;
+    const onMobileSelect = () => setMobileIndex(mobileApi.selectedScrollSnap());
+    onMobileSelect();
+    mobileApi.on("select", onMobileSelect);
+    return () => { mobileApi.off("select", onMobileSelect); };
+  }, [mobileApi]);
+
+  useEffect(() => {
     getTestimonials()
       .then((data) => {
         if (data.length > 0) {
