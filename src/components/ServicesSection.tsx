@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import foamWashImg from "@/assets/service-foam-wash.jpg";
 import interiorImg from "@/assets/service-interior.jpg";
+import generalServiceImg from "@/assets/service-general.jpg";
 
 const services = [
   {
@@ -25,7 +26,7 @@ const services = [
   {
     title: "Doorstep Car General Service",
     description: "Guaranteed discounted price. Usage of genuine spares only. Full mechanical care at your door.",
-    image: null,
+    image: generalServiceImg,
     href: "/services",
     badge: "New",
     icon: Wrench,
