@@ -6,7 +6,7 @@ import heroImage from "@/assets/hero-car-wash.jpg";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-[85vh] flex items-center overflow-hidden">
+    <section className="relative min-h-[50vh] md:min-h-[85vh] flex items-center overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
         <img
