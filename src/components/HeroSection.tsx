@@ -61,7 +61,7 @@ const HeroSection = () => {
             <Link to="/booking">
               <Button
                 size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 font-display font-semibold text-sm px-7 h-12 rounded-md"
+                className="bg-accent text-accent-foreground hover:bg-accent/90 font-display font-semibold text-sm px-7 h-12 rounded-md"
               >
                 Book Now <ArrowRight className="w-4 h-4 ml-1.5" />
               </Button>

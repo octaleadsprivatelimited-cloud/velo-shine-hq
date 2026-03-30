@@ -34,7 +34,7 @@ const ContactSection = () => {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-white/30 text-white hover:bg-white/10 font-display font-medium px-7 h-11 rounded-md text-sm"
+                className="border-white/30 text-white hover:bg-white/10 font-display font-medium px-7 h-11 rounded-md text-sm bg-transparent"
               >
                 <MessageCircle className="w-4 h-4 mr-1.5" /> WhatsApp
               </Button>

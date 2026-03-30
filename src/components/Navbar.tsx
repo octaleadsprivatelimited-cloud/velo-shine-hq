@@ -133,7 +133,7 @@ const Navbar = () => {
               <div className="pt-2">
                 <Link
                   to="/booking"
-                  className="block px-4 py-3 rounded-md text-sm font-semibold bg-primary text-primary-foreground text-center hover:bg-primary/90 transition-colors"
+                  className="block px-4 py-3 rounded-md text-sm font-semibold bg-accent text-accent-foreground text-center hover:bg-accent/90 transition-colors"
                 >
                   Schedule a Wash
                 </Link>

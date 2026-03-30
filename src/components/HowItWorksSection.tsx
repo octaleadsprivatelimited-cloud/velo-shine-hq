@@ -37,7 +37,7 @@ const HowItWorksSection = () => {
               transition={{ delay: i * 0.1 }}
               className="bg-card border border-border rounded-md p-6 text-center hover:shadow-md transition-shadow"
             >
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+              <div className="w-12 h-12 rounded-full bg-foreground flex items-center justify-center mx-auto mb-4">
                 <step.icon className="w-5 h-5 text-primary" />
               </div>
               <span className="inline-block text-[11px] font-semibold text-muted-foreground uppercase tracking-wider mb-1.5">
