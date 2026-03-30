@@ -14,7 +14,7 @@ const BoldStatement = () => {
     <section className="py-20 relative overflow-hidden">
       <img src={whyUsBg} alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" width={1920} height={1080} />
       <div className="absolute inset-0 bg-foreground/85" />
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
