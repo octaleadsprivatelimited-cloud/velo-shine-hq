@@ -106,13 +106,13 @@ const Navbar = () => {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden bg-white border-t border-border shadow-lg"
+            className="md:hidden bg-foreground border-t border-white/10 shadow-lg"
           >
             <div className="flex flex-col p-4 space-y-0.5">
               <Link
                 to="/"
                 className={`px-4 py-3 rounded-md text-sm font-medium transition-colors ${
-                  location.pathname === "/" ? "text-primary bg-primary/5" : "text-foreground hover:bg-secondary"
+                  location.pathname === "/" ? "text-primary bg-white/10" : "text-white/80 hover:bg-white/10 hover:text-white"
                 }`}
               >
                 Home
@@ -123,7 +123,7 @@ const Navbar = () => {
                   key={link.href}
                   to={link.href}
                   className={`px-4 py-3 rounded-md text-sm font-medium transition-colors ${
-                    location.pathname === link.href ? "text-primary bg-primary/5" : "text-foreground hover:bg-secondary"
+                    location.pathname === link.href ? "text-primary bg-white/10" : "text-white/80 hover:bg-white/10 hover:text-white"
                   }`}
                 >
                   {link.label}
