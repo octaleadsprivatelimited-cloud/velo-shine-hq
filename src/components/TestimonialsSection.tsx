@@ -115,13 +115,29 @@ const TestimonialsSection = () => {
           </div>
         </div>
 
-        {/* Mobile grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:hidden">
-          {testimonials.map((t, index) => (
-            <div key={t.name + index} className="border border-border rounded-md overflow-hidden">
-              <Card t={t} />
+        {/* Mobile carousel – one at a time */}
+        <div className="lg:hidden">
+          <div className="overflow-hidden rounded-md" ref={mobileRef}>
+            <div className="flex">
+              {testimonials.map((t, index) => (
+                <div key={t.name + index} className="flex-[0_0_100%] min-w-0 px-1">
+                  <div className="border border-border rounded-md overflow-hidden">
+                    <Card t={t} />
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
+          {/* Dots */}
+          <div className="flex justify-center gap-1.5 mt-4">
+            {testimonials.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => mobileApi?.scrollTo(i)}
+                className={`w-2 h-2 rounded-full transition-colors ${i === mobileIndex ? "bg-primary" : "bg-border"}`}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>
