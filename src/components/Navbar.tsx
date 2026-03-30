@@ -106,7 +106,7 @@ const Navbar = () => {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden bg-foreground border-t border-white/10 shadow-lg"
+            className="md:hidden border-t border-white/10 shadow-lg" style={{ backgroundColor: 'hsl(0 0% 5%)' }}
           >
             <div className="flex flex-col p-4 space-y-0.5">
               <Link
