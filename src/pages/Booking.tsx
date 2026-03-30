@@ -196,8 +196,8 @@ const BookingPage = () => {
                 <Textarea id="notes" placeholder="Any special instructions..." value={form.notes} onChange={(e) => handleChange("notes", e.target.value)} className="bg-background border-border rounded-xl" rows={2} />
               </div>
 
-              <Button type="submit" size="lg" className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-display font-bold text-base h-14 btn-glow glow-border rounded-xl">
-                Confirm Booking
+              <Button type="submit" size="lg" disabled={isLoading} className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-display font-bold text-base h-14 btn-glow glow-border rounded-xl">
+                {isLoading ? "Submitting..." : "Confirm Booking"}
               </Button>
             </motion.form>
 
