@@ -6,10 +6,10 @@ import useEmblaCarousel from "embla-carousel-react";
 import { Button } from "@/components/ui/button";
 
 const fallbackTestimonials = [
-  { name: "RS", text: "Velociwash did an amazing job with foam cleaning for my car. The team was professional, efficient, and exceeded my expectations. I highly recommend them.", rating: 5, initials: "RS" },
-  { name: "AK", text: "The customer support team is fantastic. They resolved my issue promptly and went above and beyond to help. Highly recommended.", rating: 5, initials: "AK" },
-  { name: "PM", text: "Convenient and on time! They sent a professional to my location in no time and cleaned every corner of my car quickly!", rating: 5, initials: "PM" },
-  { name: "VR", text: "Velociwash sets the standard for excellence. Reliable, efficient, and easy to use. I can't recommend it enough.", rating: 5, initials: "VR" },
+  { name: "Ravi Kumar", text: "Velociwash did an amazing job with foam cleaning for my car. The team was professional, efficient, and exceeded my expectations. I highly recommend them.", rating: 5, initials: "RK" },
+  { name: "Srinivas Reddy", text: "The customer support team is fantastic. They resolved my issue promptly and went above and beyond to help. Highly recommended.", rating: 5, initials: "SR" },
+  { name: "Venkata Rao", text: "Convenient and on time! They sent a professional to my location in no time and cleaned every corner of my car quickly!", rating: 5, initials: "VR" },
+  { name: "Lakshmi Devi", text: "Velociwash sets the standard for excellence. Reliable, efficient, and easy to use. I can't recommend it enough.", rating: 5, initials: "LD" },
 ];
 
 const TestimonialsSection = () => {
