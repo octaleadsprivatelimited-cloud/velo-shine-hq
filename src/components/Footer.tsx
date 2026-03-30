@@ -55,7 +55,7 @@ const Footer = () => {
               </a>
               <div className="flex items-start gap-2.5 text-sm text-white/50">
                 <MapPin className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
-                Doorstep — We come to you
+                H.no-1/5, Shop no.3, MIG, Phase III, Near MIG Bus Stop, KPHB - 500072
               </div>
             </div>
           </div>
