@@ -1,5 +1,9 @@
 import { motion } from "framer-motion";
 import { Phone, MessageCircle, Shield, FileText, ExternalLink, Clock, MapPin, Headphones, Mail, ArrowRight } from "lucide-react";
+import socialWhatsapp from "@/assets/social-whatsapp.png";
+import socialInstagram from "@/assets/social-instagram.png";
+import socialFacebook from "@/assets/social-facebook.png";
+import socialYoutube from "@/assets/social-youtube.png";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
