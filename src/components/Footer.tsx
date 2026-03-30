@@ -16,9 +16,9 @@ const Footer = () => {
       <div className="container mx-auto px-6">
         <div className="py-12 grid grid-cols-1 md:grid-cols-3 gap-10">
           {/* Brand */}
-          <div>
+          <div className="text-center md:text-left">
             <Link to="/" className="mb-4 inline-block">
-              <img src={logo} alt="Velociwash Logo" className="h-20 -my-3 w-auto brightness-0 invert" />
+              <img src={logo} alt="Velociwash Logo" className="h-20 -my-3 w-auto brightness-0 invert mx-auto md:mx-0" />
             </Link>
             <p className="text-sm text-white/50 leading-relaxed max-w-xs">
               Premium doorstep car care services. We bring professional-grade products to your doorstep.
