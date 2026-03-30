@@ -15,6 +15,8 @@ const fallbackTestimonials = [
 const TestimonialsSection = () => {
   const [testimonials, setTestimonials] = useState(fallbackTestimonials);
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start", slidesToScroll: 1 });
+  const [mobileRef, mobileApi] = useEmblaCarousel({ loop: true, align: "center", slidesToScroll: 1 });
+  const [mobileIndex, setMobileIndex] = useState(0);
   const [canPrev, setCanPrev] = useState(false);
   const [canNext, setCanNext] = useState(false);
 
@@ -30,6 +32,14 @@ const TestimonialsSection = () => {
     emblaApi.on("select", onSelect);
     emblaApi.on("reInit", onSelect);
   }, [emblaApi, onSelect]);
+
+  useEffect(() => {
+    if (!mobileApi) return;
+    const onMobileSelect = () => setMobileIndex(mobileApi.selectedScrollSnap());
+    onMobileSelect();
+    mobileApi.on("select", onMobileSelect);
+    return () => { mobileApi.off("select", onMobileSelect); };
+  }, [mobileApi]);
 
   useEffect(() => {
     getTestimonials()
@@ -105,13 +115,29 @@ const TestimonialsSection = () => {
           </div>
         </div>
 
-        {/* Mobile grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:hidden">
-          {testimonials.map((t, index) => (
-            <div key={t.name + index} className="border border-border rounded-md overflow-hidden">
-              <Card t={t} />
+        {/* Mobile carousel – one at a time */}
+        <div className="lg:hidden">
+          <div className="overflow-hidden rounded-md" ref={mobileRef}>
+            <div className="flex">
+              {testimonials.map((t, index) => (
+                <div key={t.name + index} className="flex-[0_0_100%] min-w-0 px-1">
+                  <div className="border border-border rounded-md overflow-hidden">
+                    <Card t={t} />
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
+          {/* Dots */}
+          <div className="flex justify-center gap-1.5 mt-4">
+            {testimonials.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => mobileApi?.scrollTo(i)}
+                className={`w-2 h-2 rounded-full transition-colors ${i === mobileIndex ? "bg-primary" : "bg-border"}`}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>
