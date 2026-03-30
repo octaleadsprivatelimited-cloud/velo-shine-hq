@@ -21,7 +21,7 @@ const ContactSection = () => {
               Book your first wash today and experience the Velociwash difference.
             </p>
           </div>
-          <div className="flex flex-col sm:flex-row gap-3 shrink-0">
+          <div className="flex flex-row gap-2 sm:gap-3 shrink-0 w-full md:w-auto">
             <Link to="/booking">
               <Button
                 size="lg"
