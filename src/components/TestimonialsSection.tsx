@@ -15,6 +15,8 @@ const fallbackTestimonials = [
 const TestimonialsSection = () => {
   const [testimonials, setTestimonials] = useState(fallbackTestimonials);
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start", slidesToScroll: 1 });
+  const [mobileRef, mobileApi] = useEmblaCarousel({ loop: true, align: "center", slidesToScroll: 1 });
+  const [mobileIndex, setMobileIndex] = useState(0);
   const [canPrev, setCanPrev] = useState(false);
   const [canNext, setCanNext] = useState(false);
 
