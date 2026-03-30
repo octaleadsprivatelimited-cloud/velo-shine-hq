@@ -69,9 +69,6 @@ const AdminLogin = ({ email, password, onEmailChange, onPasswordChange, onSubmit
             </Button>
           </form>
 
-          <p className="text-center text-xs text-muted-foreground mt-6">
-            Protected area · Velociwash Admin
-          </p>
         </div>
       </motion.div>
     </div>
