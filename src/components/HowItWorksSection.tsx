@@ -27,48 +27,24 @@ const HowItWorksSection = () => {
           </p>
         </motion.div>
 
-        {/* Mobile: horizontal scroll strip */}
-        <div className="flex md:hidden gap-3 overflow-x-auto pb-2 snap-x snap-mandatory -mx-4 px-4 scrollbar-hide">
-          {steps.map((step, i) => (
-            <motion.div
-              key={step.num}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.08 }}
-              className="bg-card border border-border rounded-lg p-4 text-center snap-start shrink-0 w-[72%]"
-            >
-              <div className="w-10 h-10 rounded-full bg-foreground flex items-center justify-center mx-auto mb-2.5">
-                <step.icon className="w-4 h-4 text-primary" />
-              </div>
-              <span className="inline-block text-[10px] font-semibold text-muted-foreground uppercase tracking-wider mb-1">
-                Step {step.num}
-              </span>
-              <h3 className="font-display text-sm font-semibold mb-1">{step.title}</h3>
-              <p className="text-xs text-muted-foreground leading-relaxed">{step.description}</p>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Desktop: grid */}
-        <div className="hidden md:grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 max-w-5xl mx-auto">
           {steps.map((step, i) => (
             <motion.div
               key={step.num}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="bg-card border border-border rounded-md p-6 text-center hover:shadow-md transition-shadow"
+              transition={{ delay: i * 0.08 }}
+              className="bg-card border border-border rounded-lg p-3 md:p-6 text-center hover:shadow-md transition-shadow"
             >
-              <div className="w-12 h-12 rounded-full bg-foreground flex items-center justify-center mx-auto mb-4">
-                <step.icon className="w-5 h-5 text-primary" />
+              <div className="w-9 h-9 md:w-12 md:h-12 rounded-full bg-foreground flex items-center justify-center mx-auto mb-2 md:mb-4">
+                <step.icon className="w-4 h-4 md:w-5 md:h-5 text-primary" />
               </div>
-              <span className="inline-block text-[11px] font-semibold text-muted-foreground uppercase tracking-wider mb-1.5">
+              <span className="inline-block text-[9px] md:text-[11px] font-semibold text-muted-foreground uppercase tracking-wider mb-1">
                 Step {step.num}
               </span>
-              <h3 className="font-display text-base font-semibold mb-1.5">{step.title}</h3>
-              <p className="text-[13px] text-muted-foreground leading-relaxed">{step.description}</p>
+              <h3 className="font-display text-xs md:text-base font-semibold mb-1">{step.title}</h3>
+              <p className="text-[11px] md:text-[13px] text-muted-foreground leading-relaxed">{step.description}</p>
             </motion.div>
           ))}
         </div>
