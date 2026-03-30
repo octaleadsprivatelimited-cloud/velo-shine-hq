@@ -1,5 +1,9 @@
 import { motion } from "framer-motion";
 import { Phone, MessageCircle, Shield, FileText, ExternalLink, Clock, MapPin, Headphones, Mail, ArrowRight } from "lucide-react";
+import socialWhatsapp from "@/assets/social-whatsapp.png";
+import socialInstagram from "@/assets/social-instagram.png";
+import socialFacebook from "@/assets/social-facebook.png";
+import socialYoutube from "@/assets/social-youtube.png";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
@@ -141,15 +145,21 @@ const SupportPage = () => {
             >
               <h3 className="font-display text-lg font-bold mb-5">Follow Us</h3>
               <div className="grid grid-cols-2 gap-3">
-                {["WhatsApp", "Instagram", "Facebook", "YouTube"].map((s) => (
+                {[
+                  { name: "WhatsApp", icon: socialWhatsapp, href: "https://wa.me/919676031464" },
+                  { name: "Instagram", icon: socialInstagram, href: "#" },
+                  { name: "Facebook", icon: socialFacebook, href: "#" },
+                  { name: "YouTube", icon: socialYoutube, href: "#" },
+                ].map((s) => (
                   <a
-                    key={s}
-                    href={s === "WhatsApp" ? "https://wa.me/919676031464" : "#"}
+                    key={s.name}
+                    href={s.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center py-3 px-3 rounded-xl bg-secondary border border-border hover:border-primary/30 hover:bg-primary/5 transition-all duration-300 text-sm font-semibold text-foreground"
+                    className="flex items-center justify-center gap-2 py-3 px-3 rounded-xl bg-secondary border border-border hover:border-primary/30 hover:bg-primary/5 transition-all duration-300 text-sm font-semibold text-foreground"
                   >
-                    {s}
+                    <img src={s.icon} alt={s.name} className="w-6 h-6" loading="lazy" width={512} height={512} />
+                    {s.name}
                   </a>
                 ))}
               </div>
