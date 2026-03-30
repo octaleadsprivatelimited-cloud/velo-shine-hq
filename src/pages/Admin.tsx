@@ -4,6 +4,7 @@ import {
   LayoutDashboard, CalendarCheck, Wrench, Image, MessageSquareQuote,
   LogOut, Menu, X, ChevronRight
 } from "lucide-react";
+import logo from "@/assets/logo.png";
 import { onAuthStateChanged, signInWithEmailAndPassword, signOut, type User } from "firebase/auth";
 import { auth } from "@/lib/firebase";
 import { Button } from "@/components/ui/button";
@@ -113,9 +114,7 @@ const AdminPage = () => {
         <div className="p-6 border-b border-border">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                <LayoutDashboard className="w-5 h-5 text-primary" />
-              </div>
+              <img src={logo} alt="Velociwash Logo" className="h-10 w-auto brightness-0 dark:invert" />
               <div>
                 <h1 className="font-display text-lg font-bold tracking-tight">Velociwash</h1>
                 <p className="text-xs text-muted-foreground">Admin Panel</p>
