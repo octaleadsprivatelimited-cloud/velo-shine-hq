@@ -101,9 +101,7 @@ const Navbar = () => {
           </Link>
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className={`w-9 h-9 rounded-md flex items-center justify-center transition-colors ${
-              scrolled ? 'bg-secondary text-foreground' : 'bg-white/15 text-white'
-            }`}
+            className="w-9 h-9 rounded-md flex items-center justify-center transition-colors bg-white/15 text-white"
           >
             {isOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
           </button>
