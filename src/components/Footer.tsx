@@ -8,6 +8,7 @@ const footerLinks = [
   { label: "Gallery", href: "/gallery" },
   { label: "Support", href: "/support" },
   { label: "Book Now", href: "/booking" },
+  { label: "Sitemap", href: "/sitemap.xml", external: true },
 ];
 
 const Footer = () => {
