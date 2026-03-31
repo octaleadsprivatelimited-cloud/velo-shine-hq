@@ -1,6 +1,6 @@
 import { collection, getDocs, query, limit } from "firebase/firestore";
 import { db } from "./firebase";
-import { addService, addTestimonial } from "./adminService";
+import { addService, addTestimonial, addGalleryItem } from "./adminService";
 
 const defaultServices = [
   {
@@ -71,29 +71,41 @@ const defaultServices = [
 
 const defaultTestimonials = [
   {
-    name: "RS",
+    name: "Ravi Kumar",
     car: "",
     rating: 5,
     text: "Velociwash did an amazing job with foam cleaning for my car. The team was professional, efficient, and exceeded my expectations. I highly recommend them.",
   },
   {
-    name: "AK",
+    name: "Srinivas Reddy",
     car: "",
     rating: 5,
     text: "The customer support team is fantastic. They resolved my issue promptly and went above and beyond to help. Highly recommended.",
   },
   {
-    name: "PM",
+    name: "Venkata Rao",
     car: "",
     rating: 5,
     text: "Convenient and on time! They sent a professional to my location in no time and cleaned every corner of my car quickly!",
   },
   {
-    name: "VR",
+    name: "Lakshmi Devi",
     car: "",
     rating: 5,
     text: "Velociwash sets the standard for excellence. Reliable, efficient, and easy to use. I can't recommend it enough.",
   },
+];
+
+const defaultGalleryItems = [
+  { imageUrl: "", alt: "Luxury SUV foam wash", category: "Exterior", order: 0 },
+  { imageUrl: "", alt: "Before and after transformation", category: "Exterior", order: 1 },
+  { imageUrl: "", alt: "Snow foam application", category: "Exterior", order: 2 },
+  { imageUrl: "", alt: "Interior after detailing", category: "Interior", order: 3 },
+  { imageUrl: "", alt: "Dashboard cleaning", category: "Interior", order: 4 },
+  { imageUrl: "", alt: "Water beading on ceramic coating", category: "Detailing", order: 5 },
+  { imageUrl: "", alt: "Ceramic coating application", category: "Detailing", order: 6 },
+  { imageUrl: "", alt: "Alloy wheel cleaning", category: "Exterior", order: 7 },
+  { imageUrl: "", alt: "Machine polishing", category: "Detailing", order: 8 },
 ];
 
 const isCollectionEmpty = async (collectionName: string): Promise<boolean> => {
@@ -102,9 +114,10 @@ const isCollectionEmpty = async (collectionName: string): Promise<boolean> => {
   return snapshot.empty;
 };
 
-export const seedFirebaseData = async (): Promise<{ services: number; testimonials: number }> => {
+export const seedFirebaseData = async (): Promise<{ services: number; testimonials: number; gallery: number }> => {
   let servicesAdded = 0;
   let testimonialsAdded = 0;
+  let galleryAdded = 0;
 
   const servicesEmpty = await isCollectionEmpty("services");
   if (servicesEmpty) {
@@ -122,5 +135,13 @@ export const seedFirebaseData = async (): Promise<{ services: number; testimonia
     }
   }
 
-  return { services: servicesAdded, testimonials: testimonialsAdded };
+  const galleryEmpty = await isCollectionEmpty("gallery");
+  if (galleryEmpty) {
+    for (const item of defaultGalleryItems) {
+      await addGalleryItem(item);
+      galleryAdded++;
+    }
+  }
+
+  return { services: servicesAdded, testimonials: testimonialsAdded, gallery: galleryAdded };
 };
