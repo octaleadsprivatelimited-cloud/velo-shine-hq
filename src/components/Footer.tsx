@@ -30,15 +30,27 @@ const Footer = () => {
           <div>
             <h4 className="font-display font-semibold text-xs uppercase tracking-wider text-white/70 mb-4">Quick Links</h4>
             <nav className="grid grid-cols-2 gap-1.5">
-              {footerLinks.map((link) => (
-                <Link
-                  key={link.label}
-                  to={link.href}
-                  className="text-sm text-white/50 hover:text-primary transition-colors py-1"
-                >
-                  {link.label}
-                </Link>
-              ))}
+              {footerLinks.map((link) =>
+                link.external ? (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-white/50 hover:text-primary transition-colors py-1"
+                  >
+                    {link.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={link.label}
+                    to={link.href}
+                    className="text-sm text-white/50 hover:text-primary transition-colors py-1"
+                  >
+                    {link.label}
+                  </Link>
+                )
+              )}
             </nav>
           </div>
 
