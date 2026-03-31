@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Camera } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import SEO from "@/components/SEO";
+import { getGalleryItems } from "@/lib/adminService";
 
 import heroImg from "@/assets/hero-car-wash.jpg";
 import foamImg from "@/assets/service-foam-wash.jpg";
@@ -18,7 +19,7 @@ import polishingImg from "@/assets/gallery-polishing.jpg";
 
 const categories = ["All", "Exterior", "Interior", "Detailing"];
 
-const galleryItems = [
+const fallbackGallery = [
   { src: heroImg, alt: "Luxury SUV foam wash", category: "Exterior" },
   { src: beforeAfterImg, alt: "Before and after transformation", category: "Exterior" },
   { src: foamImg, alt: "Snow foam application", category: "Exterior" },
@@ -30,9 +31,38 @@ const galleryItems = [
   { src: polishingImg, alt: "Machine polishing", category: "Detailing" },
 ];
 
+const fallbackImageMap: Record<string, string> = {
+  "Luxury SUV foam wash": heroImg,
+  "Before and after transformation": beforeAfterImg,
+  "Snow foam application": foamImg,
+  "Interior after detailing": interiorCleanImg,
+  "Dashboard cleaning": interiorImg,
+  "Water beading on ceramic coating": polishedImg,
+  "Ceramic coating application": ceramicImg,
+  "Alloy wheel cleaning": wheelImg,
+  "Machine polishing": polishingImg,
+};
+
 const GalleryPage = () => {
   const [active, setActive] = useState("All");
   const [selectedImg, setSelectedImg] = useState<string | null>(null);
+  const [galleryItems, setGalleryItems] = useState(fallbackGallery);
+
+  useEffect(() => {
+    getGalleryItems()
+      .then((data) => {
+        if (data.length > 0) {
+          setGalleryItems(
+            data.map((item) => ({
+              src: item.imageUrl || fallbackImageMap[item.alt] || "",
+              alt: item.alt,
+              category: item.category,
+            }))
+          );
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   const filtered = active === "All" ? galleryItems : galleryItems.filter((g) => g.category === active);
 

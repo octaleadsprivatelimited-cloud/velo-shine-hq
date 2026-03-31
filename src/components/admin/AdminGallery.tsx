@@ -52,19 +52,19 @@ const AdminGallery = () => {
     } catch { toast({ title: "Failed to delete", variant: "destructive" }); }
   };
 
-  const ItemForm = ({ onSave, onCancel }: { onSave: () => void; onCancel: () => void }) => (
+  const renderItemForm = (onSave: () => void, onCancel: () => void) => (
     <div className="bg-card border border-border rounded-xl p-6 space-y-5 col-span-full">
       <div className="space-y-2">
-      <ImageUploadField label="Image *" value={form.imageUrl} onChange={(url) => setForm({ ...form, imageUrl: url })} />
+        <ImageUploadField label="Image *" value={form.imageUrl} onChange={(url) => setForm((f) => ({ ...f, imageUrl: url }))} />
       </div>
       <div className="grid md:grid-cols-2 gap-4">
         <div className="space-y-2">
           <Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Alt Text *</Label>
-          <Input value={form.alt} onChange={(e) => setForm({ ...form, alt: e.target.value })} placeholder="Description of the image" className="bg-secondary border-border h-11" />
+          <Input value={form.alt} onChange={(e) => setForm((f) => ({ ...f, alt: e.target.value }))} placeholder="Description of the image" className="bg-secondary border-border h-11" />
         </div>
         <div className="space-y-2">
           <Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Category</Label>
-          <Select value={form.category} onValueChange={(v) => setForm({ ...form, category: v })}>
+          <Select value={form.category} onValueChange={(v) => setForm((f) => ({ ...f, category: v }))}>
             <SelectTrigger className="bg-secondary border-border h-11"><SelectValue /></SelectTrigger>
             <SelectContent>
               {categories.map((c) => <SelectItem key={c} value={c}>{c}</SelectItem>)}
@@ -92,7 +92,7 @@ const AdminGallery = () => {
         )}
       </div>
 
-      {showAdd && <ItemForm onSave={handleAdd} onCancel={() => setShowAdd(false)} />}
+      {showAdd && renderItemForm(handleAdd, () => setShowAdd(false))}
 
       {loading ? (
         <div className="text-center py-20 text-muted-foreground">Loading gallery...</div>
@@ -106,7 +106,9 @@ const AdminGallery = () => {
         <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
           {items.map((item) =>
             editing === item.id ? (
-              <ItemForm key={item.id} onSave={() => handleUpdate(item.id!)} onCancel={() => setEditing(null)} />
+              <div key={item.id} className="col-span-full">
+                {renderItemForm(() => handleUpdate(item.id!), () => setEditing(null))}
+              </div>
             ) : (
               <div key={item.id} className="bg-card border border-border rounded-xl overflow-hidden group hover:border-primary/20 transition-colors">
                 <div className="aspect-[4/3] overflow-hidden relative">
