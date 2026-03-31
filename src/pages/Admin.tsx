@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   LayoutDashboard, CalendarCheck, Wrench, Image, MessageSquareQuote,
-  LogOut, Menu, X, ChevronRight
+  LogOut, Menu, X, ChevronRight, Database
 } from "lucide-react";
 import logo from "@/assets/logo.png";
 import { onAuthStateChanged, signInWithEmailAndPassword, signOut, type User } from "firebase/auth";
