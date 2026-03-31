@@ -57,14 +57,14 @@ const BookingPage = () => {
     // Build WhatsApp message
     const formattedDate = format(date, "PPP");
     const message = `Hi Velociwash! I'd like to book a service.\n\n*Name:* ${form.name}\n*Phone:* ${form.phone}\n*Car:* ${form.carType}${form.carModel ? ` - ${form.carModel}` : ""}\n*Service:* ${form.service}\n*Date:* ${formattedDate}\n*Time:* ${form.timeSlot}\n*Address:* ${form.address}${form.notes ? `\n*Notes:* ${form.notes}` : ""}`;
-    const whatsappUrl = `https://wa.me/919014737381?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=919014737381&text=${encodeURIComponent(message)}`;
 
     toast({ title: "Booking submitted!", description: "Redirecting to WhatsApp..." });
     setSubmitted(true);
     setIsLoading(false);
 
-    // Redirect to WhatsApp
-    window.open(whatsappUrl, "_blank");
+    // Use location.href to avoid iframe/popup blocking
+    window.location.href = whatsappUrl;
   };
 
   if (submitted) {
