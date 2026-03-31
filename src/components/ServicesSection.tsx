@@ -38,6 +38,14 @@ const iconMap: Record<string, React.ElementType> = {
   "Doorstep Car General Service": Wrench,
 };
 
+type ServiceItem = {
+  title: string;
+  description: string;
+  image: string;
+  badge: string;
+  icon: React.ElementType;
+};
+
 const fallbackImageMap: Record<string, string> = {
   "Doorstep Car Foam Wash": foamWashImg,
   "Doorstep Regular Car Cleaning": interiorImg,
