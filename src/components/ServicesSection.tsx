@@ -53,7 +53,7 @@ const fallbackImageMap: Record<string, string> = {
 };
 
 const ServicesSection = () => {
-  const [services, setServices] = useState(fallbackServices);
+  const [services, setServices] = useState<ServiceItem[]>(fallbackServices);
 
   useEffect(() => {
     getServices()
