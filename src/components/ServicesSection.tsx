@@ -1,17 +1,18 @@
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Droplets, Car, Wrench } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { getServices, type Service } from "@/lib/adminService";
 import foamWashImg from "@/assets/service-foam-wash.jpg";
 import interiorImg from "@/assets/service-interior.jpg";
 import generalServiceImg from "@/assets/service-general.jpg";
 
-const services = [
+const fallbackServices = [
   {
     title: "Doorstep Car Foam Wash",
     description: "Single time plans and monthly plans available. Premium pH-neutral snow foam for a scratch-free shine.",
     image: foamWashImg,
-    href: "/services",
     badge: "Popular",
     icon: Droplets,
   },
@@ -19,7 +20,6 @@ const services = [
     title: "Doorstep Regular Car Cleaning",
     description: "Fresh microfiber and fresh water for every car! Keep your car spotless with routine cleaning.",
     image: interiorImg,
-    href: "/services",
     badge: "New",
     icon: Car,
   },
@@ -27,13 +27,44 @@ const services = [
     title: "Doorstep Car General Service",
     description: "Guaranteed discounted price. Usage of genuine spares only. Full mechanical care at your door.",
     image: generalServiceImg,
-    href: "/services",
     badge: "New",
     icon: Wrench,
   },
 ];
 
+const iconMap: Record<string, React.ElementType> = {
+  "Doorstep Car Foam Wash": Droplets,
+  "Doorstep Regular Car Cleaning": Car,
+  "Doorstep Car General Service": Wrench,
+};
+
+const fallbackImageMap: Record<string, string> = {
+  "Doorstep Car Foam Wash": foamWashImg,
+  "Doorstep Regular Car Cleaning": interiorImg,
+  "Doorstep Car General Service": generalServiceImg,
+};
+
 const ServicesSection = () => {
+  const [services, setServices] = useState(fallbackServices);
+
+  useEffect(() => {
+    getServices()
+      .then((data) => {
+        if (data.length > 0) {
+          setServices(
+            data.slice(0, 3).map((s) => ({
+              title: s.title,
+              description: s.description,
+              image: s.imageUrl || fallbackImageMap[s.title] || "",
+              badge: s.badge,
+              icon: iconMap[s.title] || Wrench,
+            }))
+          );
+        }
+      })
+      .catch(() => {});
+  }, []);
+
   return (
     <section className="py-20 bg-background">
       <div className="container mx-auto px-6">
@@ -61,9 +92,8 @@ const ServicesSection = () => {
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
             >
-              <Link to={service.href} className="block group h-full">
+              <Link to="/services" className="block group h-full">
                 <div className="h-full rounded-md overflow-hidden bg-card border border-border hover:shadow-md transition-shadow duration-200">
-                  {/* Image */}
                   <div className="relative h-48 overflow-hidden bg-muted">
                     {service.image ? (
                       <img
@@ -83,8 +113,6 @@ const ServicesSection = () => {
                       </span>
                     )}
                   </div>
-
-                  {/* Content */}
                   <div className="p-5">
                     <div className="flex items-center gap-2.5 mb-2">
                       <service.icon className="w-4 h-4 text-primary shrink-0" />
