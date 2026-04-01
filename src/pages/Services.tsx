@@ -1,9 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
-  Sparkles, CheckCircle2, ArrowRight, Droplets, Calendar, Shield,
-  Zap, Clock, ShieldCheck, Star, Car, Wrench
+  Sparkles, CheckCircle2, ArrowRight, Droplets, Calendar, Car, Wrench
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
@@ -13,10 +12,10 @@ import SEO from "@/components/SEO";
 
 const foamWashPlans = [
   {
-    name: "Single Foam Wash",
+    name: "Doorstep Car Foam Wash",
     subtitle: "Premium foam wash + interior cleaning",
-    originalPrice: "₹879",
-    price: "₹679",
+    originalPrice: null,
+    price: "₹600",
     perWash: null,
     discount: null,
     features: [
@@ -36,15 +35,15 @@ const foamWashPlans = [
     popular: true,
   },
   {
-    name: "Car + Bike Combo",
+    name: "Doorstep Car + Bike Foam Wash",
     subtitle: "Foam wash combo for car + bike",
-    originalPrice: "₹999",
-    price: "₹899",
+    originalPrice: null,
+    price: "₹750",
     perWash: null,
     discount: null,
     features: [
       "Exterior pressure water wash (car + bike)",
-      "Exterior pressure foam wash (car + bike)",
+      "Exterior pressure wash (car + bike)",
       "Hand scrub (car + bike)",
       "Pressure water rinsing (car + bike)",
       "Towel dry cleaning (car + bike)",
@@ -59,12 +58,12 @@ const foamWashPlans = [
     popular: false,
   },
   {
-    name: "Monthly ×2 Plan",
+    name: "2 Doorstep Foam Washes per Month",
     subtitle: "2 doorstep foam washes per month",
-    originalPrice: "₹1,399",
-    price: "₹1,199",
-    perWash: "₹599 per wash",
-    discount: "13% off",
+    originalPrice: null,
+    price: "₹1000",
+    perWash: null,
+    discount: null,
     features: [
       "Exterior pressure water wash",
       "Exterior pressure foam wash",
@@ -82,12 +81,12 @@ const foamWashPlans = [
     popular: false,
   },
   {
-    name: "Monthly ×4 Plan",
+    name: "4 Doorstep Foam Washes per Month",
     subtitle: "4 doorstep foam washes per month",
-    originalPrice: "₹2,399",
-    price: "₹2,199",
-    perWash: "₹549 per wash",
-    discount: "21% off",
+    originalPrice: null,
+    price: "₹2000",
+    perWash: null,
+    discount: null,
     features: [
       "Exterior pressure water wash",
       "Exterior pressure foam wash",
@@ -109,63 +108,43 @@ const foamWashPlans = [
 const regularPlans = [
   {
     name: "Regular Car Cleaning",
-    subtitle: "Alternate day exterior + interior every 12 days",
-    originalPrice: "₹799",
-    price: "₹599",
+    subtitle: "Alternate day exterior cleaning, interior cleaning every 15 days",
+    originalPrice: null,
+    price: "₹1200",
     perWash: null,
     discount: null,
-    tagline: "Less than the cost of a pizza 🍕",
+    tagline: "Just pay ₹1200/month for any car and enjoy a dirt-free drive everyday!",
     features: [
       "Alternate day exterior cleaning",
-      "Interior cleaning every 12 days",
-      "Fresh water for each car",
-      "New microfiber for every car",
-      "Hand-held pressure pumps",
-      "Eco-friendly, minimal water",
-      "Daily images with timestamp",
+      "Interior cleaning every 15 days",
+      "Full exterior + interior cleaning",
+      "Dashboard polish",
+      "Glass clean and shine",
+      "Tire polish",
+      "Air top-up",
     ],
     popular: false,
     icon: Calendar,
   },
   {
     name: "Everyday Car Cleaning",
-    subtitle: "Everyday exterior + interior every 12 days",
-    originalPrice: "₹1,399",
-    price: "₹1,198",
+    subtitle: "Everyday exterior cleaning, interior cleaning every weekends",
+    originalPrice: null,
+    price: "₹2400",
     perWash: null,
     discount: null,
-    tagline: "Your car is clean every single day",
+    tagline: "Extreme value, everyday exterior cleaning, interior cleaning every weekends.",
     features: [
       "Everyday exterior cleaning",
-      "Interior cleaning every 12 days",
-      "Fresh water for each car",
-      "New microfiber for every car",
-      "Hand-held pressure pumps",
-      "Eco-friendly, minimal water",
-      "Daily images with timestamp",
+      "Interior cleaning every weekends",
+      "Full exterior + interior cleaning",
+      "Dashboard polish",
+      "Glass clean and shine",
+      "Tire polish",
+      "Air top-up",
     ],
     popular: true,
     icon: Sparkles,
-  },
-  {
-    name: "Premium Monthly",
-    subtitle: "Everyday wash + weekly foam wash",
-    originalPrice: "₹2,999",
-    price: "₹2,499",
-    perWash: null,
-    discount: null,
-    tagline: "The ultimate clean car experience ✨",
-    features: [
-      "Everyday exterior cleaning",
-      "Interior cleaning every 7 days",
-      "Weekly foam wash included",
-      "Fresh water & microfiber",
-      "Hand-held pressure pumps",
-      "Priority scheduling",
-      "Daily images with timestamp",
-    ],
-    popular: false,
-    icon: Zap,
   },
 ];
 
@@ -180,7 +159,25 @@ const generalServiceFeatures = [
 
 type Tab = "foam-wash" | "regular" | "general";
 
+const hashToTab = (hash: string): Tab => {
+  const normalizedHash = hash.replace("#", "").trim().toLowerCase();
+
+  if (normalizedHash === "foam-wash") return "foam-wash";
+  if (normalizedHash === "regular" || normalizedHash === "regular-cleaning") return "regular";
+  if (normalizedHash === "general" || normalizedHash === "general-service") return "general";
+
+  return "foam-wash";
+};
+
+const tabToHash: Record<Tab, string> = {
+  "foam-wash": "foam-wash",
+  regular: "regular-cleaning",
+  general: "general-service",
+};
+
 const ServicesPage = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<Tab>("foam-wash");
 
   const tabs: { id: Tab; label: string; icon: React.ElementType }[] = [
@@ -188,6 +185,22 @@ const ServicesPage = () => {
     { id: "regular", label: "Regular Cleaning", icon: Car },
     { id: "general", label: "General Service", icon: Wrench },
   ];
+
+  useEffect(() => {
+    if (!location.hash) return;
+
+    const tabFromHash = hashToTab(location.hash);
+    setActiveTab(tabFromHash);
+
+    requestAnimationFrame(() => {
+      document.getElementById("services-tabs")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }, [location.hash]);
+
+  const handleTabChange = (tab: Tab) => {
+    setActiveTab(tab);
+    navigate({ hash: `#${tabToHash[tab]}` }, { replace: true });
+  };
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -221,7 +234,7 @@ const ServicesPage = () => {
       </section>
 
       {/* Tabs */}
-      <section className="py-16 bg-secondary/50 relative">
+      <section id="services-tabs" className="py-16 bg-secondary/50 relative">
         <div className="absolute inset-0 noise opacity-10" />
         <div className="container mx-auto px-6 relative z-10">
           {/* Tab nav */}
@@ -229,7 +242,7 @@ const ServicesPage = () => {
             {tabs.map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => { setActiveTab(tab.id); }}
+                onClick={() => { handleTabChange(tab.id); }}
                 className={`inline-flex items-center gap-2 px-6 py-3 rounded-xl font-display font-bold text-sm transition-all duration-300 ${
                   activeTab === tab.id
                     ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25"
@@ -285,7 +298,9 @@ const ServicesPage = () => {
                     </div>
 
                     <div className="mb-1">
-                      <span className="text-xs text-muted-foreground line-through mr-2">{plan.originalPrice}</span>
+                      {plan.originalPrice && (
+                        <span className="text-xs text-muted-foreground line-through mr-2">{plan.originalPrice}</span>
+                      )}
                       <span className="font-display text-2xl font-extrabold text-foreground">{plan.price}</span>
                     </div>
                     {plan.discount && (
@@ -334,10 +349,14 @@ const ServicesPage = () => {
                 <h2 className="font-display text-2xl md:text-4xl font-extrabold">
                   Regular Cleaning <span className="text-gradient">Plans</span>
                 </h2>
-                <p className="text-muted-foreground mt-3 max-w-md mx-auto">Affordable daily or alternate-day cleaning subscriptions.</p>
+                <p className="text-muted-foreground mt-3 max-w-md mx-auto">Regular car cleaning that's actually regular.</p>
+                <div className="mt-3 max-w-xl mx-auto rounded-lg border border-primary/30 bg-primary/10 px-4 py-3">
+                  <p className="text-sm font-semibold text-foreground">We need at least 20 to 30 cars from your community to start.</p>
+                  <p className="text-sm font-semibold text-foreground mt-1">Timings: 5:00 AM to 9:00 AM and 6:00 PM to 10:00 PM.</p>
+                </div>
               </div>
 
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border max-w-5xl mx-auto rounded-xl overflow-hidden border border-border">
+              <div className="grid sm:grid-cols-2 gap-px bg-border max-w-5xl mx-auto rounded-xl overflow-hidden border border-border">
                 {regularPlans.map((plan, i) => (
                   <motion.div
                     key={plan.name}
@@ -370,9 +389,11 @@ const ServicesPage = () => {
                     </div>
 
                     <div className="mb-1">
-                      <span className="text-xs text-muted-foreground line-through mr-2">{plan.originalPrice}</span>
+                      {plan.originalPrice && (
+                        <span className="text-xs text-muted-foreground line-through mr-2">{plan.originalPrice}</span>
+                      )}
                       <span className="font-display text-2xl font-extrabold text-foreground">{plan.price}</span>
-                      <span className="text-sm text-muted-foreground">/mo</span>
+                      <span className="text-sm text-muted-foreground">/month</span>
                     </div>
                     <p className="text-sm text-foreground mb-4">{plan.tagline}</p>
 

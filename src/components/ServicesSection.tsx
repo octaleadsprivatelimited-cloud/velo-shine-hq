@@ -52,6 +52,12 @@ const fallbackImageMap: Record<string, string> = {
   "Doorstep Car General Service": generalServiceImg,
 };
 
+const serviceHashMap: Record<string, string> = {
+  "Doorstep Car Foam Wash": "#foam-wash",
+  "Doorstep Regular Car Cleaning": "#regular-cleaning",
+  "Doorstep Car General Service": "#general-service",
+};
+
 const ServicesSection = () => {
   const [services, setServices] = useState<ServiceItem[]>(fallbackServices);
 
@@ -100,7 +106,7 @@ const ServicesSection = () => {
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
             >
-              <Link to="/services" className="block group h-full">
+              <Link to={`/services${serviceHashMap[service.title] ?? ""}`} className="block group h-full">
                 <div className="h-full rounded-md overflow-hidden bg-card border border-border hover:shadow-md transition-shadow duration-200">
                   <div className="relative h-48 overflow-hidden bg-muted">
                     {service.image ? (
